@@ -537,7 +537,9 @@ bookmar-input:hover {
     border: none;
     background: none;
     color: #8b8ba7;
+    cursor: pointer;
 }
+
 .formsearch {
     height: 2.7em;
     width: 40%;
@@ -546,42 +548,25 @@ bookmar-input:hover {
     align-items: center;
     gap: 8px;
     padding-inline: 0.8em;
-    margin: 0 auto;
+    margin-left: 35%;
     background: rgba(255, 255, 255, 0.824);
-    border: 2px solid rgba(33, 26, 26, 0.12);
+    /* border: 2px solid rgba(33, 26, 26, 0.12); */
     color: #000000;
     backdrop-filter: blur(100px);
     box-shadow: 0 0 10px rgba(33, 26, 26, 0.1);
 }
+
 .browser_search {
     font-size: 0.9rem;
     background-color: transparent;
-    flex: 1;
+    flex: 1; /* Automatically takes up all remaining space */
     height: 100%;
     padding-inline: 0.5em;
     border: none;
     outline: none;
+    min-width: 0; /* Prevents flex item from overflowing */
 }
-.formsearch button {
-    border: none;
-    background: none;
-    color: #8b8ba7;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-.formsearch svg {
-    width: 17px;
-}
-.reset {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease;
-}
-.browser_search:not(:placeholder-shown) ~ .reset {
-    opacity: 1;
-    visibility: visible;
-}
+
 .select-box {
     position: relative;
     width: 50px;
@@ -589,28 +574,35 @@ bookmar-input:hover {
     border-radius: 6px;
     cursor: pointer;
     user-select: none;
-    margin-left: 42%;
-    margin-top: 2.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .selected {
     display: flex;
     align-items: center;
     gap: 3px;
 }
+
 .selected img,
 .option img {
     width: 20px;
     height: 20px;
     border-radius: 4px;
 }
+
 .arrow {
     font-size: 10px;
-    color: #64748b;
+    color: #000000;
+    margin-left: 5px;
     transition: transform 0.2s;
 }
+
 .select-box.open .arrow {
     transform: rotate(180deg);
 }
+
 .options {
     position: absolute;
     top: calc(100% + 6px);
@@ -618,21 +610,24 @@ bookmar-input:hover {
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
-    margin-left: 120%;
-    width: 160%;
+    width: 50px;
     display: none;
     z-index: 10;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
+
 .select-box.open .options {
     display: block;
 }
+
 .option {
     display: flex;
     align-items: center;
+    gap: 8px;
     padding: 8px 12px;
     cursor: pointer;
 }
+
 .option:hover {
     background: #eef2ff;
     border-radius: 8px;
