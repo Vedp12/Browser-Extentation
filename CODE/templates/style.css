@@ -118,6 +118,74 @@ body {
     flex-shrink: 0;
     transition: color 0.3s ease;
 }
+
+        .camera-btn-class {
+            padding: 12px 20px;
+            font-size: 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 7px;
+            background: #007bff;
+            color: white;
+            margin: 5px;
+        }
+
+        .camera-btn-class:hover {
+            background: #0056b3;
+        }
+
+        .camera-btn-class:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #camera-screen {
+            width: 100%;
+            margin-left: 25%;
+            max-width: 500px;
+            /* margin: 20px auto; */
+            padding: 15px;
+           
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000015;
+             display: flex;
+    flex-direction: column;
+    z-index: 99;
+    align-items: center;
+    position: fixed;
+        }
+
+        #frame {
+            position: relative;
+        }
+
+        #camera,
+        #photo {
+            display: block;
+            width: 100%;
+            background: #222;
+            border-radius: 10px;
+        }
+
+        #photo {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #status {
+            margin-top: 15px;
+            color: #444;
+        }
+
+        /* Keep elements completely hidden until requested. */
+        [hidden] {
+            display: none !important;
+        }
+
+
+
 .modal-container {
     position: fixed;
     top: 0;
