@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>qr</title>
+        <style>
+            .link-container {
+                width: 420px;
+                height: 400px;
+                border-radius: 24px;
+                backdrop-filter: blur(4px);
+                background-color: rgba(105, 103, 103, 0.297);
+                transition: opacity 0.5s ease;
+            }
+            .link-input {
+                width: 260px;
+                /* max-width: 220px; */
+                height: 40px;
+                margin-left: 8%;
+                border-radius: 12px;
+                border: 1.5px solid lightgrey;
+                outline: none;
+                transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+                box-shadow: 0px 0px 20px -18px;
+                padding-left: 8px;
+            }
+
+            .link-input:hover {
+                border: 2px solid rgb(0, 123, 255);
+                box-shadow: 0px 0px 20px -17px;
+            }
+
+            .link-input:active {
+                transform: scale(0.95);
+            }
+
+            .link-input:focus {
+                border: 2px solid #449ff9;
+            }
+
+            #link-btn {
+                width: 94px;
+                height: 46px;
+                border: 2px solid rgb(0, 123, 255);
+                background-color: rgb(0, 123, 255);
+                border-radius: 12px;
+                cursor: pointer;
+                /* padding: 0.8em 0em 0.8em 0em; */
+                transition: all ease-in-out 0.2s;
+                font-size: 16px;
+                margin-top: 12px;
+            }
+
+            #link-btn span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                font-weight: 600;
+            }
+
+            #button:hover {
+                background-color: #449ff9;
+            }
+
+            #qr-code-img {
+                height: 230px;
+                margin-left: 100px;
+                margin-top: 35px;
+                border-radius: 5px;
+            }
+
+            #qr-under-btn {
+                margin-top: 6px;
+                display: flex;
+            }
+
+            .qr-code-download-btn {
+                width: 80px;
+                height: 40px;
+                line-height: 1;
+                margin-left: 120px;
+                background-color: transparent;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 0.35em;
+                padding: 2px;
+                padding-left: 30px;
+                /* padding-right: 1.25em; */
+                color: #fff;
+                border: 1px solid transparent;
+                font-weight: 700;
+                border-radius: 12px;
+                font-size: 0.7rem;
+                /* box-shadow: 0 0.7em 1.5em -0.5em hsla(249, 62%, 51%, 0.745); */
+                transition: transform 0.3s;
+                background: rgb(0, 123, 255);
+            }
+
+            .qr-code-download-btn:active {
+                transform: scale(0.98);
+                box-shadow: 0 0.5em 1.5em -0.5em rgb(1, 97, 200);
+            }
+
+            .qr-code-bookmark-btn {
+                width: 80px;
+                height: 40px;
+                line-height: 1;
+                margin-left: 20px;
+                background-color: transparent;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 0.35em;
+                padding: 2px;
+                padding-left: 30px;
+                /* padding-right: 1.25em; */
+                color: #fff;
+                border: 1px solid transparent;
+                font-weight: 700;
+                border-radius: 12px;
+                font-size: 0.7rem;
+                /* box-shadow: 0 0.7em 1.5em -0.5em hsla(249, 62%, 51%, 0.745); */
+                transition: transform 0.3s;
+                background: rgb(0, 123, 255);
+            }
+
+            /* .button__text{ */
+            /* font-size: ; */
+            /* } */
+        </style>
+    </head>
+    <body>
+        <div class="link-container">
+            <input placeholder="Enter the Link" type="text" name="text" class="link-input" />
+            <button id="link-btn">
+                <span> Create </span>
+            </button>
+            <img src="qr.jpg" alt="" id="qr-code-img" srcset="" />
+
+            <div id="qr-under-btn">
+                <b>
+                    <button class="qr-code-download-btn">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-download"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"
+                            />
+                            <path
+                                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"
+                            />
+                        </svg>
+                    </button>
+                </b>
+
+                <b>
+                    <button class="qr-code-bookmark-btn">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-bookmark-plus"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
+                            />
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4"
+                            />
+                        </svg>
+                    </button>
+                </b>
+            </div>
+        </div>
+    </body>
+</html>

@@ -53,3 +53,52 @@
                 modalContainer_additem.classList.remove("show");
             }
         });
+
+
+
+const openButtonQR = document.getElementById("open-modal-qr-btn");
+const closeButtonQR = document.getElementById("close-qr");
+const modalContainerQR = document.querySelector(".qr-modal-container");
+
+if (openButtonQR && closeButtonQR && modalContainerQR) {
+  function openQRModal() {
+    modalContainerQR.classList.add("show");
+    modalContainerQR.setAttribute("aria-hidden", "false");
+    openButtonQR.setAttribute("aria-expanded", "true");
+  }
+
+  function closeQRModal() {
+    modalContainerQR.classList.remove("show");
+    modalContainerQR.setAttribute("aria-hidden", "true");
+    openButtonQR.setAttribute("aria-expanded", "false");
+  }
+
+  openButtonQR.addEventListener("click", () => {
+    if (modalContainerQR.classList.contains("show")) {
+      closeQRModal();
+    } else {
+      openQRModal();
+    }
+  });
+
+  closeButtonQR.addEventListener("click", closeQRModal);
+
+  // Close when clicking outside the modal's content.
+  modalContainerQR.addEventListener("click", (event) => {
+    if (event.target === modalContainerQR) {
+      closeQRModal();
+    }
+  });
+
+  // Close using the Escape key.
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      modalContainerQR.classList.contains("show")
+    ) {
+      closeQRModal();
+    }
+  });
+} else {
+  console.error("QR modal elements are missing. Check their HTML IDs and classes.");
+}

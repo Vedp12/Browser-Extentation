@@ -7,6 +7,8 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <title>Document</title>
         <style>
+               
+
         </style>
     </head>
     <body
@@ -46,7 +48,7 @@
                     </button>
                     
                     
-                    <label for="note" title="note" class="sidebar-item group">
+                    <label for="note" title="notes" class="sidebar-item group">
                         <input type="radio" name="path" id="note" class="sr-only" />
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -63,27 +65,32 @@
                             />
                         </svg>
                     </label>
-                    <label for="QRCODE" title="QRCODE" class="sidebar-item group">
-                        <input type="radio" name="path" id="QRCODE" class="sr-only" />
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-qr-code-scan"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z"
-                            />
-                            <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z" />
-                            <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z" />
-                            <path
-                                d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z"
-                            />
-                            <path d="M12 9h2V8h-2z" />
-                        </svg>
-                    </label>
+
+                   <button
+  type="button"
+  id="open-modal-qr-btn"
+  title="Open QR code"
+  class="sidebar-item group"
+  aria-label="Open QR code"
+  aria-controls="qr-modal"
+  aria-expanded="false"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+    aria-hidden="true"
+  >
+    <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z"/>
+    <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z"/>
+    <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z"/>
+    <path d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z"/>
+    <path d="M12 9h2V8h-2z"/>
+  </svg>
+</button>
+                    
                     <label for="timer" title="Timer" class="sidebar-item group">
                         <input type="radio" name="path" id="help" class="sr-only" />
                         <svg
@@ -143,6 +150,59 @@
                     </label>
                 </article>
 
+
+                <!--! Qr code  -->
+<div class="qr-modal-container">
+<input placeholder="Enter the Link" type="text" name="text" class="qr-btn" />
+<button id="qr-btn">
+<span> Create </span>
+</button>
+<button id="close-qr"></button>
+<img src="qr.jpg" alt="" id="qr-code-img" srcset="" />
+<div id="qr-under-btn">
+<b>
+<button class="qr-code-download-btn">
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="16"
+height="16"
+fill="currentColor"
+class="bi bi-download"
+viewBox="0 0 16 16"
+>
+<path
+d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"
+/>
+<path
+d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"
+/>
+</svg>
+</button>
+</b>
+<b>
+<button class="qr-code-bookmark-btn">
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="16"
+height="16"
+fill="currentColor"
+class="bi bi-bookmark-plus"
+viewBox="0 0 16 16"
+>
+<path
+d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
+/>
+<path
+d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4"
+/>
+</svg>
+</button>
+</b>
+</div>
+</div>
+
+
+
                 <!--! Camera button  -->
                        <section id="camera-screen" hidden>
         <div id="frame">
@@ -193,9 +253,9 @@
                 
                 <!--! Camera container  -->
                 <div class="modal-camera-container" id="modal-camera-container">
-                    <div class="modal-camera">
-                        
-                    </div>
+                    <!-- <div class="modal-camera"> -->
+                        <!--  -->
+                    <!-- </div> -->
                 </div>
                 <!-- Modal Container (Popup Overlay) -->
                 <div class="modal-container" id="modalContainer">
