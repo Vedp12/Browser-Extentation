@@ -96,3 +96,9 @@ if (openButtonQR && closeButtonQR && modalContainerQR) {
 } else {
     console.error("QR modal elements are missing. Check their HTML IDs and classes.");
 }
+
+
+
+const openButton_Time = document.getElementById("open-modal-time-btn");
+ const modalContainer_Time = document.getElementById("timer-container")
+ const closeButton_Time = document.getElementById("close-timer-btn")
