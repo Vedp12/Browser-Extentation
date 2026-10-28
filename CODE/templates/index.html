@@ -6,10 +6,7 @@
         <link rel="stylesheet" href="style.css" />
         <script src="https://cdn.tailwindcss.com"></script>
         <title>Document</title>
-        <style>
-               
-
-        </style>
+        <style></style>
     </head>
     <body
         class="bg-cover bg-no-repeat min-h-screen"
@@ -25,73 +22,57 @@
             </div>
             <div class="main_content_sidebar" id="sidebar">
                 <article class="sidebar-rail">
-
-
-
-                    <button type="button"  id="toggle-camera" title="Open camera">
-                    <label for="video" title="Video" class="sidebar-item group">
-                        <input type="radio" name="path" id="video" class="sr-only" />
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            fill="currentColor"
-                            class="bi bi-camera-video"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"
-                            />
-                        </svg>
-                    </label>
+                    <button type="button" id="toggle-camera" title="Open camera">
+                        <label for="video" title="Video" class="sidebar-item group">
+                            <input type="radio" name="path" id="video" class="sr-only" />
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                fill="currentColor"
+                                class="bi bi-camera-video"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"
+                                />
+                            </svg>
+                        </label>
                     </button>
-                    
-                    
-                    <label for="note" title="notes" class="sidebar-item group">
-                        <input type="radio" name="path" id="note" class="sr-only" />
+
+                    <button
+                        type="button"
+                        id="open-modal-qr-btn"
+                        title="Open QR code"
+                        class="sidebar-item group"
+                        aria-label="Open QR code"
+                        aria-controls="qr-modal"
+                        aria-expanded="false"
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="1.5"
-                            class="size-6"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            viewBox="0 0 16 16"
+                            aria-hidden="true"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931ZM18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                                d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z"
                             />
+                            <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z" />
+                            <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z" />
+                            <path
+                                d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z"
+                            />
+                            <path d="M12 9h2V8h-2z" />
                         </svg>
-                    </label>
+                    </button>
 
-                   <button
-  type="button"
-  id="open-modal-qr-btn"
-  title="Open QR code"
-  class="sidebar-item group"
-  aria-label="Open QR code"
-  aria-controls="qr-modal"
-  aria-expanded="false"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    fill="currentColor"
-    viewBox="0 0 16 16"
-    aria-hidden="true"
-  >
-    <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z"/>
-    <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z"/>
-    <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z"/>
-    <path d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z"/>
-    <path d="M12 9h2V8h-2z"/>
-  </svg>
-</button>
-                    
-                    <label for="timer" title="Timer" class="sidebar-item group">
+
+
+                    <label for="timer" title="Timer & Stop watch" class="sidebar-item group">
                         <input type="radio" name="path" id="help" class="sr-only" />
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -99,8 +80,7 @@
                             viewBox="0 0 24 24"
                             stroke="currentColor"
                             stroke-width="1.5"
-                            class="size-6"
-                        >
+                            class="size-6">
                             <path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -108,6 +88,9 @@
                             />
                         </svg>
                     </label>
+                    
+                    
+                    
                     <!-- Changed from <label inside button> to a clean button tag -->
                     <button
                         type="button"
@@ -150,95 +133,86 @@
                     </label>
                 </article>
 
-
                 <!--! Qr code  -->
-<div class="qr-modal-container">
-<input placeholder="Enter the Link" type="text" name="text" class="qr-btn" />
-<button id="qr-btn">
-<span> Create </span>
-</button>
-<button id="close-qr"></button>
-<img src="qr.jpg" alt="" id="qr-code-img" srcset="" />
-<div id="qr-under-btn">
-<b>
-<button class="qr-code-download-btn">
-<svg
-xmlns="http://www.w3.org/2000/svg"
-width="16"
-height="16"
-fill="currentColor"
-class="bi bi-download"
-viewBox="0 0 16 16"
->
-<path
-d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"
-/>
-<path
-d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"
-/>
-</svg>
-</button>
-</b>
-<b>
-<button class="qr-code-bookmark-btn">
-<svg
-xmlns="http://www.w3.org/2000/svg"
-width="16"
-height="16"
-fill="currentColor"
-class="bi bi-bookmark-plus"
-viewBox="0 0 16 16"
->
-<path
-d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
-/>
-<path
-d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4"
-/>
-</svg>
-</button>
-</b>
-</div>
-</div>
-
-
+                <div class="qr-modal-container">
+                    <input placeholder="Enter the Link" type="text" name="text" class="qr-btn" />
+                    <button id="qr-btn">
+                        <span> Create </span>
+                    </button>
+                    <button id="close-qr"></button>
+                    <img src="qr.jpg" alt="" id="qr-code-img" srcset="" />
+                    <div id="qr-under-btn">
+                        <b>
+                            <button class="qr-code-download-btn">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    class="bi bi-download"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"
+                                    />
+                                    <path
+                                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"
+                                    />
+                                </svg>
+                            </button>
+                        </b>
+                        <b>
+                            <button class="qr-code-bookmark-btn">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    class="bi bi-bookmark-plus"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
+                                    />
+                                    <path
+                                        d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4"
+                                    />
+                                </svg>
+                            </button>
+                        </b>
+                    </div>
+                </div>
 
                 <!--! Camera button  -->
-                       <section id="camera-screen" hidden>
-        <div id="frame">
-            <video id="camera" autoplay muted playsinline></video>
+                <section id="camera-screen" hidden>
+                    <div id="frame">
+                        <video id="camera" autoplay muted playsinline></video>
 
-            <!-- Captured photo is shown directly over the video, no second image -->
-            <img id="photo" alt="Your captured photo" hidden>
-        </div>
+                        <!-- Captured photo is shown directly over the video, no second image -->
+                        <img id="photo" alt="Your captured photo" hidden />
+                    </div>
 
-        <div>
-            <button id="take-photo" style="margin-left: 53px;" type="button" class="camera-btn-class">
-                Take Photo
-            </button>
-             
-                   <p id="status">Click "Show Camera" to start.</p> <!--&&  -->
+                    <div>
+                        <button id="take-photo" style="margin-left: 53px" type="button" class="camera-btn-class">
+                            Take Photo
+                        </button>
 
+                        <p id="status">Click "Show Camera" to start.</p>
+                        <!--&&  -->
 
-            <!-- Only appears once, after a photo is taken -->
-            <button id="save-photo" type="button" hidden class="camera-btn-class">
-                Save Photo
-            </button>
+                        <!-- Only appears once, after a photo is taken -->
+                        <button id="save-photo" type="button" hidden class="camera-btn-class">Save Photo</button>
 
-            <button id="retake-photo" type="button" hidden class="camera-btn-class">
-                Retake
-            </button>
+                        <button id="retake-photo" type="button" hidden class="camera-btn-class">Retake</button>
 
-            <button id="close-camera" type="button" hidden class="camera-btn-class">
-                Close Camera
-            </button>
-        </div>
-    </section>
+                        <button id="close-camera" type="button" hidden class="camera-btn-class">Close Camera</button>
+                    </div>
+                </section>
 
-    <!-- Used internally to capture a frame -->
-    <canvas id="canvas" hidden></canvas>
+                <!-- Used internally to capture a frame -->
+                <canvas id="canvas" hidden></canvas>
                 <!--! Add item/bookmarks container  -->
-                
+
                 <div class="modal-additem-container" id="modal-additem-container">
                     <div class="modal-additem">
                         <div class="flex gap-4 mb-4">
@@ -250,11 +224,11 @@ d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 
                         </button>
                     </div>
                 </div>
-                
+
                 <!--! Camera container  -->
                 <div class="modal-camera-container" id="modal-camera-container">
                     <!-- <div class="modal-camera"> -->
-                        <!--  -->
+                    <!--  -->
                     <!-- </div> -->
                 </div>
                 <!-- Modal Container (Popup Overlay) -->
@@ -359,70 +333,59 @@ d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 
                                     </div>
                                 </div>
                             </div>
-                            <label for="text-encription" title="Text-Encryption" class="sidebar-item group">
-                                <input type="radio" name="path" id="text-encription" class="sr-only" />
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    fill="currentColor"
-                                    class="bi bi-braces-asterisk"
-                                    viewBox="0 0 20 20"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M1.114 8.063V7.9c1.005-.102 1.497-.615 1.497-1.6V4.503c0-1.094.39-1.538 1.354-1.538h.273V2h-.376C2.25 2 1.49 2.759 1.49 4.352v1.524c0 1.094-.376 1.456-1.49 1.456v1.299c1.114 0 1.49.362 1.49 1.456v1.524c0 1.593.759 2.352 2.372 2.352h.376v-.964h-.273c-.964 0-1.354-.444-1.354-1.538V9.663c0-.984-.492-1.497-1.497-1.6M14.886 7.9v.164c-1.005.103-1.497.616-1.497 1.6v1.798c0 1.094-.39 1.538-1.354 1.538h-.273v.964h.376c1.613 0 2.372-.759 2.372-2.352v-1.524c0-1.094.376-1.456 1.49-1.456v-1.3c-1.114 0-1.49-.362-1.49-1.456V4.352C14.51 2.759 13.75 2 12.138 2h-.376v.964h.273c.964 0 1.354.444 1.354 1.538V6.3c0 .984.492 1.497 1.497 1.6M7.5 11.5V9.207l-1.621 1.621-.707-.707L6.792 8.5H4.5v-1h2.293L5.172 5.879l.707-.707L7.5 6.792V4.5h1v2.293l1.621-1.621.707.707L9.208 7.5H11.5v1H9.207l1.621 1.621-.707.707L8.5 9.208V11.5z"
-                                    />
-                                </svg>
-                            </label>
-                            <label for="screenshot" title="Screenshot" class="sidebar-item group">
-                                <input type="radio" name="path" id="screenshot" class="sr-only" />
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    fill="currentColor"
-                                    class="bi bi-camera"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path
-                                        d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"
-                                    />
-                                    <path
-                                        d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"
-                                    />
-                                </svg>
-                            </label>
-                            <label for="color-picker" title="Color-Picker" class="sidebar-item group">
-                                <input type="radio" name="path" id="color-picker" class="sr-only" />
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    fill="currentColor"
-                                    class="bi bi-eyedropper"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path
-                                        d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5l-7.147 7.146A.5.5 0 0 0 1 12.5v1.793l-.854.853a.5.5 0 1 0 .708.707L1.707 15H3.5a.5.5 0 0 0 .354-.146L11 7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-.647-.646 3.147-3.146a1.207 1.207 0 0 0 0-1.708zM2 12.707l7-7L10.293 7l-7 7H2z"
-                                    />
-                                </svg>
-                            </label>
-                            <label for="bookmark" title="Bookmark" class="sidebar-item group">
-                                <input type="radio" name="path" id="bookmark" class="sr-only" />
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    fill="currentColor"
-                                    class="bi bi-bookmark"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path
-                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
-                                    />
-                                </svg>
-                            </label>
+
+                            <!-- <label for="screenshot" title="Screenshot" class="sidebar-item group"> -->
+                                <!-- <input type="radio" name="path" id="screenshot" class="sr-only" /> -->
+                                <!-- <svg -->
+                                    <!-- xmlns="http://www.w3.org/2000/svg" -->
+                                    <!-- width="16" -->
+                                    <!-- height="16" -->
+                                    <!-- fill="currentColor" -->
+                                    <!-- class="bi bi-camera" -->
+                                    <!-- viewBox="0 0 16 16" -->
+                                <!-- > -->
+                                    <!-- <path -->
+                                        <!-- d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z" -->
+                                    <!-- /> -->
+                                    <!-- <path -->
+                                        <!-- d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0" -->
+                                    <!-- /> -->
+                                <!-- </svg> -->
+                            <!-- </label> -->
+
+
+                            <!-- <label for="color-picker" title="Color-Picker" class="sidebar-item group"> -->
+                                <!-- <input type="radio" name="path" id="color-picker" class="sr-only" /> -->
+                                <!-- <svg -->
+                                    <!-- xmlns="http://www.w3.org/2000/svg" -->
+                                    <!-- width="16" -->
+                                    <!-- height="16" -->
+                                    <!-- fill="currentColor" -->
+                                    <!-- class="bi bi-eyedropper" -->
+                                    <!-- viewBox="0 0 16 16" -->
+                                <!-- > -->
+                                    <!-- <path -->
+                                        <!-- d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5l-7.147 7.146A.5.5 0 0 0 1 12.5v1.793l-.854.853a.5.5 0 1 0 .708.707L1.707 15H3.5a.5.5 0 0 0 .354-.146L11 7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-.647-.646 3.147-3.146a1.207 1.207 0 0 0 0-1.708zM2 12.707l7-7L10.293 7l-7 7H2z" -->
+                                    <!-- /> -->
+                                <!-- </svg> -->
+                            <!-- </label> -->
+
+
+                            <!-- <label for="bookmark" title="Bookmark" class="sidebar-item group"> -->
+                                <!-- <input type="radio" name="path" id="bookmark" class="sr-only" /> -->
+                                <!-- <svg -->
+                                    <!-- xmlns="http://www.w3.org/2000/svg" -->
+                                    <!-- width="16" -->
+                                    <!-- height="16" -->
+                                    <!-- fill="currentColor" -->
+                                    <!-- class="bi bi-bookmark" -->
+                                    <!-- viewBox="0 0 16 16" -->
+                                <!-- > -->
+                                    <!-- <path -->
+                                        <!-- d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z" -->
+                                    <!-- /> -->
+                                <!-- </svg> -->
+                            <!-- </label> -->
                         </div>
                         <!-- Added Close Button inside modal -->
                         <button id="close-maintoolbar-btn" type="button">Close</button>
@@ -494,7 +457,6 @@ d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 
                             stroke-linejoin="round"
                         ></path>
                     </svg>
-
                 </button>
                 <!-- Text Input -->
                 <input class="browser_search" placeholder="Search the Internet..." required type="text" />
@@ -525,7 +487,7 @@ d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 
     <script src="drag.js"></script>
     <script src="popups.js"></script>
     <script src="script.js"></script>
-  <script>
+    <script>
         const camera = document.getElementById("camera");
         const cameraScreen = document.getElementById("camera-screen");
         const toggleBtn = document.getElementById("toggle-camera");
@@ -549,24 +511,18 @@ d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 
             status.textContent = "Requesting camera permission...";
 
             try {
-                if (
-                    !navigator.mediaDevices ||
-                    !navigator.mediaDevices.getUserMedia
-                ) {
-                    throw new Error(
-                        "Camera access requires HTTPS or localhost."
-                    );
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                    throw new Error("Camera access requires HTTPS or localhost.");
                 }
 
                 // Reveal the camera screen only after the user clicks.
                 cameraScreen.hidden = false;
                 resetPhoto();
 
-                const newStream =
-                    await navigator.mediaDevices.getUserMedia({
-                        video: { facingMode: "environment" },
-                        audio: false
-                    });
+                const newStream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: "environment" },
+                    audio: false,
+                });
 
                 stream = newStream;
                 camera.srcObject = stream;
@@ -575,28 +531,22 @@ d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 
 
                 // toggleBtn.textContent = "Close Camera";
                 status.textContent = "Camera is ready. Take a photo.";
-
             } catch (error) {
                 console.error("Camera error:", error);
 
                 cameraScreen.hidden = true;
 
                 if (error.name === "NotAllowedError") {
-                    status.textContent =
-                        "Camera permission denied. Allow camera access in your browser.";
+                    status.textContent = "Camera permission denied. Allow camera access in your browser.";
                 } else if (error.name === "NotFoundError") {
-                    status.textContent =
-                        "No camera was found on this device.";
+                    status.textContent = "No camera was found on this device.";
                 } else if (error.name === "NotReadableError") {
-                    status.textContent =
-                        "Camera is busy. Close other apps using it.";
+                    status.textContent = "Camera is busy. Close other apps using it.";
                 } else {
-                    status.textContent =
-                        "Unable to start camera: " + error.message;
+                    status.textContent = "Unable to start camera: " + error.message;
                 }
 
                 stopCameraStream();
-
             } finally {
                 cameraOpening = false;
                 toggleBtn.disabled = false;
@@ -605,7 +555,7 @@ d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 
 
         function stopCameraStream() {
             if (stream) {
-                stream.getTracks().forEach(track => track.stop());
+                stream.getTracks().forEach((track) => track.stop());
                 stream = null;
             }
 
@@ -652,13 +602,8 @@ d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 
         }
 
         function takePhoto() {
-            if (
-                !stream ||
-                !camera.videoWidth ||
-                !camera.videoHeight
-            ) {
-                status.textContent =
-                    "Camera is not ready. Please wait a moment.";
+            if (!stream || !camera.videoWidth || !camera.videoHeight) {
+                status.textContent = "Camera is not ready. Please wait a moment.";
                 return;
             }
 
@@ -668,13 +613,7 @@ d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 
 
             const context = canvas.getContext("2d");
 
-            context.drawImage(
-                camera,
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
+            context.drawImage(camera, 0, 0, canvas.width, canvas.height);
 
             // Show the captured frame directly over the video preview.
             capturedDataUrl = canvas.toDataURL("image/jpeg", 0.92);
