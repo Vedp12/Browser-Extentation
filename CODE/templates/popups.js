@@ -1,104 +1,96 @@
-const openbutton = document.getElementById("open-maintoolbar-btn");
-const closebutton = document.getElementById("close-maintoolbar-btn");
-const modalContainer = document.getElementById("modalContainer");
-
-openbutton.addEventListener("click", () => {
-    modalContainer.classList.add("show");
-});
-
-closebutton.addEventListener("click", () => {
-    modalContainer.classList.remove("show");
-});
-
-modalContainer.addEventListener("click", (e) => {
-    if (e.target === modalContainer) {
-        modalContainer.classList.remove("show");
+// 1. Define configurations for all your modals
+const modalConfigs = [
+    
+    {
+        openId: "open-maintoolbar-btn",
+        closeId: "close-maintoolbar-btn",
+        modalId: "modalContainer"
+    },
+    {
+        openId: "open-modal-password-btn",
+        closeId: "close-modal-password-btn",
+        modalId: "modal-password-container"
+    },
+    {
+        openId: "open-modal-additem-btn",
+        closeId: "Additem-id-btn",
+        modalId: "modal-additem-container"
+    },
+    {
+        openId: "open-modal-qr-btn",
+        closeId: "close-qr",
+        modalId: ".qr-modal-container",
+        isClass: true // since this one uses a class selector
+    },
+    {
+        openId: "open-modal-time-btn",
+        closeId: "close-timer-btn",
+        modalId: "main-time-container"
     }
-});
+];
 
-// * Passowrd container
-const openbutton_password = document.getElementById("open-modal-password-btn");
-const closebutton_password = document.getElementById("close-modal-password-btn");
-const modalContainer_password = document.getElementById("modal-password-container");
+// 2. Initialize and attach event listeners to each modal
+modalConfigs.forEach(config => {
+    const openBtn = document.getElementById(config.openId);
+    const closeBtn = document.getElementById(config.closeId);
+    const modal = config.isClass 
+        ? document.querySelector(config.modalId) 
+        : document.getElementById(config.modalId);
 
-openbutton_password.addEventListener("click", () => {
-    modalContainer_password.classList.add("show");
-});
-
-closebutton_password.addEventListener("click", () => {
-    modalContainer_password.classList.remove("show");
-});
-
-modalContainer_password.addEventListener("click", (e) => {
-    if (e.target === modalContainer_password) {
-        modalContainer_password.classList.remove("show");
-    }
-});
-
-const openbutton_additem = document.getElementById("open-modal-additem-btn");
-const modalContainer_additem = document.getElementById("modal-additem-container");
-const closebutton_additem = document.getElementById("Additem-id-btn");
-
-closebutton_additem.addEventListener("click", () => {
-    modalContainer_additem.classList.remove("show");
-});
-
-openbutton_additem.addEventListener("click", () => {
-    modalContainer_additem.classList.add("show");
-});
-
-modalContainer_additem.addEventListener("click", (e) => {
-    if (e.target === modalContainer_additem) {
-        modalContainer_additem.classList.remove("show");
-    }
-});
-
-const openButtonQR = document.getElementById("open-modal-qr-btn");
-const closeButtonQR = document.getElementById("close-qr");
-const modalContainerQR = document.querySelector(".qr-modal-container");
-
-if (openButtonQR && closeButtonQR && modalContainerQR) {
-    function openQRModal() {
-        modalContainerQR.classList.add("show");
-        modalContainerQR.setAttribute("aria-hidden", "false");
-        openButtonQR.setAttribute("aria-expanded", "true");
+    if (!openBtn || !closeBtn || !modal) {
+        console.warn(`Modal elements missing for configuration:`, config);
+        return;
     }
 
-    function closeQRModal() {
-        modalContainerQR.classList.remove("show");
-        modalContainerQR.setAttribute("aria-hidden", "true");
-        openButtonQR.setAttribute("aria-expanded", "false");
-    }
+    const openModal = () => {
+        modal.classList.add("show");
+        modal.setAttribute("aria-hidden", "false");
+        openBtn.setAttribute("aria-expanded", "true");
+    };
 
-    openButtonQR.addEventListener("click", () => {
-        if (modalContainerQR.classList.contains("show")) {
-            closeQRModal();
+    const closeModal = () => {
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+        openBtn.setAttribute("aria-expanded", "false");
+    };
+
+    // Open/Toggle button click
+    openBtn.addEventListener("click", () => {
+        if (modal.classList.contains("show")) {
+            closeModal();
         } else {
-            openQRModal();
+            openModal();
         }
     });
 
-    closeButtonQR.addEventListener("click", closeQRModal);
+    // Close button click
+    closeBtn.addEventListener("click", closeModal);
 
-    // Close when clicking external the modal's content.
-    modalContainerQR.addEventListener("click", (event) => {
-        if (event.target === modalContainerQR) {
-            closeQRModal();
+    // Close when clicking the outer backdrop box
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            closeModal();
         }
     });
+});
 
-    // Close using the Escape key.
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && modalContainerQR.classList.contains("show")) {
-            closeQRModal();
-        }
-    });
-} else {
-    console.error("QR modal elements are missing. Check their HTML IDs and classes.");
-}
-
-
-
-const openButton_Time = document.getElementById("open-modal-time-btn");
- const modalContainer_Time = document.getElementById("timer-container")
- const closeButton_Time = document.getElementById("close-timer-btn")
+// 3. Global Escape key handler to close any active modal
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        modalConfigs.forEach(config => {
+            const modal = config.isClass 
+                ? document.querySelector(config.modalId) 
+                : document.getElementById(config.modalId);
+            
+            if (modal && modal.classList.contains("show")) {
+                modal.classList.remove("show");
+                modal.setAttribute("aria-hidden", "true");
+                
+                const openBtn = document.getElementById(config.openId);
+                if (openBtn) {
+                    openBtn.setAttribute("aria-expanded", "false");
+                }
+            }
+        });
+    }
+});

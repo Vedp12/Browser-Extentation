@@ -5,8 +5,180 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+
         <title>Document</title>
-        <style></style>
+        <style>
+            #main-time-container {
+                background: transparent;
+                border: 2px solid rgba(255, 255, 255, 0.2);
+                color: #fff;
+                backdrop-filter: blur(50px);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                border-radius: 12px;
+                /* width: 40%; */
+                /* min-width: 320px; */
+                margin: 0 auto;
+                padding-top: 12px;
+                margin-left: 20%;
+                position: fixed;
+
+                z-index: 999;
+                transition: opacity 0.5s ease;
+                opacity: 0;
+                pointer-events: none;
+            }
+            #main-time-container.show {
+                pointer-events: auto;
+                opacity: 1;
+            }
+
+            .page {
+                display: none;
+                padding: 20px;
+                color: white;
+            }
+            .page:target {
+                display: block;
+            }
+
+            /* .main-time-container { */
+            /* background: transparent; */
+            /* border: 2px solid rgba(255, 255, 255, 0.2); */
+            /* color: #fff; */
+            /* backdrop-filter: blur(50px); */
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+            /* border-radius: 12px; */
+            /* width: 40%; */
+            /* min-width: 320px; */
+            /* margin: 0 auto; */
+            /* padding: 20px; */
+            /* } */
+
+            .rect {
+                stroke-dashoffset: 5;
+                stroke-dasharray: 0 0 10 40 10 40;
+                transition: 0.5s;
+                stroke: #fff;
+            }
+
+            .nav {
+                position: relative;
+                width: 100%;
+                height: 60px;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .outline {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+            }
+
+            .container {
+                position: absolute;
+                inset: 0;
+                background: #bef6;
+                border-radius: 12px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            .container:hover .outline .rect {
+                transition: 999999s;
+                stroke-dashoffset: 1;
+                stroke-dasharray: 0;
+            }
+
+            .btn {
+                padding: 0.5em 1.5em;
+                color: #000000;
+                cursor: pointer;
+                transition: 0.1s;
+                text-align: center;
+            }
+
+            .btn a {
+                color: inherit;
+                text-decoration: none;
+                display: block;
+            }
+
+            .btn:hover {
+                background: rgba(176, 173, 173, 0.377);
+                border-radius: 8px;
+            }
+
+            .btn:nth-child(1):hover ~ svg .rect {
+                stroke-dashoffset: 0;
+                stroke-dasharray: 0 2 8 73.3 8 10.7;
+            }
+
+            .btn:nth-child(2):hover ~ svg .rect {
+                stroke-dashoffset: 0;
+                stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
+            }
+
+            .btn:hover ~ .outline .rect {
+                stroke-dashoffset: 0;
+                stroke-dasharray: 0 0 10 40 10 40;
+                transition: 0.5s !important;
+            }
+
+            /* * Timer code */
+
+            .timer-container {
+                text-align: center;
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            .time-display {
+                font-size: 48px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                color: #333;
+                font-variant-numeric: tabular-nums;
+            }
+            .controls button {
+                font-size: 16px;
+                padding: 10px 20px;
+                margin: 0 5px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+            .start-btn {
+                background-color: #28a745;
+                color: white;
+            }
+            .start-btn:hover {
+                background-color: #218838;
+            }
+            .pause-btn {
+                background-color: #ffc107;
+                color: #333;
+            }
+            .pause-btn:hover {
+                background-color: #e0a800;
+            }
+            .reset-btn {
+                background-color: #dc3545;
+                color: white;
+            }
+            .reset-btn:hover {
+                background-color: #c82333;
+            }
+        </style>
     </head>
     <body
         class="bg-cover bg-no-repeat min-h-screen"
@@ -22,23 +194,22 @@
             </div>
             <div class="main_content_sidebar" id="sidebar">
                 <article class="sidebar-rail">
-                    <button type="button" id="toggle-camera" title="Open camera">
-                        <label for="video" title="Video" class="sidebar-item group">
-                            <input type="radio" name="path" id="video" class="sr-only" />
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
-                                fill="currentColor"
-                                class="bi bi-camera-video"
-                                viewBox="0 0 16 16"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"
-                                />
-                            </svg>
-                        </label>
+                    <button type="button" id="toggle-camera" class="sidebar-item group" title="Open camera">
+                        <!-- <label for="video" title="Video" class="sidebar-item group"> -->
+                        <!-- <input type="radio" name="path" id="video" class="sr-only" /> -->
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            fill="currentColor"
+                            class="bi bi-camera-video"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"
+                            />
+                        </svg>
                     </button>
 
                     <button
@@ -70,36 +241,31 @@
                         </svg>
                     </button>
 
-
-
-                    <!-- <label for="timer" title="Timer & Stop watch" class="sidebar-item group"> -->
-                        <!-- <input type="radio" name="path" id="help" class="sr-only" /> -->
-                        <button   type="button"
+                    <button
+                        type="button"
                         id="open-modal-time-btn"
                         title="Open timer code"
                         class="sidebar-item group"
                         aria-label="Open timer code"
                         aria-controls="timer-modal"
-                        aria-expanded="false">
+                        aria-expanded="false"
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
                             stroke-width="1.5"
-                            class="size-6">
+                            class="size-6"
+                        >
                             <path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                             />
                         </svg>
-                        </button>
-                    <!-- </label> -->
-                    
-                    
-                    
-                    <!-- Changed from <label inside button> to a clean button tag -->
+                    </button>
+
                     <button
                         type="button"
                         id="open-maintoolbar-btn"
@@ -141,7 +307,6 @@
                     </label>
                 </article>
 
-                <!--! Qr code  -->
                 <div class="qr-modal-container">
                     <input placeholder="Enter the Link" type="text" name="text" class="qr-btn" />
                     <button id="qr-btn">
@@ -191,13 +356,112 @@
                     </div>
                 </div>
 
+                <div id="main-time-container">
+                    <div class="nav">
+                        <div class="container">
+                            <div class="btn"><a href="#timer">Timer</a></div>
+                            <div class="btn"><a href="#Stopwatch">Stop Watch</a></div>
+                        </div>
+                    </div>
+                    <button type="button" id="close-timer-btn"></button>
+                    <div class="time-container">
+                        <!-- ! Timer -->
+                        <div id="timer" class="page">
+                            <div class="timer-container">
+                                <div class="time-display" id="display">00:00</div>
+                                <div class="controls">
+                                    <button class="start-btn" id="startBtn">Start</button>
+                                    <button class="pause-btn" id="pauseBtn">Pause</button>
+                                    <button class="reset-btn" id="resetBtn">Reset</button>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- ! Stop Watch  -->
+                        <div id="Stopwatch" class="page">
+                            <div
+                                class="bg-white rounded-3xl shadow-xl p-8 sm:p-10 w-full max-w-md border border-slate-100 flex flex-col items-center mx-auto"
+                            >
+                                <div
+                                    class="my-4 py-4 w-full text-center bg-slate-50 rounded-2xl border border-slate-100"
+                                >
+                                    <div
+                                        id="timer-display"
+                                        class="text-6xl sm:text-7xl font-extrabold text-slate-800 tracking-tight select-none"
+                                    >
+                                        05:00
+                                    </div>
+                                    <p
+                                        id="timer-status"
+                                        class="text-xs font-medium text-slate-400 mt-2 uppercase tracking-widest"
+                                    ></p>
+                                </div>
 
+                                <div class="grid grid-cols-4 gap-2 mt-3 w-full">
+                                    <button
+                                        onclick="setPreset(5)"
+                                        class="preset-btn py-1.5 px-2 text-xs font-semibold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
+                                    >
+                                        5m
+                                    </button>
+                                    <button
+                                        onclick="setPreset(15)"
+                                        class="preset-btn py-1.5 px-2 text-xs font-semibold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
+                                    >
+                                        15m
+                                    </button>
+                                    <button
+                                        onclick="setPreset(30)"
+                                        class="preset-btn py-1.5 px-2 text-xs font-semibold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
+                                    >
+                                        30m
+                                    </button>
+                                    <button
+                                        onclick="setPreset(60)"
+                                        class="preset-btn py-1.5 px-2 text-xs font-semibold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
+                                    >
+                                        60m
+                                    </button>
+                                </div>
 
+                                <div class="flex items-center justify-center space-x-3 w-full mt-6">
+                                    <button
+                                        id="start-btn"
+                                        onclick="startTimer()"
+                                        class="flex-1 py-3 px-5 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-semibold rounded-xl shadow-md transition-all duration-150 text-center"
+                                    >
+                                        Start
+                                    </button>
+                                    <button
+                                        id="pause-btn"
+                                        onclick="pauseTimer()"
+                                        class="flex-1 py-3 px-5 bg-amber-400 hover:bg-amber-500 active:scale-95 text-slate-900 font-semibold rounded-xl shadow-md transition-all duration-150 text-center"
+                                    >
+                                        Pause
+                                    </button>
+                                    <button
+                                        id="reset-btn"
+                                        onclick="resetTimer()"
+                                        class="flex-1 py-3 px-5 bg-rose-600 hover:bg-rose-700 active:scale-95 text-white font-semibold rounded-xl shadow-md transition-all duration-150 text-center"
+                                    >
+                                        Reset
+                                    </button>
+                                </div>
 
+                                <div
+                                    id="notification"
+                                    class="hidden mt-4 w-full p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium rounded-xl text-center"
+                                >
+                                    🎉 Time's up! Great job!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!--! Camera button  -->
                 <section id="camera-screen" hidden>
+                    <button type="button" id="close-camera"></button>
                     <div id="frame">
                         <video id="camera" autoplay muted playsinline></video>
 
@@ -222,29 +486,18 @@
                     </div>
                 </section>
 
-                <!-- Used internally to capture a frame -->
                 <canvas id="canvas" hidden></canvas>
-                <!--! Add item/bookmarks container  -->
 
                 <div class="modal-additem-container" id="modal-additem-container">
                     <div class="modal-additem">
                         <div class="flex gap-4 mb-4">
                             <input class="bookmar-input" name="text" placeholder="  add URL" type="text" />
                         </div>
-                        <button id="Additem-id-btn">
-                            Enter
-                            <!--^ This btn work as to close the pop up modal and to enter the link here-->
-                        </button>
+                        <button id="Additem-id-btn">Enter</button>
                     </div>
                 </div>
 
-                <!--! Camera container  -->
-                <div class="modal-camera-container" id="modal-camera-container">
-                    <!-- <div class="modal-camera"> -->
-                    <!--  -->
-                    <!-- </div> -->
-                </div>
-                <!-- Modal Container (Popup Overlay) -->
+                <div class="modal-camera-container" id="modal-camera-container"></div>
                 <div class="modal-container" id="modalContainer">
                     <div class="modal">
                         <div class="flex gap-4 mb-4">
@@ -346,9 +599,7 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                        <!-- Added Close Button inside modal -->
                         <button id="close-maintoolbar-btn" type="button">Close</button>
                     </div>
                 </div>
@@ -357,7 +608,6 @@
                         <div class="flex gap-4 mb-4"></div>
                     </div>
                 </div>
-                <!--! Apps  -->
                 <div id="rightside">
                     <span class="redbox">
                         <img src="video.png" draggable="false" alt="Instagram app logo" id="site-logo" />
@@ -371,7 +621,7 @@
                             <p id="site_name"><b> Instagram</b></p>
                         </a>
                     </span>
-                    <!-- ! ADD items  -->
+
                     <span class="redbox" title="add">
                         <button type="button" id="open-modal-additem-btn" title="Open Add Item">
                             <svg
@@ -388,9 +638,7 @@
                                     d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
                                 />
                             </svg>
-                            <!-- <a href="" target="_blank" rel="noopener noreferrer" id="a-links"> -->
                             <p id="site_name"><b> Add Item</b></p>
-                            <!-- </a> -->
                         </button>
                     </span>
                 </div>
@@ -400,7 +648,6 @@
                 consectetur adipisicing elit. Quisquam, quod.
             </div>
             <form class="formsearch">
-                <!-- Search Icon -->
                 <button type="button" class="search-btn">
                     <svg
                         width="17"
@@ -419,9 +666,7 @@
                         ></path>
                     </svg>
                 </button>
-                <!-- Text Input -->
                 <input class="browser_search" placeholder="Search the Internet..." required type="text" />
-                <!-- Custom Select Dropdown -->
                 <div class="select-box" id="selectBox">
                     <div class="selected" id="selected">
                         <img id="selectedImg" src="google.png" alt="Selected Engine" />

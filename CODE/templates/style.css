@@ -319,16 +319,14 @@ body {
     background: rgb(0, 123, 255);
 }
 
-
-
-  .page {
-      display: none;
-      padding: 20px;
-      color: white;
-     } 
-     .page:target { 
-      display: block; 
-     } 
+.page {
+    display: none;
+    padding: 20px;
+    color: white;
+}
+.page:target {
+    display: block;
+}
 
 .main-time-conainer {
     background: transparent;
@@ -344,81 +342,79 @@ body {
 }
 
 .rect {
-  stroke-dashoffset: 5;
-  stroke-dasharray: 0 0 10 40 10 40;
-  transition: 0.5s;
-  stroke: #fff;
+    stroke-dashoffset: 5;
+    stroke-dasharray: 0 0 10 40 10 40;
+    transition: 0.5s;
+    stroke: #fff;
 }
 
 .nav {
-  position: relative;
-  width: 100%;
-  height: 60px;
-  max-width: 400px;
-  margin: 0 auto;
+    position: relative;
+    width: 100%;
+    height: 60px;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .outline {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
 }
 
 .container {
-  position: absolute;
-  inset: 0;
-  background: #bef6;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+    position: absolute;
+    inset: 0;
+    background: #bef6;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .container:hover .outline .rect {
     transition: 999999s;
-  stroke-dashoffset: 1;
-  stroke-dasharray: 0;
+    stroke-dashoffset: 1;
+    stroke-dasharray: 0;
 }
 
 .btn {
-  padding: 0.5em 1.5em;
-  color: #000000;
-  cursor: pointer;
-  transition: 0.1s;
-  text-align: center;
+    padding: 0.5em 1.5em;
+    color: #000000;
+    cursor: pointer;
+    transition: 0.1s;
+    text-align: center;
 }
 
 .btn a {
-  color: inherit;
-  text-decoration: none;
-  display: block;
+    color: inherit;
+    text-decoration: none;
+    display: block;
 }
 
 .btn:hover {
-  background: rgba(176, 173, 173, 0.377);
-  border-radius: 8px;
+    background: rgba(176, 173, 173, 0.377);
+    border-radius: 8px;
 }
 
 .btn:nth-child(1):hover ~ svg .rect {
-  stroke-dashoffset: 0;
-  stroke-dasharray: 0 2 8 73.3 8 10.7;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 2 8 73.3 8 10.7;
 }
 
 .btn:nth-child(2):hover ~ svg .rect {
-  stroke-dashoffset: 0;
-  stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
 }
 
 .btn:hover ~ .outline .rect {
-  stroke-dashoffset: 0;
-  stroke-dasharray: 0 0 10 40 10 40;
-  transition: 0.5s !important;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 0 10 40 10 40;
+    transition: 0.5s !important;
 }
 
 /* * Timer code */
-
-
 
 .modal-container {
     position: fixed;
