@@ -6,183 +6,19 @@
         <link rel="stylesheet" href="style.css" />
         <script src="https://cdn.tailwindcss.com"></script>
         <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+        <!-- <link rel="stylesheet" href="/static/css/style.css" /> -->
 
-         <script src=""></script>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
-            rel="stylesheet"
-        />
+        <!-- <script src=""></script> -->
+        
 
-        <title>Document</title>
+        <title>Chrome</title>
         <style>
-            #main-time-container {
-                background: transparent;
-                border: 2px solid rgba(255, 255, 255, 0.2);
-                color: #fff;
-                backdrop-filter: blur(50px);
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-                border-radius: 12px;
-                /* width: 40%; */
-                /* min-width: 320px; */
-                margin: 0 auto;
-                padding-top: 12px;
-                margin-left: 20%;
-                position: fixed;
-
-                z-index: 999;
-                transition: opacity 0.5s ease;
-                opacity: 0;
-                pointer-events: none;
-            }
-            #main-time-container.show {
-                pointer-events: auto;
-                opacity: 1;
-            }
-
-            .page {
-                display: none;
-                padding: 20px;
-                color: white;
-            }
-            .page:target {
-                display: block;
-            }
-
-            /* .main-time-container { */
-            /* background: transparent; */
-            /* border: 2px solid rgba(255, 255, 255, 0.2); */
-            /* color: #fff; */
-            /* backdrop-filter: blur(50px); */
-            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
-            /* border-radius: 12px; */
-            /* width: 40%; */
-            /* min-width: 320px; */
-            /* margin: 0 auto; */
-            /* padding: 20px; */
-            /* } */
-
-            .rect {
-                stroke-dashoffset: 5;
-                stroke-dasharray: 0 0 10 40 10 40;
-                transition: 0.5s;
-                stroke: #fff;
-            }
-
-            .nav {
-                position: relative;
-                width: 100%;
-                height: 60px;
-                max-width: 400px;
-                margin: 0 auto;
-            }
-
-            .outline {
-                position: absolute;
-                inset: 0;
-                pointer-events: none;
-            }
-
-            .container {
-                position: absolute;
-                inset: 0;
-                background: #bef6;
-                border-radius: 12px;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: center;
-            }
-
-            .container:hover .outline .rect {
-                transition: 999999s;
-                stroke-dashoffset: 1;
-                stroke-dasharray: 0;
-            }
-
-            .btn {
-                padding: 0.5em 1.5em;
-                color: #000000;
-                cursor: pointer;
-                transition: 0.1s;
-                text-align: center;
-            }
-
-            .btn a {
-                color: inherit;
-                text-decoration: none;
-                display: block;
-            }
-
-            .btn:hover {
-                background: rgba(176, 173, 173, 0.377);
-                border-radius: 8px;
-            }
-
-            .btn:nth-child(1):hover ~ svg .rect {
-                stroke-dashoffset: 0;
-                stroke-dasharray: 0 2 8 73.3 8 10.7;
-            }
-
-            .btn:nth-child(2):hover ~ svg .rect {
-                stroke-dashoffset: 0;
-                stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
-            }
-
-            .btn:hover ~ .outline .rect {
-                stroke-dashoffset: 0;
-                stroke-dasharray: 0 0 10 40 10 40;
-                transition: 0.5s !important;
-            }
-
-            /* * Timer code */
-
-            .timer-container {
-                text-align: center;
-                background: white;
-                padding: 30px;
-                border-radius: 12px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            }
-            .time-display {
-                font-size: 48px;
-                font-weight: bold;
-                margin-bottom: 20px;
-                color: #333;
-                font-variant-numeric: tabular-nums;
-            }
-            .controls button {
-                font-size: 16px;
-                padding: 10px 20px;
-                margin: 0 5px;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-                transition: background 0.2s;
-            }
-            .start-btn {
-                background-color: #28a745;
-                color: white;
-            }
-            .start-btn:hover {
-                background-color: #218838;
-            }
-            .pause-btn {
-                background-color: #ffc107;
-                color: #333;
-            }
-            .pause-btn:hover {
-                background-color: #e0a800;
-            }
-            .reset-btn {
-                background-color: #dc3545;
-                color: white;
-            }
-            .reset-btn:hover {
-                background-color: #c82333;
-            }
+          
         </style>
     </head>
+
+    <!--! BODY  -->
     <body
         class="bg-cover bg-no-repeat min-h-screen"
         style="background-image: url(&quot;https://4kwallpapers.com/images/walls/thumbs_3t/5894.jpg&quot;)"
@@ -197,24 +33,23 @@
             </div>
             <div class="main_content_sidebar" id="sidebar">
                 <article class="sidebar-rail">
-                    <button type="button" id="toggle-camera" class="sidebar-item group" title="Open camera">
-                        <!-- <label for="video" title="Video" class="sidebar-item group"> -->
-                        <!-- <input type="radio" name="path" id="video" class="sr-only" /> -->
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            fill="currentColor"
-                            class="bi bi-camera-video"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"
-                            />
-                        </svg>
-                    </button>
-
+                    <!-- <button type="button" id="toggle-camera" class="sidebar-item group" title="Open camera"> -->
+                        <!-- <svg -->
+                            <!-- xmlns="http://www.w3.org/2000/svg" -->
+                            <!-- width="20" -->
+                            <!-- height="20" -->
+                            <!-- fill="currentColor" -->
+                            <!-- class="bi bi-camera-video" -->
+                            <!-- viewBox="0 0 16 16" -->
+                        <!-- > -->
+                            <!-- <path -->
+                                <!-- fill-rule="evenodd" -->
+                                <!-- d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z" -->
+                            <!-- /> -->
+                        <!-- </svg> -->
+                    <!-- </button> -->
+                    
+                    <!-- * Left side btn - QR CODE ---------------------------------------   -->
                     <button
                         type="button"
                         id="open-modal-qr-btn"
@@ -243,7 +78,8 @@
                             <path d="M12 9h2V8h-2z" />
                         </svg>
                     </button>
-
+                    <!-- * Left side btn - Timer ---------------------------------------   -->
+                    
                     <button
                         type="button"
                         id="open-modal-time-btn"
@@ -269,7 +105,7 @@
                         </svg>
                     </button>
 
-                    <button
+                    <!-- <button
                         type="button"
                         id="open-maintoolbar-btn"
                         title="Open Modal"
@@ -289,8 +125,10 @@
                                 d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
                             />
                         </svg>
-                    </button>
-                    <label for="settings" title="Settings" class="sidebar-item group">
+                    </button> -->
+                   
+                    <!-- ! Settins btn Temprarory unavailble -->
+                    <!-- <label for="settings" title="Settings" class="sidebar-item group">
                         <input type="radio" name="path" id="settings" class="sr-only" />
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -307,9 +145,10 @@
                                 d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"
                             />
                         </svg>
-                    </label>
+                    </label> -->
                 </article>
-
+                
+             <!-- * Right side btn - QR modal ---------------------------------------   -->                      
                 <div class="qr-modal-container">
                     <input placeholder="Enter the Link" type="text" name="text" class="qr-btn" />
                     <button id="qr-btn">
@@ -359,6 +198,8 @@
                     </div>
                 </div>
 
+
+             <!-- * Right side btn - TIMER and Stop Watch modal ---------------------------------------   -->
                 <div id="main-time-container">
                     <div class="nav">
                         <div class="container">
@@ -463,13 +304,13 @@
                 </div>
 
                 <!--! Camera button  -->
-                <section id="camera-screen" hidden>
+                <!-- <section id="camera-screen" hidden>
                     <button type="button" id="close-camera"></button>
                     <div id="frame">
                         <video id="camera" autoplay muted playsinline></video>
 
-                        <!-- Captured photo is shown directly over the video, no second image -->
-                        <img id="photo" alt="Your captured photo" hidden />
+                        Captured photo is shown directly over the video, no second image -->
+                        <!-- <img id="photo" alt="Your captured photo" hidden />
                     </div>
 
                     <div>
@@ -477,30 +318,21 @@
                             Take Photo
                         </button>
 
-                        <p id="status">Click "Show Camera" to start.</p>
+                        <p id="status">Click "Show Camera" to start.</p> -->
                         <!--&&  -->
 
                         <!-- Only appears once, after a photo is taken -->
-                        <button id="save-photo" type="button" hidden class="camera-btn-class">Save Photo</button>
+                        <!-- <button id="save-photo" type="button" hidden class="camera-btn-class">Save Photo</button>
 
                         <button id="retake-photo" type="button" hidden class="camera-btn-class">Retake</button>
 
-                        <button id="close-camera" type="button" hidden class="camera-btn-class">Close Camera</button>
-                    </div>
-                </section>
+                        <button id="close-camera" type="button" hidden class="camera-btn-class">Close Camera</button> -->
+                    <!-- </div> -->
+                <!-- </section> --> 
 
-                <canvas id="canvas" hidden></canvas>
+                <!-- <canvas id="canvas" hidden></canvas>
 
-                <div class="modal-additem-container" id="modal-additem-container">
-                    <div class="modal-additem">
-                        <div class="flex gap-4 mb-4">
-                            <input class="bookmar-input" name="text" placeholder="  add URL" type="text" />
-                        </div>
-                        <button id="Additem-id-btn">Enter</button>
-                    </div>
-                </div>
-
-                <div class="modal-camera-container" id="modal-camera-container"></div>
+         <div class="modal-camera-container" id="modal-camera-container"></div>
                 <div class="modal-container" id="modalContainer">
                     <div class="modal">
                         <div class="flex gap-4 mb-4">
@@ -528,7 +360,7 @@
                                 <div class="modal-password">
                                     <div class="container">
                                         <!--* close button -->
-                                        <button id="close-modal-password-btn" type="button">
+                                        <!-- <button id="close-modal-password-btn" type="button">
                                             <svg
                                                 width="40px"
                                                 height="40px"
@@ -605,25 +437,40 @@
                         </div>
                         <button id="close-maintoolbar-btn" type="button">Close</button>
                     </div>
-                </div>
-                <div class="modal-container" id="modalContainer">
+                </div>  -->
+
+
+               
+
+               
+
+
+<!-- ? Unneccessay maybe -->
+                <!-- <div class="modal-container" id="modalContainer">
                     <div class="modal">
                         <div class="flex gap-4 mb-4"></div>
                     </div>
-                </div>
-                <div id="rightside">
-                    <span class="redbox">
-                        <img src="video.png" draggable="false" alt="Instagram app logo" id="site-logo" />
-                        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" id="a-links">
-                            <p id="site_name"><b> youtube</b></p>
-                        </a>
-                    </span>
-                    <span class="redbox">
+                </div> -->
+
+
+                <!-- * Item or Apps that are saved to the list -->
+                 <!-- <span class="redbox">
                         <img src="instagram.png" draggable="false" alt="Instagram app logo" id="site-logo" />
                         <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" id="a-links">
                             <p id="site_name"><b> Instagram</b></p>
                         </a>
+                    </span> -->
+                <div id="rightside">
+                    {% for Url_read in Url_reads %}
+                    <span class="redbox">
+                        <img src="video.png" draggable="false" alt="Instagram app logo" id="site-logo" />
+                        <a href="{{ Url_read.site_url }}" target="_blank" rel="noopener noreferrer" id="a-links">
+                          <!-- <p>{{ Url_read.site_url }} </p> -->
+                            <p id="site_name"><b> {{ Url_read.site__name }}</b></p>
+                        </a>
                     </span>
+                    {% endfor %}
+                    
 
                     <span class="redbox" title="add">
                         <button type="button" id="open-modal-additem-btn" title="Open Add Item">
@@ -641,15 +488,33 @@
                                     d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
                                 />
                             </svg>
-                            <p id="site_name"><b> Add Item</b></p>
+                            <p id="site_name" ><b> Add Item</b></p>
                         </button>
                     </span>
                 </div>
             </div>
+
+             <!-- ! USED for the CRUD -->
+                <!-- * Right side btn - ADD ITEM ---------------------------------------   -->
+                <form action="" method="post">
+                    <div class="modal-additem-container" id="modal-additem-container">
+                        <div class="modal-additem">
+                            <div class="flex gap-4 mb-4">
+                                <input class="bookmar-input"  placeholder="  add URL" type="text" name="site_url"/>
+                                <input class="bookmar-input"  placeholder="  add NAME" type="text" name="site__name"/>
+                            </div>
+                            <button id="Additem-id-btn">Enter</button>
+                        </div>
+                    </div>
+                </form>
+
+            <!-- * down side - Quotes that updates daily  ---------------------------------------- -->
             <div id="quotes-collection">
                 lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet
                 consectetur adipisicing elit. Quisquam, quod.
             </div>
+
+            <!-- * Search btn with multiple opetions -->
             <form class="formsearch">
                 <button type="button" class="search-btn">
                     <svg
@@ -693,176 +558,16 @@
             </form>
         </div>
     </body>
-    <!-- <script src="drag.js"></script> -->
-    <!-- <script src="popups.js"></script> -->
-    <!-- <script src="script.js"></script>     -->
-    <!-- <script src="camera.js"></script>     -->
-<script type="text/javascript" src="{{ url_for('static', filename='script/drag.js') }} "></script>
+    
+    <!-- <script src="/static/script/drag.js"></script>
+    <script src="/static/script/popups.js"></script>
+    <script src="/static/script/script.js"></script>    
+    <script src="/static/script/camera.js"></script>     -->
+
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='script/drag.js') }} "></script>
     <script type="text/javascript" src="{{ url_for('static', filename='script/popups.js') }} "></script>
     <script type="text/javascript" src="{{ url_for('static', filename='script/script.js') }} "></script>
     <script type="text/javascript" src="{{ url_for('static', filename='script/camera.js') }} "></script>
     <script type="text/javascript" src="{{ url_for('static', filename='script/timer.js') }} "></script>
-
-    <!-- <script> -->
-        const camera = document.getElementById("camera");
-        const cameraScreen = document.getElementById("camera-screen");
-        const toggleBtn = document.getElementById("toggle-camera");
-        const takePhotoBtn = document.getElementById("take-photo");
-        <!-- const savePhotoBtn = document.getElementById("save-photo"); -->
-        <!-- const retakeBtn = document.getElementById("retake-photo"); -->
-        <!-- const closeBtn = document.getElementById("close-camera"); -->
-        <!-- const closeBtnfirst = document.getElementById("close-camera-first"); -->
-        <!-- const photo = document.getElementById("photo"); -->
-        <!-- const canvas = document.getElementById("canvas"); -->
-        <!-- const status = document.getElementById("status"); -->
-<!--  -->
-        <!-- let stream = null; -->
-        <!-- let cameraOpening = false; -->
-<!--  -->
-        <!-- async function showCamera() { -->
-            <!-- if (cameraOpening || stream) return; -->
-<!--  -->
-            <!-- cameraOpening = true; -->
-            <!-- toggleBtn.disabled = true; -->
-            <!-- status.textContent = "Requesting camera permission..."; -->
-<!--  -->
-            <!-- try { -->
-                <!-- if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { -->
-                    <!-- throw new Error("Camera access requires HTTPS or localhost."); -->
-                <!-- } -->
-<!--  -->
-                <!-- // Reveal the camera screen only after the user clicks. -->
-                <!-- cameraScreen.hidden = false; -->
-                <!-- resetPhoto(); -->
-<!--  -->
-                <!-- const newStream = await navigator.mediaDevices.getUserMedia({ -->
-                    <!-- video: { facingMode: "environment" }, -->
-                    <!-- audio: false, -->
-                <!-- }); -->
-<!--  -->
-                <!-- stream = newStream; -->
-                <!-- camera.srcObject = stream; -->
-<!--  -->
-                <!-- await camera.play(); -->
-<!--  -->
-                <!-- // toggleBtn.textContent = "Close Camera"; -->
-                <!-- status.textContent = "Camera is ready. Take a photo."; -->
-            <!-- } catch (error) { -->
-                <!-- console.error("Camera error:", error); -->
-<!--  -->
-                <!-- cameraScreen.hidden = true; -->
-<!--  -->
-                <!-- if (error.name === "NotAllowedError") { -->
-                    <!-- status.textContent = "Camera permission denied. Allow camera access in your browser."; -->
-                <!-- } else if (error.name === "NotFoundError") { -->
-                    <!-- status.textContent = "No camera was found on this device."; -->
-                <!-- } else if (error.name === "NotReadableError") { -->
-                    <!-- status.textContent = "Camera is busy. Close other apps using it."; -->
-                <!-- } else { -->
-                    <!-- status.textContent = "Unable to start camera: " + error.message; -->
-                <!-- } -->
-<!--  -->
-                <!-- stopCameraStream(); -->
-            <!-- } finally { -->
-                <!-- cameraOpening = false; -->
-                <!-- toggleBtn.disabled = false; -->
-            <!-- } -->
-        <!-- } -->
-<!--  -->
-        <!-- function stopCameraStream() { -->
-            <!-- if (stream) { -->
-                <!-- stream.getTracks().forEach((track) => track.stop()); -->
-                <!-- stream = null; -->
-            <!-- } -->
-<!--  -->
-            <!-- camera.pause(); -->
-            <!-- camera.srcObject = null; -->
-        <!-- } -->
-<!--  -->
-        <!-- function closeCamera() { -->
-            <!-- stopCameraStream(); -->
-<!--  -->
-            <!-- resetPhoto(); -->
-            <!-- cameraScreen.hidden = true; -->
-            <!-- // toggleBtn.textContent = "Show Camera"; -->
-            <!-- // status.textContent = "Camera closed."; -->
-        <!-- } -->
-<!--  -->
-        <!-- function resetPhoto() { -->
-            <!-- capturedDataUrl = null; -->
-            <!-- photo.removeAttribute("src"); -->
-            <!-- photo.hidden = true; -->
-            <!-- closeBtn.hidden = true; -->
-            <!-- // closeBtnfirst.hidden = false; -->
-            <!-- savePhotoBtn.hidden = true; -->
-            <!-- retakeBtn.hidden = true; -->
-            <!-- takePhotoBtn.hidden = false; -->
-        <!-- } -->
-<!--  -->
-        <!-- let capturedDataUrl = null; -->
-<!--  -->
-        <!-- function savePhoto() { -->
-            <!-- if (!capturedDataUrl) { -->
-                <!-- status.textContent = "Take a photo first."; -->
-                <!-- return; -->
-            <!-- } -->
-<!--  -->
-            <!-- const link = document.createElement("a"); -->
-            <!-- link.href = capturedDataUrl; -->
-            <!-- link.download = "photo-" + Date.now() + ".jpg"; -->
-            <!-- document.body.appendChild(link); -->
-            <!-- link.click(); -->
-            <!-- link.remove(); -->
-<!--  -->
-            <!-- status.textContent = "Photo saved to your downloads."; -->
-        <!-- } -->
-<!--  -->
-        <!-- function takePhoto() { -->
-            <!-- if (!stream || !camera.videoWidth || !camera.videoHeight) { -->
-                <!-- status.textContent = "Camera is not ready. Please wait a moment."; -->
-                <!-- return; -->
-            <!-- } -->
-<!--  -->
-            <!-- // Match the canvas dimensions to the camera frame. -->
-            <!-- canvas.width = camera.videoWidth; -->
-            <!-- canvas.height = camera.videoHeight; -->
-<!--  -->
-            <!-- const context = canvas.getContext("2d"); -->
-<!--  -->
-            <!-- context.drawImage(camera, 0, 0, canvas.width, canvas.height); -->
-<!--  -->
-            <!-- // Show the captured frame directly over the video preview. -->
-            <!-- capturedDataUrl = canvas.toDataURL("image/jpeg", 0.92); -->
-            <!-- photo.src = capturedDataUrl; -->
-            <!-- photo.hidden = false; -->
-<!--  -->
-            <!-- // Photo actions appear once, right after the photo is taken. -->
-            <!-- closeBtn.hidden = false; -->
-            <!-- savePhotoBtn.hidden = false; -->
-            <!-- retakeBtn.hidden = false; -->
-            <!-- takePhotoBtn.hidden = true; -->
-<!--  -->
-            <!-- status.textContent = "Photo captured. Save it or retake."; -->
-        <!-- } -->
-<!--  -->
-        <!-- toggleBtn.addEventListener("click", () => { -->
-            <!-- if (stream) { -->
-                <!-- closeCamera(); -->
-            <!-- } else { -->
-                <!-- showCamera(); -->
-            <!-- } -->
-        <!-- }); -->
-<!--  -->
-        <!-- closeBtn.addEventListener("click", closeCamera); -->
-        <!-- // closeBtnfirst.addEventListener("click", closeCamera); -->
-<!--  -->
-        <!-- takePhotoBtn.addEventListener("click", takePhoto); -->
-<!--  -->
-        <!-- savePhotoBtn.addEventListener("click", savePhoto); -->
-<!--  -->
-        <!-- retakeBtn.addEventListener("click", () => { -->
-            <!-- resetPhoto(); -->
-            <!-- status.textContent = "Retake your photo."; -->
-        <!-- }); -->
-    <!-- </script> -->
 </html>

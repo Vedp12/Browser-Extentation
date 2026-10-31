@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Engine Select</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        font-family: Inter, system-ui, sans-serif;
+        background: #f1f5f9;
+        display: flex;
+        justify-content: center;
+        padding-top: 80px;
+      }
+
+      /* The closed select box */
+      .select-box {
+        position: relative;
+        width: 280px;
+        background: #fff;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .select-box.open { border-color: #6366f1; }
+      .selected {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+      }
+      .selected img, .option img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        border-radius: 4px;
+      }
+      .arrow {
+        margin-left: auto;
+        transition: transform 0.2s;
+        font-size: 12px;
+        color: #64748b;
+      }
+      .select-box.open .arrow { transform: rotate(180deg); }
+
+      /* The dropdown options list */
+      .options {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        right: 0;
+        background: #fff;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        overflow: hidden;
+        display: none;
+        z-index: 10;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+      .select-box.open .options { display: block; }
+      .option {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        cursor: pointer;
+      }
+      .option:hover { background: #eef2ff; }
+      .option.hidden { display: none; }
+    </style>
+  </head>
+  <body>
+    <!-- Native <option> tags cannot display images, so this custom
+         dropdown mimics a <select> and supports images per item. -->
+    <div class="select-box" id="selectBox">
+      <div class="selected" id="selected">
+        <img id="selectedImg" src="google.png" alt="" />
+        <span id="selectedName">Google</span>
+        <span class="arrow">&#9660;</span>
+      </div>
+      <div class="options" id="options">
+        <div class="option" data-name="Google" data-img="google.png">
+          <img src="google.png" alt="Google" /> <span>Google</span>
+        </div>
+        <div class="option" data-name="DuckDuckGo" data-img="DuckDuckgo.png">
+          <img src="DuckDuckgo.png" alt="DuckDuckGo" /> <span>DuckDuckGo</span>
+        </div>
+        <div class="option" data-name="Perplexity" data-img="perplexity.png">
+          <img src="perplexity.png" alt="Perplexity" /> <span>Perplexity</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const selectBox = document.getElementById("selectBox");
+      const selectedImg = document.getElementById("selectedImg");
+      const selectedName = document.getElementById("selectedName");
+      const options = document.querySelectorAll(".option");
+
+      // Open / close dropdown
+      document.getElementById("selected").addEventListener("click", () => {
+        selectBox.classList.toggle("open");
+      });
+
+      // Select an option
+      options.forEach((opt) => {
+        opt.addEventListener("click", () => {
+          selectedImg.src = opt.dataset.img;
+          selectedImg.alt = opt.dataset.name;
+          selectedName.textContent = opt.dataset.name;
+
+          // hide the currently selected option from the list
+          options.forEach((o) => o.classList.toggle("hidden", o === opt));
+
+          selectBox.classList.remove("open");
+          console.log("Selected:", opt.dataset.name, "->", opt.dataset.img);
+        });
+      });
+
+      // Close when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!selectBox.contains(e.target)) selectBox.classList.remove("open");
+      });
+    </script>
+  </body>
+</html>

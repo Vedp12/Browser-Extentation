@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Logo Fetcher</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input[type="text"] { width: 300px; padding: 10px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        .result { margin-top: 30px; }
+        .logo-box { max-width: 150px; max-height: 150px; margin-top: 15px; border: 1px solid #ccc; padding: 10px; border-radius: 8px;}
+    </style>
+</head>
+<body>
+
+    <h2>Paste a URL to get its logo</h2>
+    
+    <form method="POST">
+        <input type="text" name="url" placeholder="example.com" value="{{ target_url }}" required>
+        <button type="submit">Fetch Logo</button>
+    </form>
+
+    {% if logo_url %}
+        <div class="result">
+            <h3>Extracted Logo:</h3>
+            <img class="logo-box" src="{{ logo_url }}" alt="Website Logo Summary" onerror="this.style.display='none'; alert('Could not render logo asset.');">
+            <p><small>Source URL: <a href="{{ logo_url }}" target="_blank">{{ logo_url }}</a></small></p>
+        </div>
+    {% elif logo_url == None and target_url != "" %}
+        <div class="result">
+            <p style="color: red;">Failed to retrieve a logo for this URL.</p>
+        </div>
+    {% endif %}
+
+</body>
+</html>
+
