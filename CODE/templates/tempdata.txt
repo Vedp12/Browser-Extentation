@@ -1,0 +1,29 @@
+
+
+At line ------------------ 406
+                       <!-- <img src="{{ url_for('static', filename='image/video.png') }}" draggable="false" alt="Instagram app logo" /> -->
+
+
+At line ------------------ 538
+
+ <div class="select-box" id="selectBox">
+                    <div class="selected" id="selected">
+                        <img id="selectedImg" src="{{ url_for('static',filename='image/google.png' ) }}" alt="Selected Engine" />
+                        <span class="arrow">&#9660;</span>
+                    </div>
+                    <div class="options" id="options">
+                        <div class="option" data-name="Google" data-img="google.png">
+                            <img src="{{ url_for('static', filename='image/google.png')}}" alt="Google" />
+                        </div>
+                        <div class="option" data-name="DuckDuckGo" data-img="{{ url_for('static', filename='image/duck.png ) }}">
+                            <img src="{{ url_for('static' , filename='image/duck.png')}}" alt="DuckDuckGo" />
+                        </div>
+                        <div class="option" data-name="chatgpt" data-img="{{ url_for('static', filename='image/chatgpt.png) }}">
+                            <img src="{{ url_for('static', filename='image/chatgpt.png')}}" alt="chatgpt" />
+                        </div>
+                        <div class="option" data-name="Perplexity" data-img="{{ url_for('static', filename='image/perplexity.png) }}">
+                            <img src="{{ url_for('static', filename='image/perplexity.png')}}" alt="Perplexity" />
+                        </div>
+                    </div>
+</div>
+
