@@ -8,3 +8,4 @@ class URLmodal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     site_url = db.Column(db.String(500), nullable=False)
     site_name = db.Column(db.String(200), nullable=False)
+    logo_url = db.Column(db.String(500), nullable=True)

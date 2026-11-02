@@ -8,9 +8,7 @@
         <!-- <script src="https://cdn.tailwindcss.com"></script> -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
         <!-- <link rel="stylesheet" href="/static/css/style.css" /> -->
-
         <!-- <script src=""></script> -->
-
         <title>Chrome</title>
         <style>
     #rightside {
@@ -32,7 +30,6 @@
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         border: 1px solid rgba(255, 255, 255, 0.15);
-
         display: flex;
         justify-content: center;
         align-items: center;
@@ -52,14 +49,12 @@
         flex-direction: column;
         align-items: center;
     }
-
     /* Shows bin icon when hovering over the app container */
     .icon-glass-box:hover .deleteButton {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
     }
-
     .app-icon-img {
         width: 48px;
         height: 48px;
@@ -144,7 +139,6 @@
     }
 </style>
     </head>
-
     <!--! BODY  -->
     <body
         class="bg-cover bg-no-repeat min-h-screen"
@@ -175,7 +169,6 @@
                     <!-- /> -->
                     <!-- </svg> -->
                     <!-- </button> -->
-
                     <!-- * Left side btn - QR CODE ---------------------------------------   -->
                     <button
                         type="button"
@@ -206,7 +199,6 @@
                         </svg>
                     </button>
                     <!-- * Left side btn - Timer ---------------------------------------   -->
-
                     <button
                         type="button"
                         id="open-modal-time-btn"
@@ -231,7 +223,6 @@
                             />
                         </svg>
                     </button>
-
                     <!-- <button
                         type="button"
                         id="open-maintoolbar-btn"
@@ -253,7 +244,6 @@
                             />
                         </svg>
                     </button> -->
-
                     <!-- ! Settins btn Temprarory unavailble -->
                     <!-- <label for="settings" title="Settings" class="sidebar-item group">
                         <input type="radio" name="path" id="settings" class="sr-only" />
@@ -274,29 +264,22 @@
                         </svg>
                     </label> -->
                 </article>
-
                 <!-- * Right side btn - QR modal ---------------------------------------   -->
                 <div class="qr-modal-container">
                    <form action="/" method="POST">
-
     <input type="hidden" name="form_type" value="generate_qr">
-
     <input type="text" name="QrCode_text" placeholder="Enter URL">
-
     <button type="submit">Generate QR</button>
-
 </form>
                     <button id="close-qr"></button>
                     {% if getnerateQR %}
                    <div >
         <!-- <h3>Generated QR Code:</h3> -->
-
         <img
             src="{{ url_for('static', filename=getnerateQR) }}"
             alt="Generated QR Code"
             width="200"
             height="200"
-            
         >
     </div>
                     <div id="qr-under-btn">
@@ -341,7 +324,6 @@
                     </div>
                     {% endif %}
                 </div>
-
                 <!-- * Right side btn - TIMER and Stop Watch modal ---------------------------------------   -->
                 <div id="main-time-container">
                     <div class="nav">
@@ -363,7 +345,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- ! Stop Watch  -->
                         <div id="Stopwatch" class="page">
                             <div
@@ -383,7 +364,6 @@
                                         class="text-xs font-medium text-slate-400 mt-2 uppercase tracking-widest"
                                     ></p>
                                 </div>
-
                                 <div class="grid grid-cols-4 gap-2 mt-3 w-full">
                                     <button
                                         onclick="setPreset(5)"
@@ -410,7 +390,6 @@
                                         60m
                                     </button>
                                 </div>
-
                                 <div class="flex items-center justify-center space-x-3 w-full mt-6">
                                     <button
                                         id="start-btn"
@@ -434,7 +413,6 @@
                                         Reset
                                     </button>
                                 </div>
-
                                 <div
                                     id="notification"
                                     class="hidden mt-4 w-full p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium rounded-xl text-center"
@@ -445,36 +423,27 @@
                         </div>
                     </div>
                 </div>
-
                 <!--! Camera button  -->
                 <!-- <section id="camera-screen" hidden>
                     <button type="button" id="close-camera"></button>
                     <div id="frame">
                         <video id="camera" autoplay muted playsinline></video>
-
                         Captured photo is shown directly over the video, no second image -->
                 <!-- <img id="photo" alt="Your captured photo" hidden />
                     </div>
-
                     <div>
                         <button id="take-photo" style="margin-left: 53px" type="button" class="camera-btn-class">
                             Take Photo
                         </button>
-
                         <p id="status">Click "Show Camera" to start.</p> -->
                 <!--&&  -->
-
                 <!-- Only appears once, after a photo is taken -->
                 <!-- <button id="save-photo" type="button" hidden class="camera-btn-class">Save Photo</button>
-
                         <button id="retake-photo" type="button" hidden class="camera-btn-class">Retake</button>
-
                         <button id="close-camera" type="button" hidden class="camera-btn-class">Close Camera</button> -->
                 <!-- </div> -->
                 <!-- </section> -->
-
                 <!-- <canvas id="canvas" hidden></canvas>
-
          <div class="modal-camera-container" id="modal-camera-container"></div>
                 <div class="modal-container" id="modalContainer">
                     <div class="modal">
@@ -581,16 +550,13 @@
                         <button id="close-maintoolbar-btn" type="button">Close</button>
                     </div>
                 </div>  -->
-
                 <!-- ? Unneccessay maybe -->
                 <!-- <div class="modal-container" id="modalContainer">
                     <div class="modal">
                         <div class="flex gap-4 mb-4"></div>
                     </div>
                 </div> -->
-
                 <!-- * Item or Apps that are saved to the list -->
-        
                <div id="rightside">
     {% for Url_read in url_reads %}
     <div class="app-item">
@@ -615,11 +581,17 @@
                 </svg>
             </button>
             <div class="img-name-item">
-                <img
-                src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
-                alt="Instagram"
-                class="app-icon-img"
-                />
+                    {% if Url_read.logo_url %}
+        <div class="result">
+
+            <img class="logo-box" src="{{ Url_read.logo_url }}" alt="Website Logo Summary" onerror="this.style.display='none'; alert('Could not render logo asset.');">
+            <!-- <p><small>Source URL: <a href="{{ Url_read.logo_url }}" target="_blank">{{ Url_read.logo_url }}</a></small></p> -->
+        </div>
+    {% elif Url_read.logo_url == None and Url_read.logo_url != "" %}
+        <div class="result">
+            <p style="color: red;">Error</p>
+        </div>
+    {% endif %}
                 <a href="{{ Url_read.site_url }}" target="_blank" rel="noopener noreferrer" id="a-links">
                     <span class="app-label"> {{ Url_read.site_name }}</span>
                 </a>
@@ -650,11 +622,8 @@
     </div>
 </div>
             </div>
-
             <!-- ! USED for the CRUD -->
             <!-- * Right side btn - ADD ITEM ---------------------------------------   -->
-
-  
            <form action="/" method="POST">
     <div class="modal-additem-container" id="modal-additem-container">
         <div class="modal-additem">
@@ -667,13 +636,11 @@
         </div>
     </div>
 </form>
-
             <!-- * down side - Quotes that updates daily  ---------------------------------------- -->
             <div id="quotes-collection">
                 lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet
                 consectetur adipisicing elit. Quisquam, quod.
             </div>
-
             <!-- * Search btn with multiple opetions -->
             <form class="formsearch">
                 <button type="button" class="search-btn">
@@ -734,7 +701,6 @@
             </form>
         </div>
     </body>
-
     <script src="{{ url_for('static', filename='script/drag.js') }}"></script>
     <script src="{{ url_for('static', filename='script/drag.js') }} "></script>
     <script src="{{ url_for('static', filename='script/popups.js') }} "></script>
