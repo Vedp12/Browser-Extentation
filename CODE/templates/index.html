@@ -10,134 +10,134 @@
         <!-- <link rel="stylesheet" href="/static/css/style.css" /> -->
         <!-- <script src=""></script> -->
         <title>Chrome</title>
-        <style>
-    #rightside {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-    .app-item {
-        display: inline-flex;
-        align-items: center;
-        gap: 15px;
-        width: 90px;
-    }
-    .icon-glass-box {
-        width: 80px;
-        height: 80px;
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition:
-            transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-            background 0.2s;
-        position: relative;
-    }
-    .icon-glass-box:hover {
-        transform: translateY(-4px) scale(1.03);
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(255, 255, 255, 0.25);
-    }
-    .img-name-item{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-    /* Shows bin icon when hovering over the app container */
-    .icon-glass-box:hover .deleteButton {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
-    .app-icon-img {
-        width: 48px;
-        height: 48px;
-        border-radius: 14px;
-        object-fit: cover;
-        margin-top: 3px;
-    }
-    .app-label {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 13px;
-        font-weight: 400;
-        letter-spacing: 0.2px;
-        text-align: center;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-        max-width: 8.2ch;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: clip;
-        display: block;
-    }
-    .deleteButton {
-        width: 24px;
-        height: 24px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 3px;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        transition:
-            opacity 0.2s ease,
-            transform 0.2s ease;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        position: absolute;
-        top: -6px;
-        right: -6px;
-        background-color: rgb(237, 56, 56);
-        overflow: visible;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        z-index: 10;
-    }
-    .deleteButton svg {
-        width: 40%;
-    }
-    .bin path {
-        transition: all 0.2s;
-    }
-    .deleteButton .bin path {
-        fill: #fff;
-    }
-    .deleteButton:active {
-        transform: scale(0.92);
-    } 
-    .modal-additem-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(4px);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.5s ease;
-        z-index: 999;
-    }
-    .modal-additem {
-        background-color: rgba(255, 255, 255, 0.455);
-        padding: 24px;
-        border-radius: 11px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-</style>
+        <!-- <style>
+            #rightside {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            .app-item {
+                display: inline-flex;
+                align-items: center;
+                gap: 15px;
+                width: 90px;
+            }
+            .icon-glass-box {
+                width: 80px;
+                height: 80px;
+                border-radius: 16px;
+                background: rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition:
+                    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                    background 0.2s;
+                position: relative;
+            }
+            .icon-glass-box:hover {
+                transform: translateY(-4px) scale(1.03);
+                background: rgba(255, 255, 255, 0.12);
+                border-color: rgba(255, 255, 255, 0.25);
+            }
+            .img-name-item {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+            /* Shows bin icon when hovering over the app container */
+            .icon-glass-box:hover .deleteButton {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+            .app-icon-img {
+                width: 48px;
+                height: 48px;
+                border-radius: 14px;
+                object-fit: cover;
+                margin-top: 3px;
+            }
+            .app-label {
+                color: rgba(255, 255, 255, 0.9);
+                font-size: 13px;
+                font-weight: 400;
+                letter-spacing: 0.2px;
+                text-align: center;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+                max-width: 8.2ch;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: clip;
+                display: block;
+            }
+            .deleteButton {
+                width: 24px;
+                height: 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 3px;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                transition:
+                    opacity 0.2s ease,
+                    transform 0.2s ease;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                position: absolute;
+                top: -6px;
+                right: -6px;
+                background-color: rgb(237, 56, 56);
+                overflow: visible;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                z-index: 10;
+            }
+            .deleteButton svg {
+                width: 40%;
+            }
+            .bin path {
+                transition: all 0.2s;
+            }
+            .deleteButton .bin path {
+                fill: #fff;
+            }
+            .deleteButton:active {
+                transform: scale(0.92);
+            }
+            .modal-additem-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.4);
+                backdrop-filter: blur(4px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.5s ease;
+                z-index: 999;
+            }
+            .modal-additem {
+                background-color: rgba(255, 255, 255, 0.455);
+                padding: 24px;
+                border-radius: 11px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        </style> -->
     </head>
     <!--! BODY  -->
     <body
@@ -154,21 +154,6 @@
             </div>
             <div class="main_content_sidebar" id="sidebar">
                 <article class="sidebar-rail">
-                    <!-- <button type="button" id="toggle-camera" class="sidebar-item group" title="Open camera"> -->
-                    <!-- <svg -->
-                    <!-- xmlns="http://www.w3.org/2000/svg" -->
-                    <!-- width="20" -->
-                    <!-- height="20" -->
-                    <!-- fill="currentColor" -->
-                    <!-- class="bi bi-camera-video" -->
-                    <!-- viewBox="0 0 16 16" -->
-                    <!-- > -->
-                    <!-- <path -->
-                    <!-- fill-rule="evenodd" -->
-                    <!-- d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z" -->
-                    <!-- /> -->
-                    <!-- </svg> -->
-                    <!-- </button> -->
                     <!-- * Left side btn - QR CODE ---------------------------------------   -->
                     <button
                         type="button"
@@ -223,104 +208,18 @@
                             />
                         </svg>
                     </button>
-                    <!-- <button
-                        type="button"
-                        id="open-maintoolbar-btn"
-                        title="Open Modal"
-                        class="sidebar-item group"
-                        style="background: none; border: none; width: 100%"
-                    >
-                        <span class="sr-only">Tools</span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-bag size-6"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
-                            />
-                        </svg>
-                    </button> -->
-                    <!-- ! Settins btn Temprarory unavailble -->
-                    <!-- <label for="settings" title="Settings" class="sidebar-item group">
-                        <input type="radio" name="path" id="settings" class="sr-only" />
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-gear"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"
-                            />
-                            <path
-                                d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"
-                            />
-                        </svg>
-                    </label> -->
                 </article>
                 <!-- * Right side btn - QR modal ---------------------------------------   -->
-                <div class="qr-modal-container">
-                   <form action="/" method="POST">
-    <input type="hidden" name="form_type" value="generate_qr">
-    <input type="text" name="QrCode_text" placeholder="Enter URL">
-    <button type="submit">Generate QR</button>
-</form>
+                <div id="qr-modal-container">
+                    <form action="/" method="POST" >
+                        <input type="hidden" name="form_type" value="generate_qr" />
+                        <input type="text" name="data"  placeholder="Enter URL" />
+                        <button type="submit">Generate QR</button>
+                    </form>
                     <button id="close-qr"></button>
-                    {% if getnerateQR %}
-                   <div >
-        <!-- <h3>Generated QR Code:</h3> -->
-        <img
-            src="{{ url_for('static', filename=getnerateQR) }}"
-            alt="Generated QR Code"
-            width="200"
-            height="200"
-        >
-    </div>
-                    <div id="qr-under-btn">
-                        <b>
-                            <button class="qr-code-download-btn">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    fill="currentColor"
-                                    class="bi bi-download"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path
-                                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"
-                                    />
-                                    <path
-                                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"
-                                    />
-                                </svg>
-                            </button>
-                        </b>
-                        <b>
-                            <button class="qr-code-bookmark-btn">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    fill="currentColor"
-                                    class="bi bi-bookmark-plus"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path
-                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
-                                    />
-                                    <path
-                                        d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4"
-                                    />
-                                </svg>
-                            </button>
-                        </b>
+                    {% if qr_code %}
+                    <div>
+                        <img src="{{ qr_code }}" alt="Generated QR Code" width="200" height="200" />
                     </div>
                     {% endif %}
                 </div>
@@ -423,219 +322,101 @@
                         </div>
                     </div>
                 </div>
-                <!--! Camera button  -->
-                <!-- <section id="camera-screen" hidden>
-                    <button type="button" id="close-camera"></button>
-                    <div id="frame">
-                        <video id="camera" autoplay muted playsinline></video>
-                        Captured photo is shown directly over the video, no second image -->
-                <!-- <img id="photo" alt="Your captured photo" hidden />
-                    </div>
-                    <div>
-                        <button id="take-photo" style="margin-left: 53px" type="button" class="camera-btn-class">
-                            Take Photo
-                        </button>
-                        <p id="status">Click "Show Camera" to start.</p> -->
-                <!--&&  -->
-                <!-- Only appears once, after a photo is taken -->
-                <!-- <button id="save-photo" type="button" hidden class="camera-btn-class">Save Photo</button>
-                        <button id="retake-photo" type="button" hidden class="camera-btn-class">Retake</button>
-                        <button id="close-camera" type="button" hidden class="camera-btn-class">Close Camera</button> -->
-                <!-- </div> -->
-                <!-- </section> -->
-                <!-- <canvas id="canvas" hidden></canvas>
-         <div class="modal-camera-container" id="modal-camera-container"></div>
-                <div class="modal-container" id="modalContainer">
-                    <div class="modal">
-                        <div class="flex gap-4 mb-4">
-                            <button type="button" id="open-modal-password-btn" title="Open Password">
-                                <label for="password" title="password" class="sidebar-item group">
-                                    <input type="radio" name="path" id="password" class="sr-only" />
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="20"
-                                        height="20"
-                                        fill="currentColor"
-                                        class="bi bi-pass"
-                                        viewBox="0 0 16 16"
-                                    >
-                                        <path
-                                            d="M5.5 5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1z"
-                                        />
-                                        <path
-                                            d="M8 2a2 2 0 0 0 2-2h2.5A1.5 1.5 0 0 1 14 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-13A1.5 1.5 0 0 1 3.5 0H6a2 2 0 0 0 2 2m0 1a3 3 0 0 1-2.83-2H3.5a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-13a.5.5 0 0 0-.5-.5h-1.67A3 3 0 0 1 8 3"
-                                        />
-                                    </svg>
-                                </label>
+
+                <!-- * Item or Apps that are saved to the list -->
+                <div id="rightside">
+                    {% for Url_read in url_reads %}
+                    <div class="app-item">
+                        <div class="icon-glass-box">
+                            <button class="deleteButton" id="deleteButton-id" title="Delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 59" class="bin">
+                                    <path
+                                        fill="#B5BAC1"
+                                        d="M0 7.5C0 5.01472 2.01472 3 4.5 3H45.5C47.9853 3 50 5.01472 50 7.5V7.5C50 8.32843 49.3284 9 48.5 9H1.5C0.671571 9 0 8.32843 0 7.5V7.5Z"
+                                    ></path>
+                                    <path
+                                        fill="#B5BAC1"
+                                        d="M17 3C17 1.34315 18.3431 0 20 0H29.3125C30.9694 0 32.3125 1.34315 32.3125 3V3H17V3Z"
+                                    ></path>
+                                    <path
+                                        fill="#B5BAC1"
+                                        d="M2.18565 18.0974C2.08466 15.821 3.903 13.9202 6.18172 13.9202H43.8189C46.0976 13.9202 47.916 15.821 47.815 18.0975L46.1699 55.1775C46.0751 57.3155 44.314 59.0002 42.1739 59.0002H7.8268C5.68661 59.0002 3.92559 57.3155 3.83073 55.1775L2.18565 18.0974ZM18.0003 49.5402C16.6196 49.5402 15.5003 48.4209 15.5003 47.0402V24.9602C15.5003 23.5795 16.6196 22.4602 18.0003 22.4602C19.381 22.4602 20.5003 23.5795 20.5003 24.9602V47.0402C20.5003 48.4209 19.381 49.5402 18.0003 49.5402ZM29.5003 47.0402C29.5003 48.4209 30.6196 49.5402 32.0003 49.5402C33.381 49.5402 34.5003 48.4209 34.5003 47.0402V24.9602C34.5003 23.5795 33.381 22.4602 32.0003 22.4602C30.6196 22.4602 29.5003 23.5795 29.5003 24.9602V47.0402Z"
+                                        clip-rule="evenodd"
+                                        fill-rule="evenodd"
+                                    ></path>
+                                    <path fill="#B5BAC1" d="M2 13H48L47.6742 21.28H2.32031L2 13Z"></path>
+                                </svg>
                             </button>
-                            <div id="modal-password-container" class="modal-password-container">
-                                <div class="modal-password">
-                                    <div class="container">
-                                        <!--* close button -->
-                <!-- <button id="close-modal-password-btn" type="button">
-                                            <svg
-                                                width="40px"
-                                                height="40px"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
-                                                    stroke="#292D32"
-                                                    stroke-width="1.5"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
-                                                <path
-                                                    d="M9.00002 15.3802H13.92C15.62 15.3802 17 14.0002 17 12.3002C17 10.6002 15.62 9.22021 13.92 9.22021H7.15002"
-                                                    stroke="#292D32"
-                                                    stroke-width="1.5"
-                                                    stroke-miterlimit="10"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
-                                                <path
-                                                    d="M8.57 10.7701L7 9.19012L8.57 7.62012"
-                                                    stroke="#292D32"
-                                                    stroke-width="1.5"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                />
-                                            </svg>
-                                        </button>
-                                        <div class="wrapper">
-                                            <div class="input-box">
-                                                <input disabled="" type="text" id="password-inputbox" />
-                                                <span>Copy</span>
-                                            </div>
-                                            <div class="pass-settings">
-                                                <div class="PB-range-slider-div">
-                                                    <input
-                                                        type="range"
-                                                        min="0"
-                                                        max="100"
-                                                        value="50"
-                                                        class="PB-range-slider"
-                                                        id="myRange"
-                                                    />
-                                                    <span> 50px </span>
-                                                </div>
-                                                <b> <label class="password-title">Password Settings</label> </b>
-                                                <ul class="options">
-                                                    <li class="option">
-                                                        <input checked="" id="lowercase" type="checkbox" />
-                                                        <label for="lowercase">Lowercase (a-z)</label>
-                                                    </li>
-                                                    <li class="option">
-                                                        <input id="uppercase" type="checkbox" />
-                                                        <label for="uppercase">Uppercase (A-Z)</label>
-                                                    </li>
-                                                    <li class="option">
-                                                        <input id="numbers" type="checkbox" />
-                                                        <label for="numbers">Numbers (0-9)</label>
-                                                    </li>
-                                                    <li class="option">
-                                                        <input id="symbols" type="checkbox" />
-                                                        <label for="symbols">Symbols (!-$^+)</label>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <button class="generate-btn">Generate</button>
-                                        </div>
-                                    </div>
+                            <div class="img-name-item">
+                                {% if Url_read.logo_url %}
+                                <div class="result">
+                                    <img
+                                        class="logo-box"
+                                        src="{{ Url_read.logo_url }}"
+                                        alt="Website Logo Summary"
+                                        onerror="this.style.display='none'; alert('Could not render logo asset.');"
+                                    />
+                                    <!-- <p><small>Source URL: <a href="{{ Url_read.logo_url }}" target="_blank">{{ Url_read.logo_url }}</a></small></p> -->
                                 </div>
+                                {% elif Url_read.logo_url == None and Url_read.logo_url != "" %}
+                                <div class="result-error-image">
+                                    <img
+                                        class="logo-box"
+                                        src="{{ url_for('static',filename='image/NoImage.png' ) }}"
+                                        alt="Website Logo Summary"
+                                        onerror="this.style.display='none'; alert('Could not render logo asset.');"
+                                    />
+                                </div>
+                                {% endif %}
+                                <a
+                                    href="{{ Url_read.site_url }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    id="a-links"
+                                >
+                                    <span class="app-label"> {{ Url_read.site_name }}</span>
+                                </a>
                             </div>
                         </div>
-                        <button id="close-maintoolbar-btn" type="button">Close</button>
                     </div>
-                </div>  -->
-                <!-- ? Unneccessay maybe -->
-                <!-- <div class="modal-container" id="modalContainer">
-                    <div class="modal">
-                        <div class="flex gap-4 mb-4"></div>
+                    {% endfor %}
+                    <div class="app-item">
+                        <div class="icon-glass-box">
+                            <button type="button" id="open-modal-additem-btn" title="Open Add Item">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="26"
+                                    height="26"
+                                    style="margin-left: 10px"
+                                    fill="currentColor"
+                                    class="bi bi-plus-circle"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                    <path
+                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+                                    />
+                                </svg>
+                                <p id="Site_Name"><b> Add Item</b></p>
+                            </button>
+                        </div>
                     </div>
-                </div> -->
-                <!-- * Item or Apps that are saved to the list -->
-               <div id="rightside">
-    {% for Url_read in url_reads %}
-    <div class="app-item">
-        <div class="icon-glass-box">
-            <button class="deleteButton" id="deleteButton-id" title="Delete">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 59" class="bin">
-                    <path
-                        fill="#B5BAC1"
-                        d="M0 7.5C0 5.01472 2.01472 3 4.5 3H45.5C47.9853 3 50 5.01472 50 7.5V7.5C50 8.32843 49.3284 9 48.5 9H1.5C0.671571 9 0 8.32843 0 7.5V7.5Z"
-                    ></path>
-                    <path
-                        fill="#B5BAC1"
-                        d="M17 3C17 1.34315 18.3431 0 20 0H29.3125C30.9694 0 32.3125 1.34315 32.3125 3V3H17V3Z"
-                    ></path>
-                    <path
-                        fill="#B5BAC1"
-                        d="M2.18565 18.0974C2.08466 15.821 3.903 13.9202 6.18172 13.9202H43.8189C46.0976 13.9202 47.916 15.821 47.815 18.0975L46.1699 55.1775C46.0751 57.3155 44.314 59.0002 42.1739 59.0002H7.8268C5.68661 59.0002 3.92559 57.3155 3.83073 55.1775L2.18565 18.0974ZM18.0003 49.5402C16.6196 49.5402 15.5003 48.4209 15.5003 47.0402V24.9602C15.5003 23.5795 16.6196 22.4602 18.0003 22.4602C19.381 22.4602 20.5003 23.5795 20.5003 24.9602V47.0402C20.5003 48.4209 19.381 49.5402 18.0003 49.5402ZM29.5003 47.0402C29.5003 48.4209 30.6196 49.5402 32.0003 49.5402C33.381 49.5402 34.5003 48.4209 34.5003 47.0402V24.9602C34.5003 23.5795 33.381 22.4602 32.0003 22.4602C30.6196 22.4602 29.5003 23.5795 29.5003 24.9602V47.0402Z"
-                        clip-rule="evenodd"
-                        fill-rule="evenodd"
-                    ></path>
-                    <path fill="#B5BAC1" d="M2 13H48L47.6742 21.28H2.32031L2 13Z"></path>
-                </svg>
-            </button>
-            <div class="img-name-item">
-                    {% if Url_read.logo_url %}
-        <div class="result">
-
-            <img class="logo-box" src="{{ Url_read.logo_url }}" alt="Website Logo Summary" onerror="this.style.display='none'; alert('Could not render logo asset.');">
-            <!-- <p><small>Source URL: <a href="{{ Url_read.logo_url }}" target="_blank">{{ Url_read.logo_url }}</a></small></p> -->
-        </div>
-    {% elif Url_read.logo_url == None and Url_read.logo_url != "" %}
-        <div class="result">
-            <p style="color: red;">Error</p>
-        </div>
-    {% endif %}
-                <a href="{{ Url_read.site_url }}" target="_blank" rel="noopener noreferrer" id="a-links">
-                    <span class="app-label"> {{ Url_read.site_name }}</span>
-                </a>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-    <div class="app-item">
-        <div class="icon-glass-box">
-            <button type="button" id="open-modal-additem-btn" title="Open Add Item">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="26"
-                    height="26"
-                    style="margin-left: 10px"
-                    fill="currentColor"
-                    class="bi bi-plus-circle"
-                    viewBox="0 0 16 16"
-                >
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                    <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
-                    />
-                </svg>
-                <p id="Site_Name"><b> Add Item</b></p>
-            </button>
-        </div>
-    </div>
-</div>
+                </div>
             </div>
             <!-- ! USED for the CRUD -->
             <!-- * Right side btn - ADD ITEM ---------------------------------------   -->
-           <form action="/" method="POST">
-    <div class="modal-additem-container" id="modal-additem-container">
-        <div class="modal-additem">
-            <div class="flex gap-4 mb-4">
-                <input type="hidden" name="form_type" value="add_site">
-                <input class="bookmar-input" placeholder="add URL" type="text" name="site_url" required />
-                <input class="bookmar-input" placeholder="add NAME" type="text" name="site_name" required />
-            </div>
-            <button type="submit" id="Additem-id-btn">Enter</button>
-        </div>
-    </div>
-</form>
+            <form action="/" method="POST">
+                <div class="modal-additem-container" id="modal-additem-container">
+                    <div class="modal-additem">
+                        <div class="flex gap-4 mb-4">
+                            <input type="hidden" name="form_type" value="add_site" />
+                            <input class="bookmar-input" placeholder="add URL" type="text" name="site_url" required />
+                            <input class="bookmar-input" placeholder="add NAME" type="text" name="site_name" required />
+                        </div>
+                        <button type="submit" id="Additem-id-btn">Enter</button>
+                    </div>
+                </div>
+            </form>
             <!-- * down side - Quotes that updates daily  ---------------------------------------- -->
             <div id="quotes-collection">
                 lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet

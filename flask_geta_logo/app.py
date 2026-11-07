@@ -5,6 +5,16 @@ from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
+# Configuration
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+# Initialize db with the app
+db.init_app(app)
+
+# Create database tables if they don't exist yet
+with app.app_context():
+    db.create_all()
 
 def extract_logo(url):
     try:

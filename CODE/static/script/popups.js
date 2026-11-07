@@ -19,8 +19,7 @@ const modalConfigs = [
     {
         openId: "open-modal-qr-btn",
         closeId: "close-qr",
-        modalId: ".qr-modal-container",
-        isClass: true // since this one uses a class selector
+        modalId: "qr-modal-container",
     },
     {
         openId: "open-modal-time-btn",

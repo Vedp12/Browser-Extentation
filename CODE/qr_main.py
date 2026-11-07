@@ -1,7 +1,7 @@
-
 import qrcode
 import os
 import uuid
+
 
 def getnerateQR(text):
 
@@ -14,19 +14,12 @@ def getnerateQR(text):
     filepath = os.path.join(folder, filename)
 
     # Generate QR code
-    qr = qrcode.QRCode(
-        version=1,
-        box_size=10,
-        border=4
-    )
+    qr = qrcode.QRCode(version=1, box_size=10, border=4)
 
     qr.add_data(text)
     qr.make(fit=True)
 
-    img = qr.make_image(
-        fill_color="black",
-        back_color="white"
-    )
+    img = qr.make_image(fill_color="black", back_color="white")
 
     img.save(filepath)
 
