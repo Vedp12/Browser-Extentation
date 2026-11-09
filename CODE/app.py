@@ -16,10 +16,17 @@ with app.app_context():
 
 def extract_logo(url):
     try:
+        # Use Google's reliable favicon service first to guarantee a logo image
+        parsed_url = urllib.parse.urlparse(url)
+        domain = parsed_url.netloc
+        if domain:
+            return f"https://www.google.com/s2/favicons?domain={domain}&sz=128"
+            
+        # Fallback to scraping if domain is missing
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
         }
-        response = requests.get(url, headers=headers, timeout=10)
+        response = requests.get(url, headers=headers, timeout=5)
         soup = BeautifulSoup(response.text, "html.parser")
         icon_tag = (
             soup.find("link", rel=lambda x: x and "icon" in x.lower())
@@ -29,7 +36,7 @@ def extract_logo(url):
         if icon_tag:
             href = icon_tag.get("href") or icon_tag.get("content")
             return urllib.parse.urljoin(url, href)
-        parsed_url = urllib.parse.urlparse(url)
+            
         return f"{parsed_url.scheme}://{parsed_url.netloc}/favicon.ico"
     except Exception:
         return None
@@ -61,17 +68,13 @@ def index():
             data = request.form.get("data")
             if data:
                 qr_img = qrcode.make(data)
-                
-                # Ensure the static/image directory exists
-                # os.makedirs("static/image", exist_ok=True)
+                os.makedirs("static/image", exist_ok=True)
                 qr_path = os.path.join("static", "image", "qr_code.png")
                 qr_img.save(qr_path)
-                
-                # Pass the static URL to render_template
                 qr_code_url = url_for('static', filename='image/qr_code.png')
 
     url_reads = URLmodal.query.all()
     return render_template("index.html", url_reads=url_reads, qr_code=qr_code_url)
-
+    
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
