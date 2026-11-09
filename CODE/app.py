@@ -16,13 +16,11 @@ with app.app_context():
 
 def extract_logo(url):
     try:
-        # Use Google's reliable favicon service first to guarantee a logo image
         parsed_url = urllib.parse.urlparse(url)
         domain = parsed_url.netloc
         if domain:
             return f"https://www.google.com/s2/favicons?domain={domain}&sz=128"
             
-        # Fallback to scraping if domain is missing
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
         }
@@ -58,7 +56,8 @@ def index():
                     target_url = "https://" + target_url
                 logo_url = extract_logo(target_url)
                 new_url = URLmodal(
-                    site_url=target_url, site_name=site_name, logo_url=logo_url
+                    site_url=target_url, site_name=site_name, logo_url=logo_url,
+                
                 )
                 db.session.add(new_url)
                 db.session.commit()
@@ -76,5 +75,14 @@ def index():
     url_reads = URLmodal.query.all()
     return render_template("index.html", url_reads=url_reads, qr_code=qr_code_url)
     
+@app.route("/delete/<int:id>")
+def delete(id):
+    post = URLmodal.query.get_or_404(id)
+
+    db.session.delete(post)
+    db.session.commit()
+
+    return redirect(url_for("index"))
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

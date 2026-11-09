@@ -273,7 +273,9 @@
                     {% for Url_read in url_reads %}
                     <div class="app-item">
                         <div class="icon-glass-box">
-                            <button class="deleteButton" id="deleteButton-id" title="Delete">
+                            <a href="{{ url_for('delete', id=Url_read.id) }}">
+                            <button class="deleteButton" id="deleteButton-id" title="Delete" data-id="{{ Url_read.id }}" >
+                                <!-- <a href="/delete/{{Url_read}}"></a> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 59" class="bin">
                                     <path
                                         fill="#B5BAC1"
@@ -292,6 +294,7 @@
                                     <path fill="#B5BAC1" d="M2 13H48L47.6742 21.28H2.32031L2 13Z"></path>
                                 </svg>
                             </button>
+                            </a>
                             <div class="img-name-item">
                                 {% if Url_read.logo_url %}
                                 <div class="result">
