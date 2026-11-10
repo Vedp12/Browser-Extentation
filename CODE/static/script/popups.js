@@ -4,7 +4,7 @@ const modalConfigs = [
     {
         openId: "open-maintoolbar-btn",
         closeId: "close-maintoolbar-btn",
-        modalId: "modalContainer"
+        modalId: "modal-container"
     },
     {
         openId: "open-modal-password-btn",

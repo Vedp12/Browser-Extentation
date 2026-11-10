@@ -106,24 +106,26 @@
                             />
                         </svg>
                     </button>
+
                     <button
                         type="button"
                         id="open-maintoolbar-btn"
                         title="Open Modal"
                         class="sidebar-item group"
-                        style="background: none; border: none; width: 100%"
+                        aria-label="Open QR code"
+                        aria-controls="qr-modal"
+                        aria-expanded="false"
                     >
-                        <span class="sr-only">Tools</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
                             height="16"
                             fill="currentColor"
-                            class="bi bi-bag size-6"
+                            class="bi bi-bookmark"
                             viewBox="0 0 16 16"
                         >
                             <path
-                                d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
+                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
                             />
                         </svg>
                     </button>
@@ -133,7 +135,10 @@
                         id="open-maintoolbar-btn"
                         title="Open Modal"
                         class="sidebar-item group"
-                        style="background: none; border: none; width: 100%"
+                        class="sidebar-item group"
+                        aria-label="Open QR code"
+                        aria-controls="qr-modal"
+                        aria-expanded="false"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -167,6 +172,7 @@
                         <img src="{{ qr_code }}" alt="Generated QR Code" width="200" height="200" />
                     </div>
                     {% endif %}
+                    <button id="close-qr">exit</button>
                 </div>
                 <!-- * Right side btn - TIMER and Stop Watch modal ---------------------------------------   -->
                 <div id="main-time-container">
@@ -274,26 +280,31 @@
                     <div class="app-item">
                         <div class="icon-glass-box">
                             <a href="{{ url_for('delete', id=Url_read.id) }}">
-                            <button class="deleteButton" id="deleteButton-id" title="Delete" data-id="{{ Url_read.id }}" >
-                                <!-- <a href="/delete/{{Url_read}}"></a> -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 59" class="bin">
-                                    <path
-                                        fill="#B5BAC1"
-                                        d="M0 7.5C0 5.01472 2.01472 3 4.5 3H45.5C47.9853 3 50 5.01472 50 7.5V7.5C50 8.32843 49.3284 9 48.5 9H1.5C0.671571 9 0 8.32843 0 7.5V7.5Z"
-                                    ></path>
-                                    <path
-                                        fill="#B5BAC1"
-                                        d="M17 3C17 1.34315 18.3431 0 20 0H29.3125C30.9694 0 32.3125 1.34315 32.3125 3V3H17V3Z"
-                                    ></path>
-                                    <path
-                                        fill="#B5BAC1"
-                                        d="M2.18565 18.0974C2.08466 15.821 3.903 13.9202 6.18172 13.9202H43.8189C46.0976 13.9202 47.916 15.821 47.815 18.0975L46.1699 55.1775C46.0751 57.3155 44.314 59.0002 42.1739 59.0002H7.8268C5.68661 59.0002 3.92559 57.3155 3.83073 55.1775L2.18565 18.0974ZM18.0003 49.5402C16.6196 49.5402 15.5003 48.4209 15.5003 47.0402V24.9602C15.5003 23.5795 16.6196 22.4602 18.0003 22.4602C19.381 22.4602 20.5003 23.5795 20.5003 24.9602V47.0402C20.5003 48.4209 19.381 49.5402 18.0003 49.5402ZM29.5003 47.0402C29.5003 48.4209 30.6196 49.5402 32.0003 49.5402C33.381 49.5402 34.5003 48.4209 34.5003 47.0402V24.9602C34.5003 23.5795 33.381 22.4602 32.0003 22.4602C30.6196 22.4602 29.5003 23.5795 29.5003 24.9602V47.0402Z"
-                                        clip-rule="evenodd"
-                                        fill-rule="evenodd"
-                                    ></path>
-                                    <path fill="#B5BAC1" d="M2 13H48L47.6742 21.28H2.32031L2 13Z"></path>
-                                </svg>
-                            </button>
+                                <button
+                                    class="deleteButton"
+                                    id="deleteButton-id"
+                                    title="Delete"
+                                    data-id="{{ Url_read.id }}"
+                                >
+                                    <!-- <a href="/delete/{{Url_read}}"></a> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 59" class="bin">
+                                        <path
+                                            fill="#B5BAC1"
+                                            d="M0 7.5C0 5.01472 2.01472 3 4.5 3H45.5C47.9853 3 50 5.01472 50 7.5V7.5C50 8.32843 49.3284 9 48.5 9H1.5C0.671571 9 0 8.32843 0 7.5V7.5Z"
+                                        ></path>
+                                        <path
+                                            fill="#B5BAC1"
+                                            d="M17 3C17 1.34315 18.3431 0 20 0H29.3125C30.9694 0 32.3125 1.34315 32.3125 3V3H17V3Z"
+                                        ></path>
+                                        <path
+                                            fill="#B5BAC1"
+                                            d="M2.18565 18.0974C2.08466 15.821 3.903 13.9202 6.18172 13.9202H43.8189C46.0976 13.9202 47.916 15.821 47.815 18.0975L46.1699 55.1775C46.0751 57.3155 44.314 59.0002 42.1739 59.0002H7.8268C5.68661 59.0002 3.92559 57.3155 3.83073 55.1775L2.18565 18.0974ZM18.0003 49.5402C16.6196 49.5402 15.5003 48.4209 15.5003 47.0402V24.9602C15.5003 23.5795 16.6196 22.4602 18.0003 22.4602C19.381 22.4602 20.5003 23.5795 20.5003 24.9602V47.0402C20.5003 48.4209 19.381 49.5402 18.0003 49.5402ZM29.5003 47.0402C29.5003 48.4209 30.6196 49.5402 32.0003 49.5402C33.381 49.5402 34.5003 48.4209 34.5003 47.0402V24.9602C34.5003 23.5795 33.381 22.4602 32.0003 22.4602C30.6196 22.4602 29.5003 23.5795 29.5003 24.9602V47.0402Z"
+                                            clip-rule="evenodd"
+                                            fill-rule="evenodd"
+                                        ></path>
+                                        <path fill="#B5BAC1" d="M2 13H48L47.6742 21.28H2.32031L2 13Z"></path>
+                                    </svg>
+                                </button>
                             </a>
                             <div class="img-name-item">
                                 {% if Url_read.logo_url %}
@@ -349,6 +360,178 @@
                     </div>
                 </div>
             </div>
+
+            <!-- * Right side btn - Modals ---------------------------------------   -->
+            <!-- ===== MODAL OVERLAY ===== -->
+            <div class="modal-container" id="modal-container">
+                <!-- ===== MODAL WINDOW ===== -->
+                <div class="modal">
+                    <div id="search-close">
+                     <!-- ===== SEARCH ===== -->
+                    <div class="mdc-search-group">
+                        <svg class="mdc-search-icon" aria-hidden="true" viewBox="0 0 24 24">
+                            <g>
+                                <path
+                                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                                ></path>
+                            </g>
+                        </svg>
+                        <input placeholder="Search" type="search" class="mdc-search-input" />
+                    </div>
+                    <!-- ===== Close btn ===== -->
+                    <button id="close-maintoolbar-btn" class="mdc-modal-close-btn" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+</svg>
+                    </button>
+                    </div>
+                    <!-- ===== NAVIGATION ===== -->
+                    <div class="mdc-nav-bar">
+                        <div class="mdc-nav-container">
+                            <div class="mdc-nav-btn">Home</div>
+                            <div class="mdc-nav-btn">Contact</div>
+                            <div class="mdc-nav-btn">About</div>
+                            <div class="mdc-nav-btn">FAQ</div>
+                            <svg
+                                class="mdc-nav-svg-outline"
+                                overflow="visible"
+                                width="400"
+                                height="58"
+                                viewBox="0 0 400 58"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <rect
+                                    class="mdc-nav-rect"
+                                    pathLength="100"
+                                    x="0"
+                                    y="0"
+                                    width="400"
+                                    height="58"
+                                    fill="transparent"
+                                    stroke-width="5"
+                                ></rect>
+                            </svg>
+                        </div>
+                    </div>
+
+                   
+
+                    <!-- ===== SERVICE CARD ===== -->
+                     <div class="main-sites-card">
+                    <div class="mdc-service-card">
+                        <div class="mdc-card-icon" aria-hidden="true"></div>
+
+                        <div class="mdc-card-content">
+                            <div class="mdc-card-top">
+                                <h1 class="mdc-card-title">Instagram</h1>
+                                <button class="mdc-card-delete-btn" aria-label="Delete Instagram">
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    >
+                                        <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <a class="mdc-card-url" href="https://instagram.com">instagram.com</a>
+
+                            <div class="mdc-card-menu">
+                                <a href="#" class="mdc-card-menu-trigger">
+                                    Our Services
+                                    <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" /></svg>
+                                </a>
+                                <div class="mdc-card-submenu">
+                                    <a href="#">Development</a>
+                                    <a href="#">Design</a>
+                                    <a href="#">Marketing</a>
+                                    <a href="#">SEO</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="mdc-service-card">
+                        <div class="mdc-card-icon" aria-hidden="true"></div>
+
+                        <div class="mdc-card-content">
+                            <div class="mdc-card-top">
+                                <h1 class="mdc-card-title">Instagram</h1>
+                                <button class="mdc-card-delete-btn" aria-label="Delete Instagram">
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    >
+                                        <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <a class="mdc-card-url" href="https://instagram.com">instagram.com</a>
+
+                            <div class="mdc-card-menu">
+                                <a href="#" class="mdc-card-menu-trigger">
+                                    Our Services
+                                    <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" /></svg>
+                                </a>
+                                <div class="mdc-card-submenu">
+                                    <a href="#">Development</a>
+                                    <a href="#">Design</a>
+                                    <a href="#">Marketing</a>
+                                    <a href="#">SEO</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-service-card">
+                        <div class="mdc-card-icon" aria-hidden="true"></div>
+
+                        <div class="mdc-card-content">
+                            <div class="mdc-card-top">
+                                <h1 class="mdc-card-title">Instagram</h1>
+                                <button class="mdc-card-delete-btn" aria-label="Delete Instagram">
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    >
+                                        <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <a class="mdc-card-url" href="https://instagram.com">instagram.com</a>
+
+                            <div class="mdc-card-menu">
+                                <a href="#" class="mdc-card-menu-trigger">
+                                    Our Services
+                                    <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" /></svg>
+                                </a>
+                                <div class="mdc-card-submenu">
+                                    <a href="#">Development</a>
+                                    <a href="#">Design</a>
+                                    <a href="#">Marketing</a>
+                                    <a href="#">SEO</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- ===== CLOSE BUTTON ===== -->
+                </div>
+            </div>
             <!-- ! USED for the CRUD -->
             <!-- * Right side btn - ADD ITEM ---------------------------------------   -->
             <form action="/" method="POST">
@@ -357,7 +540,6 @@
                         <div class="flex gap-4 mb-4">
                             <input type="hidden" name="form_type" value="add_site" />
                             <input class="bookmar-input" placeholder="add URL" type="text" name="site_url" required />
-                            <input class="bookmar-input" placeholder="add NAME" type="text" name="site_name" required />
                         </div>
                         <button type="submit" id="Additem-id-btn">Enter</button>
                     </div>

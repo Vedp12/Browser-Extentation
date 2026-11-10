@@ -5,6 +5,7 @@ from flask import redirect, render_template, request, url_for, Flask
 from templates.models import URLmodal, db
 import qrcode
 import os
+from urllib.parse import urlparse
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
@@ -20,7 +21,7 @@ def extract_logo(url):
         domain = parsed_url.netloc
         if domain:
             return f"https://www.google.com/s2/favicons?domain={domain}&sz=128"
-            
+
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
         }
@@ -34,35 +35,39 @@ def extract_logo(url):
         if icon_tag:
             href = icon_tag.get("href") or icon_tag.get("content")
             return urllib.parse.urljoin(url, href)
-            
+
         return f"{parsed_url.scheme}://{parsed_url.netloc}/favicon.ico"
     except Exception:
         return None
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     qr_code_url = None
     target_url = ""
-    
+
     if request.method == "POST":
         form_type = request.form.get("form_type")
-        
+
         if form_type == "add_site":
             site_url = request.form.get("site_url")
-            site_name = request.form.get("site_name")
-            if site_url and site_name:
+            # site_name = request.form.get("site_name")
+            if site_url :
+                domain = urlparse(site_url).netloc.replace("www.", "")
+                website_name = domain.split(".")[0]
                 target_url = site_url
                 if not target_url.startswith(("http://", "https://")):
                     target_url = "https://" + target_url
                 logo_url = extract_logo(target_url)
                 new_url = URLmodal(
-                    site_url=target_url, site_name=site_name, logo_url=logo_url,
-                
+                    site_url=target_url,
+                    site_name=website_name,
+                    logo_url=logo_url,
                 )
                 db.session.add(new_url)
                 db.session.commit()
             return redirect(url_for("index"))
-            
+
         elif form_type == "generate_qr":
             data = request.form.get("data")
             if data:
@@ -70,11 +75,12 @@ def index():
                 os.makedirs("static/image", exist_ok=True)
                 qr_path = os.path.join("static", "image", "qr_code.png")
                 qr_img.save(qr_path)
-                qr_code_url = url_for('static', filename='image/qr_code.png')
+                qr_code_url = url_for("static", filename="image/qr_code.png")
 
     url_reads = URLmodal.query.all()
     return render_template("index.html", url_reads=url_reads, qr_code=qr_code_url)
-    
+
+
 @app.route("/delete/<int:id>")
 def delete(id):
     post = URLmodal.query.get_or_404(id)
@@ -84,5 +90,6 @@ def delete(id):
 
     return redirect(url_for("index"))
 
+
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port = 9000)
