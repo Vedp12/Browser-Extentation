@@ -16,6 +16,7 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+
 def extract_logo(url):
     try:
         headers = {
@@ -60,5 +61,4 @@ def home():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8000 )
-
+    app.run(debug=True, port=8000)

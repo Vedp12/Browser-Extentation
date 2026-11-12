@@ -7,6 +7,11 @@ const modalConfigs = [
         modalId: "modal-container"
     },
     {
+        openId: "open-modal-notes-btn",
+        closeId: "notes-modal-close-btn",
+        modalId: "modal-container--notes"
+    },
+    {
         openId: "open-modal-password-btn",
         closeId: "close-modal-password-btn",
         modalId: "modal-password-container"
