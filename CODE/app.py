@@ -2,7 +2,7 @@ import urllib.parse
 import requests
 from bs4 import BeautifulSoup
 from flask import redirect, render_template, request, url_for, Flask
-from templates.models import URLmodal, db
+from templates.models import URLmodal, db, NOTEmodal
 import qrcode
 import os
 from urllib.parse import urlparse
@@ -13,7 +13,6 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 with app.app_context():
     db.create_all()
-
 
 def extract_logo(url):
     try:
@@ -77,8 +76,20 @@ def index():
                 qr_img.save(qr_path)
                 qr_code_url = url_for("static", filename="image/qr_code.png")
 
+        elif form_type == "take_notes":
+            note_title = request.form.get("note_title")
+            note_content = request.form.get("note_content")
+            if note_title and note_content:
+                notes_modal =  NOTEmodal(
+                    note_title = note_title,
+                    note_content = note_content
+                )
+                db.session.add(notes_modal)
+                db.session.commit()
+                return redirect("/")
+    notes_modal=NOTEmodal.query.all()           
     url_reads = URLmodal.query.all()
-    return render_template("index.html", url_reads=url_reads, qr_code=qr_code_url)
+    return render_template("index.html", url_reads=url_reads, qr_code=qr_code_url,notes_modal=notes_modal)
 
 
 @app.route("/delete/<int:id>")

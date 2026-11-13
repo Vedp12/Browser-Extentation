@@ -30,6 +30,11 @@ const modalConfigs = [
         openId: "open-modal-time-btn",
         closeId: "close-timer-btn",
         modalId: "main-time-container"
+    },
+    {
+        openId: "new-notes-btn",
+        closeId: "close-note-back-btn",
+        modalId: "notes-editor-container"
     }
 ];
 
