@@ -6,21 +6,18 @@ from templates.models import URLmodal, db, NOTEmodal
 import qrcode
 import os
 from urllib.parse import urlparse
-
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 with app.app_context():
     db.create_all()
-
 def extract_logo(url):
     try:
         parsed_url = urllib.parse.urlparse(url)
         domain = parsed_url.netloc
         if domain:
             return f"https://www.google.com/s2/favicons?domain={domain}&sz=128"
-
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
         }
@@ -34,24 +31,19 @@ def extract_logo(url):
         if icon_tag:
             href = icon_tag.get("href") or icon_tag.get("content")
             return urllib.parse.urljoin(url, href)
-
         return f"{parsed_url.scheme}://{parsed_url.netloc}/favicon.ico"
     except Exception:
         return None
-
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     qr_code_url = None
     target_url = ""
-
     if request.method == "POST":
         form_type = request.form.get("form_type")
-
         if form_type == "add_site":
             site_url = request.form.get("site_url")
-            # site_name = request.form.get("site_name")
-            if site_url :
+            if site_url:
                 domain = urlparse(site_url).netloc.replace("www.", "")
                 website_name = domain.split(".")[0]
                 target_url = site_url
@@ -66,7 +58,6 @@ def index():
                 db.session.add(new_url)
                 db.session.commit()
             return redirect(url_for("index"))
-
         elif form_type == "generate_qr":
             data = request.form.get("data")
             if data:
@@ -75,32 +66,57 @@ def index():
                 qr_path = os.path.join("static", "image", "qr_code.png")
                 qr_img.save(qr_path)
                 qr_code_url = url_for("static", filename="image/qr_code.png")
-
         elif form_type == "take_notes":
             note_title = request.form.get("note_title")
             note_content = request.form.get("note_content")
             if note_title and note_content:
-                notes_modal =  NOTEmodal(
-                    note_title = note_title,
-                    note_content = note_content
+                new_note = NOTEmodal(
+                    note_title=note_title,
+                    note_content=note_content
                 )
-                db.session.add(notes_modal)
+                db.session.add(new_note)
                 db.session.commit()
-                return redirect("/")
-    notes_modal=NOTEmodal.query.all()           
+                return redirect(url_for("index"))
+                
+    notes_modals = NOTEmodal.query.all()           
     url_reads = URLmodal.query.all()
-    return render_template("index.html", url_reads=url_reads, qr_code=qr_code_url,notes_modal=notes_modal)
-
+    return render_template("index.html", url_reads=url_reads, qr_code=qr_code_url, notes_modals=notes_modals)
 
 @app.route("/delete/<int:id>")
 def delete(id):
     post = URLmodal.query.get_or_404(id)
-
     db.session.delete(post)
     db.session.commit()
-
     return redirect(url_for("index"))
 
+@app.route("/notes/<int:id>/edit", methods=["GET"])
+def edit_notes(id):
+    note_to_edit = NOTEmodal.query.get_or_404(id)          
+    # If requested via HTMX, return ONLY the partial form template
+    if request.headers.get("HX-Request"):
+        return render_template("_note_form.html", edit_notes=note_to_edit)
+        
+    # Fallback for standard full-page GET requests
+    notes_modals = NOTEmodal.query.all()
+    url_reads = URLmodal.query.all()
+    return render_template(
+        "index.html", 
+        url_reads=url_reads, 
+        notes_modals=notes_modals, 
+        edit_notes=note_to_edit
+    )
 
+@app.route("/notes/<int:id>/update", methods=["POST"])
+def update_notes(id):
+    note = NOTEmodal.query.get_or_404(id)
+    note_title = request.form.get("note_title")
+    note_content = request.form.get("note_content")
+    
+    if note_title and note_content:
+        note.note_title = note_title
+        note.note_content = note_content
+        db.session.commit()
+        
+    return redirect(url_for("index"))
 if __name__ == "__main__":
     app.run(debug=True, port = 9000)

@@ -1463,6 +1463,7 @@ bookmar-input:hover {
     margin-top: 0; 
     width: 100%; 
     height: 100%; 
+    
     max-width: none; 
     /* Changed from flex row to grid stacking so views occupy the same space */
     display: grid;
@@ -1480,7 +1481,8 @@ bookmar-input:hover {
 .modal-notes {
     grid-area: 1 / 1; /* Stacks cleanly in the grid container */
     width: min(92vw, 540px);
-    max-height: 90vh;
+    max-height: 50vh;
+    overflow-x: scroll;
     overflow-y: auto;
     background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(20px);
@@ -1639,7 +1641,7 @@ bookmar-input:hover {
 }
 .notes-card-title {
     margin: 0; 
-    font-size: 0.7rem;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: -0.01em;
     color: #12161c;
@@ -1658,7 +1660,7 @@ bookmar-input:hover {
 .notes-card-url:hover {
     color: #1e2b3c;
 }
-.notes-card-delete-btn {
+#notes-card-edit-btn {
     flex: none;
     width: 30px;
     height: 30px;
@@ -1674,17 +1676,17 @@ bookmar-input:hover {
         color 0.2s ease,
         transform 0.1s ease;
 }
-.notes-card-delete-btn svg {
+#notes-card-edit-btn svg {
     width: 16px;
     height: 16px;
 }
-.notes-card-delete-btn:hover,
-.notes-card-delete-btn:focus-visible {
-    background: #fdecec;
-    color: #e5484d;
+#notes-card-edit-btn:hover,
+#notes-card-edit-btn:focus-visible {
+    background: rgba(215, 125, 73, 0.375);
+    color: rgb(215, 126, 73);
     outline: none;
 }
-.notes-card-delete-btn:active {
+#notes-card-edit-btn:active {
     transform: scale(0.92);
 }
 .notes-card-menu {
@@ -1784,7 +1786,7 @@ bookmar-input:hover {
 }
 #new-notes-btn {
     width: 32%;
-    margin-left: 35%;
+    margin-left: 3%;
     border: none;
     display: flex;
     padding: 0.75rem 1.5rem;
@@ -1807,6 +1809,7 @@ bookmar-input:hover {
     transition: all 0.6s ease;
 }
 #new-notes-btn:hover {
+    background-color: #337eee;
     box-shadow:
         0 10px 15px -3px #488aec4f,
         0 4px 6px -2px #488aec17;
@@ -1820,12 +1823,15 @@ bookmar-input:hover {
     width: 1.25rem;
     height: 1.25rem;
 }
+
 #notes-editor-container {
     grid-area: 1 / 1; /* Stacks in the exact same grid cell as .modal-notes */
     width: 100%;
     max-width: 850px;
     max-height: 90vh;    /* Added to prevent vertical overflow */
-    overflow-y: auto;    /* Added scrolling for long notes */
+        /* Added scrolling for long notes */
+    overflow-y: scroll;    /* Added scrolling for long notes */
+    
     background: #fff;
     border: 1px solid #dbe4ee;
     border-radius: 14px;
@@ -1920,6 +1926,10 @@ bookmar-input:hover {
     transform: translateY(-2px);
     background-color: #d1d1d1be;
 }
+
+
+
+
 .ui-note-delete-btn,
 #save-notes-btn {
     height: 44px;
@@ -1933,13 +1943,12 @@ bookmar-input:hover {
     transition: all 0.2s ease;
     font-size: 0.9rem;
     font-weight: 600;
-}
-#save-notes-btn {
-    border: none;
+     border: none;
     background: #2563eb;
     color: white;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
+
 #save-notes-btn:hover {
     background: #1d4ed8;
     transform: translateY(-2px);

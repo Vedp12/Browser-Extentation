@@ -5,12 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
         <script src="https://cdn.tailwindcss.com"></script>
-        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-        <!-- <link rel="stylesheet" href="/static/css/style.css" /> -->
-        <!-- <script src=""></script> -->
+
         <title>Chrome</title>
-        <style></style>
+        <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     </head>
     <!--! BODY  -->
     <body
@@ -93,16 +92,21 @@
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="1.5"
-                            class="size-6"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-journal-bookmark"
+                            viewBox="0 0 16 16"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931ZM18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                                fill-rule="evenodd"
+                                d="M6 8V1h1v6.117L8.743 6.07a.5.5 0 0 1 .514 0L11 7.117V1h1v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8"
+                            />
+                            <path
+                                d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"
+                            />
+                            <path
+                                d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"
                             />
                         </svg>
                     </button>
@@ -534,6 +538,7 @@
                     </div>
                 </div>
             </form>
+
             <!-- * Notes -->
             <div class="modal-container--notes" id="modal-container--notes">
                 <!-- ===== MODAL WINDOW ===== -->
@@ -550,65 +555,7 @@
                             </svg>
                             <input placeholder="Search" type="search" class="notes-search-input" />
                         </div>
-                        <!-- ===== Close btn ===== -->
-                        <button id="notes-modal-close-btn" type="button">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="32"
-                                height="32"
-                                fill="currentColor"
-                                class="bi bi-x-circle-fill"
-                                viewBox="0 0 16 16"
-                            >
-                                <path
-                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                    <!-- ===== SERVICE CARD ===== -->
-                    <div class="main-sites-note-card">
-                        <div class="notes-service-card">
-                            <div class="notes-card-icon" aria-hidden="true">1.</div>
-                            <div class="notes-card-content">
-                                <div class="notes-card-top">
-                                    <h1 class="notes-card-title">Note 1</h1>
-                                </div>
-                                <a class="notes-card-url">instagram.com</a>
-                            </div>
-                        </div>
-                        <div class="notes-service-card">
-                            <div class="notes-card-icon" aria-hidden="true">2</div>
-                            <div class="notes-card-content">
-                                <div class="notes-card-top">
-                                    <h1 class="notes-card-title">Note 2</h1>
-                                </div>
-                                <a class="notes-card-url">instagram.com</a>
-                            </div>
-                        </div>
-                        <div class="notes-service-card">
-                            <div class="notes-card-icon" aria-hidden="true">3.</div>
-                            <div class="notes-card-content">
-                                <div class="notes-card-top">
-                                    <h1 class="notes-card-title">Note 3</h1>
-                                    <button class="notes-card-delete-btn" aria-label="Delete Instagram">
-                                        <svg
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        >
-                                            <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <a class="notes-card-url">instagram.com</a>
-                            </div>
-                        </div>
-                    </div>
-                    <button id="new-notes-btn">
+                        <button id="new-notes-btn">
                         <svg
                             aria-hidden="true"
                             stroke="currentColor"
@@ -632,84 +579,98 @@
                                 d="M17 15V18M17 21V18M17 18H14M17 18H20"
                             ></path>
                         </svg>
-                        ADD New Note
+                        New Note
                     </button>
-                </div>
-                <div class="notes-editor-container" id="notes-editor-container">
-                <form action="/" method="POST">
-                    <input id="note-Title" class="note-title-input" name="note_title" placeholder="Untitled Note" required  />
-                    <textarea
-                        name="note_content"
-                        placeholder="Start writing..."
-                        class="note-content-input"
-                        id="note-content"
-                        required
-                    ></textarea>
-                    <div class="del-new-note-btns">
-                        <button id="close-note-back-btn">
+                        <!-- ===== Close btn ===== -->
+                        <button hidden id="notes-modal-close-btn" type="button">
                             <svg
-                                id="note-back-svg"
-                                height="20"
-                                width="20"
                                 xmlns="http://www.w3.org/2000/svg"
-                                version="1.1"
-                                viewBox="0 0 1024 1024"
+                                width="32"
+                                height="32"
+                                fill="currentColor"
+                                class="bi bi-x-circle-fill"
+                                viewBox="0 0 16 16"
                             >
                                 <path
-                                    d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"
-                                ></path>
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"
+                                />
                             </svg>
-                            <span>Back</span>
-                        </button>
-                        <button class="ui-note-delete-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 59" class="note-bin">
-                                <path
-                                    fill="rgb(246, 245, 244)"
-                                    d="M0 7.5C0 5.01472 2.01472 3 4.5 3H45.5C47.9853 3 50 5.01472 50 7.5V7.5C50 8.32843 49.3284 9 48.5 9H1.5C0.671571 9 0 8.32843 0 7.5V7.5Z"
-                                ></path>
-                                <path
-                                    fill="rgb(246, 245, 244)"
-                                    d="M17 3C17 1.34315 18.3431 0 20 0H29.3125C30.9694 0 32.3125 1.34315 32.3125 3V3H17V3Z"
-                                ></path>
-                                <path
-                                    fill="rgb(246, 245, 244)"
-                                    d="M2.18565 18.0974C2.08466 15.821 3.903 13.9202 6.18172 13.9202H43.8189C46.0976 13.9202 47.916 15.821 47.815 18.0975L46.1699 55.1775C46.0751 57.3155 44.314 59.0002 42.1739 59.0002H7.8268C5.68661 59.0002 3.92559 57.3155 3.83073 55.1775L2.18565 18.0974ZM18.0003 49.5402C16.6196 49.5402 15.5003 48.4209 15.5003 47.0402V24.9602C15.5003 23.5795 16.6196 22.4602 18.0003 22.4602C19.381 22.4602 20.5003 23.5795 20.5003 24.9602V47.0402C20.5003 48.4209 19.381 49.5402 18.0003 49.5402ZM29.5003 47.0402C29.5003 48.4209 30.6196 49.5402 32.0003 49.5402C33.381 49.5402 34.5003 48.4209 34.5003 47.0402V24.9602C34.5003 23.5795 33.381 22.4602 32.0003 22.4602C30.6196 22.4602 29.5003 23.5795 29.5003 24.9602V47.0402Z"
-                                    clip-rule="evenodd"
-                                    fill-rule="evenodd"
-                                ></path>
-                                <path fill="rgb(246, 245, 244)" d="M2 13H48L47.6742 21.28H2.32031L2 13Z"></path>
-                            </svg>
-                            Delete
-                        </button>
-                        <button name="submit" value="submit" id="save-notes-btn" type="submit">
-                            <svg
-                                aria-hidden="true"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    stroke-width="2"
-                                    stroke="#fffffff"
-                                    d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
-                                    stroke-linejoin="round"
-                                    stroke-linecap="round"
-                                ></path>
-                                <path
-                                    stroke-linejoin="round"
-                                    stroke-linecap="round"
-                                    stroke-width="2"
-                                    stroke="#fffffff"
-                                    d="M17 15V18M17 21V18M17 18H14M17 18H20"
-                                ></path>
-                            </svg>
-                            Save
                         </button>
                     </div>
-                </form>
-            </div>
+                    <!-- ===== SERVICE CARD ===== -->
+                    <div class="main-sites-note-card">
+                        {% for notes_modal in notes_modals %}
+                        <div class="notes-service-card">
+                            <div class="notes-card-icon" aria-hidden="true">{{ loop.index }}.</div>
+                            <div class="notes-card-content">
+                                <div class="notes-card-top">
+                                    <h1 class="notes-card-title">{{ notes_modal.note_title }}</h1>
+                                    <!-- note edit -->
+                                    <!-- Change id="notes-card-edit-btn" to class="notes-card-edit-btn" -->
+                                    <button
+                                        class="notes-card-edit-btn"
+                                        aria-label="Edit note"
+                                        hx-get="/notes/{{ notes_modal.id }}/edit"
+                                        hx-target="#notes-editor-container"
+                                        hx-on::after-request="document.getElementById('modal-container--notes').classList.add('show'); document.getElementById('notes-editor-container').classList.add('show');"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            fill="currentColor"
+                                            class="bi bi-pencil-square"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                                            />
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <a class="notes-card-url">{{ notes_modal.note_content }}</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                </div>
+                <div class="notes-editor-container" id="notes-editor-container">
+                    <form
+                        action="{{ url_for('update_notes', id=edit_notes.id) if edit_notes else url_for('index') }}"
+                        method="POST"
+                    >
+                        <input type="hidden" name="form_type" value="take_notes" />
+                        <input
+                            id="note-Title"
+                            class="note-title-input"
+                            name="note_title"
+                            placeholder="Untitled Note"
+                            value="{{ edit_notes.note_title if edit_notes else '' }}"
+                            required
+                        />
+                        <textarea
+                            name="note_content"
+                            placeholder="Start writing..."
+                            class="note-content-input"
+                            id="note-content"
+                            required
+                        >
+{{ edit_notes.note_content if edit_notes else '' }}</textarea
+                        >
+                    
+                        
+                        
+                        <div class="del-new-note-btns">
+                            <button id="save-notes-btn" type="submit">Save</button>
+                            <button>delete</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <!-- * down side - Quotes that updates daily  ---------------------------------------- -->
             <div id="quotes-collection">
@@ -782,10 +743,5 @@
     <script src="{{ url_for('static', filename='script/script.js') }} "></script>
     <script src="{{ url_for('static', filename='script/camera.js') }} "></script>
     <script>
-        // const deleteBtn = document.getElementById("deleteButton-id");
-        // deleteBtn.addEventListener("click", (e) => {
-        //     e.stopPropagation(); // Prevents triggering app launch click events
-        //     const appItem = deleteBtn.closest(".app-item");
-        // });
     </script>
 </html>

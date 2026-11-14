@@ -1,0 +1,24 @@
+<form action="{{ url_for('update_notes', id=edit_notes.id) if edit_notes else url_for('index') }}" method="POST">
+    <input type="hidden" name="form_type" value="take_notes" />
+    <input 
+        id="note-Title" 
+        class="note-title-input" 
+        name="note_title" 
+        placeholder="Untitled Note" 
+        value="{{ edit_notes.note_title if edit_notes else '' }}" 
+        required 
+    />
+    <textarea
+        name="note_content"
+        placeholder="Start writing..."
+        class="note-content-input"
+        id="note-content"
+        required
+    >{{ edit_notes.note_content if edit_notes else '' }}</textarea>
+
+    <div class="del-new-note-btns">
+        <button id="save-notes-btn" type="submit">
+            Save
+        </button>
+    </div>
+</form>
