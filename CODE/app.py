@@ -2,15 +2,15 @@ import os
 import re
 import time
 from urllib.parse import urljoin, urlparse
-
+from flask_moment import Moment 
 import qrcode
 import requests
 import tldextract
 from bs4 import BeautifulSoup
 from flask import Flask, redirect, render_template, request, url_for
-
+import tldextract
 from templates.models import db, URLmodal, NOTEmodal
-
+from datetime import datetime
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
@@ -20,7 +20,6 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
-
 
 def normalize_url(raw):
     raw = raw.strip()
@@ -90,8 +89,10 @@ def index():
         elif form_type == "take_notes":
             title = request.form.get("note_title", "").strip()
             content = request.form.get("note_content", "").strip()
+            
             if title and content:
-                db.session.add(NOTEmodal(note_title=title[:90], note_content=content))
+                DateTime = datetime.now()
+                db.session.add(NOTEmodal(note_title=title[:90], note_content=content,created_at=DateTime))
                 db.session.commit()
                 return redirect(url_for("index"))
 

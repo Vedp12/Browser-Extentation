@@ -139,32 +139,39 @@
 
       <!-- Bookmarks grid -->
       <main id="rightside">
-        {% for Url_read in url_reads %}
-        <div class="app-item">
-          <div class="icon-glass-box">
-            <a href="{{ url_for('delete', id=Url_read.id) }}" class="delete-link">
-              <form action="{{ url_for('delete', id=Url_read.id) }}" method="POST" class="delete-form">
-  <button type="submit" class="deleteButton" title="Delete">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 59" class="bin" aria-hidden="true">
-                  <path fill="#B5BAC1" d="M0 7.5C0 5.01472 2.01472 3 4.5 3H45.5C47.9853 3 50 5.01472 50 7.5V7.5C50 8.32843 49.3284 9 48.5 9H1.5C0.671571 9 0 8.32843 0 7.5V7.5Z"/>
-                  <path fill="#B5BAC1" d="M17 3C17 1.34315 18.3431 0 20 0H29.3125C30.9694 0 32.3125 1.34315 32.3125 3V3H17V3Z"/>
-                  <path fill="#B5BAC1" fill-rule="evenodd" clip-rule="evenodd" d="M2.18565 18.0974C2.08466 15.821 3.903 13.9202 6.18172 13.9202H43.8189C46.0976 13.9202 47.916 15.821 47.815 18.0975L46.1699 55.1775C46.0751 57.3155 44.314 59.0002 42.1739 59.0002H7.8268C5.68661 59.0002 3.92559 57.3155 3.83073 55.1775L2.18565 18.0974ZM18.0003 49.5402C16.6196 49.5402 15.5003 48.4209 15.5003 47.0402V24.9602C15.5003 23.5795 16.6196 22.4602 18.0003 22.4602C19.381 22.4602 20.5003 23.5795 20.5003 24.9602V47.0402C20.5003 48.4209 19.381 49.5402 18.0003 49.5402ZM29.5003 47.0402C29.5003 48.4209 30.6196 49.5402 32.0003 49.5402C33.381 49.5402 34.5003 48.4209 34.5003 47.0402V24.9602C34.5003 23.5795 33.381 22.4602 32.0003 22.4602C30.6196 22.4602 29.5003 23.5795 29.5003 24.9602V47.0402Z"/>
-                  <path fill="#B5BAC1" d="M2 13H48L47.6742 21.28H2.32031L2 13Z"/>
-                </svg>
-              </button>
-              </form>
-            </a>
-            {% if Url_read.logo_url %}
-              <img class="logo-box" src="{{ Url_read.logo_url }}" alt="{{ Url_read.site_name }} logo" onerror="this.onerror=null; this.src='{{ url_for('static', filename='image/NoImage.png') }}';">
-            {% else %}
-              <img class="logo-box" src="{{ url_for('static', filename='image/NoImage.png') }}" alt="Fallback logo">
-            {% endif %}
-          </div>
-          <a href="{{ Url_read.site_url }}" target="_blank" rel="noopener noreferrer" class="app-label">
-            {{ Url_read.site_name }}
-          </a>
-        </div>
-        {% endfor %}
+{% for Url_read in url_reads %}
+<div class="app-item">
+  <div class="icon-glass-box">
+    
+    <!-- Absolute positioned delete form in the corner -->
+    <form action="{{ url_for('delete', id=Url_read.id) }}" method="POST" class="delete-form">
+      <button type="submit" class="deleteButton" title="Delete">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 59" class="bin" aria-hidden="true">
+          <path fill="#B5BAC1" d="M0 7.5C0 5.01472 2.01472 3 4.5 3H45.5C47.9853 3 50 5.01472 50 7.5V7.5C50 8.32843 49.3284 9 48.5 9H1.5C0.671571 9 0 8.32843 0 7.5V7.5Z"/>
+          <path fill="#B5BAC1" d="M17 3C17 1.34315 18.3431 0 20 0H29.3125C30.9694 0 32.3125 1.34315 32.3125 3V3H17V3Z"/>
+          <path fill="#B5BAC1" fill-rule="evenodd" clip-rule="evenodd" d="M2.18565 18.0974C2.08466 15.821 3.903 13.9202 6.18172 13.9202H43.8189C46.0976 13.9202 47.916 15.821 47.815 18.0975L46.1699 55.1775C46.0751 57.3155 44.314 59.0002 42.1739 59.0002H7.8268C5.68661 59.0002 3.92559 57.3155 3.83073 55.1775L2.18565 18.0974ZM18.0003 49.5402C16.6196 49.5402 15.5003 48.4209 15.5003 47.0402V24.9602C15.5003 23.5795 16.6196 22.4602 18.0003 22.4602C19.381 22.4602 20.5003 23.5795 20.5003 24.9602V47.0402C20.5003 48.4209 19.381 49.5402 18.0003 49.5402ZM29.5003 47.0402C29.5003 48.4209 30.6196 49.5402 32.0003 49.5402C33.381 49.5402 34.5003 48.4209 34.5003 47.0402V24.9602C34.5003 23.5795 33.381 22.4602 32.0003 22.4602C30.6196 22.4602 29.5003 23.5795 29.5003 24.9602V47.0402Z"/>
+          <path fill="#B5BAC1" d="M2 13H48L47.6742 21.28H2.32031L2 13Z"/>
+        </svg>
+      </button>
+    </form>
+
+    <!-- Centered Logo Link -->
+    <a href="{{ Url_read.site_url }}" target="_blank" rel="noopener noreferrer" class="logo-link">
+      {% if Url_read.logo_url %}
+          <img class="logo-box"
+               src="{{ Url_read.logo_url }}"
+               alt="{{ Url_read.site_name }} logo"
+               title="{{ Url_read.site_name }}"
+               onerror="this.onerror=null; this.src='{{ url_for('static', filename='image/NoImage.png') }}';">
+      {% else %}
+          <img class="logo-box"
+               src="{{ url_for('static', filename='image/NoImage.png') }}"
+               alt="Fallback logo">
+      {% endif %}
+    </a>
+  </div>
+</div>
+{% endfor %}
 
         <div class="app-item">
           <button type="button" id="open-modal-additem-btn" class="icon-glass-box add-item-btn" title="Add item">
@@ -173,10 +180,11 @@
               <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
             </svg>
           </button>
-          <span class="app-label">Add Item</span>
+          
         </div>
-      </main>
     </div>
+      </main>
+    <!-- </div> -->
 
     <!-- Bookmarks (service cards) modal -->
     <div class="modal-container" id="modal-container" role="dialog" aria-modal="true">
@@ -272,8 +280,11 @@
 
         <div class="main-notes-card">
           {% for notes_modal in notes_modals %}
-          <article class="notes-service-card">
-            <div class="notes-card-icon" aria-hidden="true">{{ loop.index }}.</div>
+          
+          
+          
+          <!-- <article class="notes-service-card"> -->
+            <!-- <div class="notes-card-icon" aria-hidden="true">{{ loop.index }}.</div>
             <div class="notes-card-content">
               <div class="notes-card-top">
                 <h2 class="notes-card-title">{{ notes_modal.note_title }}</h2>
@@ -288,7 +299,31 @@
                 </button>
               </div>
               <p class="notes-card-preview">{{ notes_modal.note_content }}</p>
-            </div>
+            </div> -->
+
+
+
+                <div class="note_card">
+    <h2 class="note_card__title"><span class="note-card-icon" aria-hidden="true"><b>{{ loop.index }}</b></span> {{ notes_modal.note_title }}
+    </h2>
+    <p class="note_card__content">{{ notes_modal.note_content }}</p>
+    <div class="note_card__date">
+       {{ notes_modal.created_at }}
+    </div>
+    <div class="note_card__arrow">
+        <button aria-label="Edit note" type="button"
+                        hx-get="/notes/{{ notes_modal.id }}/edit"
+                        hx-target="#notes-editor-container"
+                        hx-on::after-request="document.getElementById('modal-container--notes').classList.add('show'); document.getElementById('notes-editor-container').classList.add('show');">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
+                <path fill="#fff" d="M13.4697 17.9697C13.1768 18.2626 13.1768 18.7374 13.4697 19.0303C13.7626 19.3232 14.2374 19.3232 14.5303 19.0303L20.3232 13.2374C21.0066 12.554 21.0066 11.446 20.3232 10.7626L14.5303 4.96967C14.2374 4.67678 13.7626 4.67678 13.4697 4.96967C13.1768 5.26256 13.1768 5.73744 13.4697 6.03033L18.6893 11.25H4C3.58579 11.25 3.25 11.5858 3.25 12C3.25 12.4142 3.58579 12.75 4 12.75H18.6893L13.4697 17.9697Z"></path>
+            </svg>
+        </button>
+        </div>
+</div>
+
+
+
           </article>
           {% endfor %}
         </div>
