@@ -1,747 +1,354 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css" />
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
 
-        <title>Chrome</title>
-        <script src="https://unpkg.com/htmx.org@2.0.4"></script>
-        <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-    </head>
-    <!--! BODY  -->
-    <body
-        class="bg-cover bg-no-repeat min-h-screen"
-        style="background-image: url(&quot;https://4kwallpapers.com/images/walls/thumbs_3t/5893.jpg&quot;)"
-    >
-        <div class="p-4 flex flex-col gap-4 max-w-7xl mx-auto">
-            <div class="pfd-wrap" id="pfdWrap">
-                <span id="currentTime">04:06:21</span>
-                <button type="button" class="pfd-trigger">
-                    <span><img class="pfd-avatar" src="https://via.placeholder.com/32" alt="Avatar" /></span>
-                    <span class="pfd-name">Ved Patel</span>
-                </button>
-            </div>
-            <div class="main_content_sidebar" id="sidebar">
-                <article class="sidebar-rail">
-                    <!-- * Left side btn - QR CODE ---------------------------------------   -->
-                    <button
-                        type="button"
-                        id="open-modal-qr-btn"
-                        title="Open QR code"
-                        class="sidebar-item group"
-                        aria-label="Open QR code"
-                        aria-controls="qr-modal"
-                        aria-expanded="false"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            viewBox="0 0 16 16"
-                            aria-hidden="true"
-                        >
-                            <path
-                                d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z"
-                            />
-                            <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z" />
-                            <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z" />
-                            <path
-                                d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z"
-                            />
-                            <path d="M12 9h2V8h-2z" />
-                        </svg>
-                    </button>
-                    <!-- * Left side btn - Notes ---------------------------------------   -->
-                    <button
-                        type="button"
-                        id="open-modal-time-btn"
-                        title="Open timer code"
-                        class="sidebar-item group"
-                        aria-label="Open timer code"
-                        aria-controls="timer-modal"
-                        aria-expanded="false"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="1.5"
-                            class="size-6"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                            />
-                        </svg>
-                    </button>
-                    <!-- * Left side btn - Timer ---------------------------------------   -->
-                    <button
-                        type="button"
-                        id="open-modal-notes-btn"
-                        title="Open Notes"
-                        class="sidebar-item group"
-                        aria-label="Open Notes"
-                        aria-controls="timer-modal"
-                        aria-expanded="false"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-journal-bookmark"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M6 8V1h1v6.117L8.743 6.07a.5.5 0 0 1 .514 0L11 7.117V1h1v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8"
-                            />
-                            <path
-                                d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"
-                            />
-                            <path
-                                d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"
-                            />
-                        </svg>
-                    </button>
-                    <button
-                        type="button"
-                        id="open-maintoolbar-btn"
-                        title="Open Modal"
-                        class="sidebar-item group"
-                        aria-label="Open QR code"
-                        aria-controls="qr-modal"
-                        aria-expanded="false"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-bookmark"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
-                            />
-                        </svg>
-                    </button>
-                    <button
-                        type="button"
-                        id="open-maintoolbar-btn"
-                        title="Open Modal"
-                        class="sidebar-item group"
-                        class="sidebar-item group"
-                        aria-label="Open QR code"
-                        aria-controls="qr-modal"
-                        aria-expanded="false"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            fill="currentColor"
-                            class="bi bi-gear"
-                            viewBox="0 0 16 16"
-                        >
-                            <path
-                                d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"
-                            />
-                            <path
-                                d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"
-                            />
-                        </svg>
-                    </button>
-                </article>
-                <!-- * Right side btn - QR modal ---------------------------------------   -->
-                <div id="qr-modal-container">
-                    <form action="/" method="POST">
-                        <input type="hidden" name="form_type" value="generate_qr" />
-                        <input type="text" name="data" placeholder="Enter URL" required />
-                        <button type="submit">Generate QR Code</button>
-                    </form>
-                    {% if qr_code %}
-                    <div>
-                        <h3>Generated QR Code:</h3>
-                        <img src="{{ qr_code }}" alt="Generated QR Code" width="200" height="200" />
-                    </div>
-                    {% endif %}
-                    <button id="close-qr">exit</button>
-                </div>
-                <!-- * Right side btn - TIMER and Stop Watch modal ---------------------------------------   -->
-                <div id="main-time-container">
-                    <div class="nav">
-                        <div class="container">
-                            <div class="btn"><a href="#timer">Timer</a></div>
-                            <div class="btn"><a href="#Stopwatch">Stop Watch</a></div>
-                        </div>
-                    </div>
-                    <button type="button" id="close-timer-btn"></button>
-                    <div class="time-container">
-                        <!-- ! Timer -->
-                        <div id="timer" class="page">
-                            <div class="timer-container">
-                                <div class="time-display" id="display">00:00</div>
-                                <div class="controls">
-                                    <button class="start-btn" id="startBtn">Start</button>
-                                    <button class="pause-btn" id="pauseBtn">Pause</button>
-                                    <button class="reset-btn" id="resetBtn">Reset</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ! Stop Watch  -->
-                        <div id="Stopwatch" class="page">
-                            <div
-                                class="bg-white rounded-3xl shadow-xl p-8 sm:p-10 w-full max-w-md border border-slate-100 flex flex-col items-center mx-auto"
-                            >
-                                <div
-                                    class="my-4 py-4 w-full text-center bg-slate-50 rounded-2xl border border-slate-100"
-                                >
-                                    <div
-                                        id="timer-display"
-                                        class="text-6xl sm:text-7xl font-extrabold text-slate-800 tracking-tight select-none"
-                                    >
-                                        05:00
-                                    </div>
-                                    <p
-                                        id="timer-status"
-                                        class="text-xs font-medium text-slate-400 mt-2 uppercase tracking-widest"
-                                    ></p>
-                                </div>
-                                <div class="grid grid-cols-4 gap-2 mt-3 w-full">
-                                    <button
-                                        onclick="setPreset(5)"
-                                        class="preset-btn py-1.5 px-2 text-xs font-semibold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
-                                    >
-                                        5m
-                                    </button>
-                                    <button
-                                        onclick="setPreset(15)"
-                                        class="preset-btn py-1.5 px-2 text-xs font-semibold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
-                                    >
-                                        15m
-                                    </button>
-                                    <button
-                                        onclick="setPreset(30)"
-                                        class="preset-btn py-1.5 px-2 text-xs font-semibold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
-                                    >
-                                        30m
-                                    </button>
-                                    <button
-                                        onclick="setPreset(60)"
-                                        class="preset-btn py-1.5 px-2 text-xs font-semibold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
-                                    >
-                                        60m
-                                    </button>
-                                </div>
-                                <div class="flex items-center justify-center space-x-3 w-full mt-6">
-                                    <button
-                                        id="start-btn"
-                                        onclick="startTimer()"
-                                        class="flex-1 py-3 px-5 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-semibold rounded-xl shadow-md transition-all duration-150 text-center"
-                                    >
-                                        Start
-                                    </button>
-                                    <button
-                                        id="pause-btn"
-                                        onclick="pauseTimer()"
-                                        class="flex-1 py-3 px-5 bg-amber-400 hover:bg-amber-500 active:scale-95 text-slate-900 font-semibold rounded-xl shadow-md transition-all duration-150 text-center"
-                                    >
-                                        Pause
-                                    </button>
-                                    <button
-                                        id="reset-btn"
-                                        onclick="resetTimer()"
-                                        class="flex-1 py-3 px-5 bg-rose-600 hover:bg-rose-700 active:scale-95 text-white font-semibold rounded-xl shadow-md transition-all duration-150 text-center"
-                                    >
-                                        Reset
-                                    </button>
-                                </div>
-                                <div
-                                    id="notification"
-                                    class="hidden mt-4 w-full p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium rounded-xl text-center"
-                                >
-                                    🎉 Time's up! Great job!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- * Item or Apps that are saved to the list -->
-                <div id="rightside">
-                    {% for Url_read in url_reads %}
-                    <div class="app-item">
-                        <div class="icon-glass-box">
-                            <a href="{{ url_for('delete', id=Url_read.id) }}">
-                                <button
-                                    class="deleteButton"
-                                    id="deleteButton-id"
-                                    title="Delete"
-                                    data-id="{{ Url_read.id }}"
-                                >
-                                    <!-- <a href="/delete/{{Url_read}}"></a> -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 59" class="bin">
-                                        <path
-                                            fill="#B5BAC1"
-                                            d="M0 7.5C0 5.01472 2.01472 3 4.5 3H45.5C47.9853 3 50 5.01472 50 7.5V7.5C50 8.32843 49.3284 9 48.5 9H1.5C0.671571 9 0 8.32843 0 7.5V7.5Z"
-                                        ></path>
-                                        <path
-                                            fill="#B5BAC1"
-                                            d="M17 3C17 1.34315 18.3431 0 20 0H29.3125C30.9694 0 32.3125 1.34315 32.3125 3V3H17V3Z"
-                                        ></path>
-                                        <path
-                                            fill="#B5BAC1"
-                                            d="M2.18565 18.0974C2.08466 15.821 3.903 13.9202 6.18172 13.9202H43.8189C46.0976 13.9202 47.916 15.821 47.815 18.0975L46.1699 55.1775C46.0751 57.3155 44.314 59.0002 42.1739 59.0002H7.8268C5.68661 59.0002 3.92559 57.3155 3.83073 55.1775L2.18565 18.0974ZM18.0003 49.5402C16.6196 49.5402 15.5003 48.4209 15.5003 47.0402V24.9602C15.5003 23.5795 16.6196 22.4602 18.0003 22.4602C19.381 22.4602 20.5003 23.5795 20.5003 24.9602V47.0402C20.5003 48.4209 19.381 49.5402 18.0003 49.5402ZM29.5003 47.0402C29.5003 48.4209 30.6196 49.5402 32.0003 49.5402C33.381 49.5402 34.5003 48.4209 34.5003 47.0402V24.9602C34.5003 23.5795 33.381 22.4602 32.0003 22.4602C30.6196 22.4602 29.5003 23.5795 29.5003 24.9602V47.0402Z"
-                                            clip-rule="evenodd"
-                                            fill-rule="evenodd"
-                                        ></path>
-                                        <path fill="#B5BAC1" d="M2 13H48L47.6742 21.28H2.32031L2 13Z"></path>
-                                    </svg>
-                                </button>
-                            </a>
-                            <div class="img-name-item">
-                                {% if Url_read.logo_url %}
-                                <div class="result">
-                                    <img
-                                        class="logo-box"
-                                        src="{{ Url_read.logo_url }}"
-                                        alt="Website Logo Summary"
-                                        onerror="this.style.display='none';"
-                                    />
-                                </div>
-                                {% else %}
-                                <div class="result-error-image">
-                                    <img
-                                        class="logo-box"
-                                        src="{{ url_for('static', filename='image/NoImage.png') }}"
-                                        alt="Fallback Logo"
-                                    />
-                                </div>
-                                {% endif %}
-                                <a
-                                    href="{{ Url_read.site_url }}"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    id="a-links"
-                                >
-                                    <span class="app-label"> {{ Url_read.site_name }}</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    <div class="app-item">
-                        <div class="icon-glass-box">
-                            <button type="button" id="open-modal-additem-btn" title="Open Add Item">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="29"
-                                    height="29"
-                                    style="margin-left: 11px"
-                                    fill="currentColor"
-                                    class="bi bi-plus-circle"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
-                                    />
-                                </svg>
-                                <p id="Site_Name"><b> Add Item</b></p>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- * Right side btn - Modals ---------------------------------------   -->
-            <!-- ===== MODAL OVERLAY ===== -->
-            <div class="modal-container" id="modal-container">
-                <!-- ===== MODAL WINDOW ===== -->
-                <div class="modal">
-                    <div id="search-close">
-                        <!-- ===== SEARCH ===== -->
-                        <div class="mdc-search-group">
-                            <svg class="mdc-search-icon" aria-hidden="true" viewBox="0 0 24 24">
-                                <g>
-                                    <path
-                                        d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
-                                    ></path>
-                                </g>
-                            </svg>
-                            <input placeholder="Search" type="search" class="mdc-search-input" />
-                        </div>
-                        <!-- ===== Close btn ===== -->
-                        <button id="close-maintoolbar-btn" class="mdc-modal-close-btn" type="button">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="32"
-                                height="32"
-                                fill="currentColor"
-                                class="bi bi-x-circle-fill"
-                                viewBox="0 0 16 16"
-                            >
-                                <path
-                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                    <!-- ===== NAVIGATION ===== -->
-                    <div class="mdc-nav-bar">
-                        <div class="mdc-nav-container">
-                            <div class="mdc-nav-btn">Home</div>
-                            <div class="mdc-nav-btn">Contact</div>
-                            <div class="mdc-nav-btn">About</div>
-                            <div class="mdc-nav-btn">FAQ</div>
-                            <svg
-                                class="mdc-nav-svg-outline"
-                                overflow="visible"
-                                width="400"
-                                height="58"
-                                viewBox="0 0 400 58"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <rect
-                                    class="mdc-nav-rect"
-                                    pathLength="100"
-                                    x="0"
-                                    y="0"
-                                    width="400"
-                                    height="58"
-                                    fill="transparent"
-                                    stroke-width="5"
-                                ></rect>
-                            </svg>
-                        </div>
-                    </div>
-                    <!-- ===== SERVICE CARD ===== -->
-                    <div class="main-sites-card">
-                        <div class="mdc-service-card">
-                            <div class="mdc-card-icon" aria-hidden="true"></div>
-                            <div class="mdc-card-content">
-                                <div class="mdc-card-top">
-                                    <h1 class="mdc-card-title">Instagram</h1>
-                                    <button class="mdc-card-delete-btn" aria-label="Delete Instagram">
-                                        <svg
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        >
-                                            <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <a class="mdc-card-url" href="https://instagram.com">instagram.com</a>
-                                <div class="mdc-card-menu">
-                                    <a href="#" class="mdc-card-menu-trigger">
-                                        Our Services
-                                        <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" /></svg>
-                                    </a>
-                                    <div class="mdc-card-submenu">
-                                        <a href="#">Development</a>
-                                        <a href="#">Design</a>
-                                        <a href="#">Marketing</a>
-                                        <a href="#">SEO</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mdc-service-card">
-                            <div class="mdc-card-icon" aria-hidden="true"></div>
-                            <div class="mdc-card-content">
-                                <div class="mdc-card-top">
-                                    <h1 class="mdc-card-title">Instagram</h1>
-                                    <button class="mdc-card-delete-btn" aria-label="Delete Instagram">
-                                        <svg
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        >
-                                            <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <a class="mdc-card-url" href="https://instagram.com">instagram.com</a>
-                                <div class="mdc-card-menu">
-                                    <a href="#" class="mdc-card-menu-trigger">
-                                        Our Services
-                                        <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" /></svg>
-                                    </a>
-                                    <div class="mdc-card-submenu">
-                                        <a href="#">Development</a>
-                                        <a href="#">Design</a>
-                                        <a href="#">Marketing</a>
-                                        <a href="#">SEO</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mdc-service-card">
-                            <div class="mdc-card-icon" aria-hidden="true"></div>
-                            <div class="mdc-card-content">
-                                <div class="mdc-card-top">
-                                    <h1 class="mdc-card-title">Instagram</h1>
-                                    <button class="mdc-card-delete-btn" aria-label="Delete Instagram">
-                                        <svg
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        >
-                                            <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <a class="mdc-card-url" href="https://instagram.com">instagram.com</a>
-                                <div class="mdc-card-menu">
-                                    <a href="#" class="mdc-card-menu-trigger">
-                                        Our Services
-                                        <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" /></svg>
-                                    </a>
-                                    <div class="mdc-card-submenu">
-                                        <a href="#">Development</a>
-                                        <a href="#">Design</a>
-                                        <a href="#">Marketing</a>
-                                        <a href="#">SEO</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ===== CLOSE BUTTON ===== -->
-                </div>
-            </div>
-            <!-- ! USED for the CRUD -->
-            <!-- * Right side btn - ADD ITEM ---------------------------------------   -->
-            <form action="/" method="POST">
-                <div class="modal-additem-container" id="modal-additem-container">
-                    <div class="modal-additem">
-                        <div class="flex gap-4 mb-4">
-                            <input type="hidden" name="form_type" value="add_site" />
-                            <input class="bookmar-input" placeholder="add URL" type="text" name="site_url" required />
-                        </div>
-                        <button type="submit" id="Additem-id-btn">Enter</button>
-                    </div>
-                </div>
-            </form>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+</head>
 
-            <!-- * Notes -->
-            <div class="modal-container--notes" id="modal-container--notes">
-                <!-- ===== MODAL WINDOW ===== -->
-                <div class="modal-notes">
-                    <div id="search-close">
-                        <!-- ===== SEARCH ===== -->
-                        <div class="notes-search-group">
-                            <svg class="notes-search-icon" aria-hidden="true" viewBox="0 0 24 24">
-                                <g>
-                                    <path
-                                        d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
-                                    ></path>
-                                </g>
-                            </svg>
-                            <input placeholder="Search" type="search" class="notes-search-input" />
-                        </div>
-                        <button id="new-notes-btn">
-                        <svg
-                            aria-hidden="true"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                stroke-width="2"
-                                stroke="#fffffff"
-                                d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
-                                stroke-linejoin="round"
-                                stroke-linecap="round"
-                            ></path>
-                            <path
-                                stroke-linejoin="round"
-                                stroke-linecap="round"
-                                stroke-width="2"
-                                stroke="#fffffff"
-                                d="M17 15V18M17 21V18M17 18H14M17 18H20"
-                            ></path>
-                        </svg>
-                        New Note
-                    </button>
-                        <!-- ===== Close btn ===== -->
-                        <button hidden id="notes-modal-close-btn" type="button">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="32"
-                                height="32"
-                                fill="currentColor"
-                                class="bi bi-x-circle-fill"
-                                viewBox="0 0 16 16"
-                            >
-                                <path
-                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                    <!-- ===== SERVICE CARD ===== -->
-                    <div class="main-sites-note-card">
-                        {% for notes_modal in notes_modals %}
-                        <div class="notes-service-card">
-                            <div class="notes-card-icon" aria-hidden="true">{{ loop.index }}.</div>
-                            <div class="notes-card-content">
-                                <div class="notes-card-top">
-                                    <h1 class="notes-card-title">{{ notes_modal.note_title }}</h1>
-                                    <!-- note edit -->
-                                    <!-- Change id="notes-card-edit-btn" to class="notes-card-edit-btn" -->
-                                    <button
-                                        class="notes-card-edit-btn"
-                                        aria-label="Edit note"
-                                        hx-get="/notes/{{ notes_modal.id }}/edit"
-                                        hx-target="#notes-editor-container"
-                                        hx-on::after-request="document.getElementById('modal-container--notes').classList.add('show'); document.getElementById('notes-editor-container').classList.add('show');"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="16"
-                                            height="16"
-                                            fill="currentColor"
-                                            class="bi bi-pencil-square"
-                                            viewBox="0 0 16 16"
-                                        >
-                                            <path
-                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
-                                            />
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
-                                            />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <a class="notes-card-url">{{ notes_modal.note_content }}</a>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    
-                </div>
-                <div class="notes-editor-container" id="notes-editor-container">
-                    <form
-                        action="{{ url_for('update_notes', id=edit_notes.id) if edit_notes else url_for('index') }}"
-                        method="POST"
-                    >
-                        <input type="hidden" name="form_type" value="take_notes" />
-                        <input
-                            id="note-Title"
-                            class="note-title-input"
-                            name="note_title"
-                            placeholder="Untitled Note"
-                            value="{{ edit_notes.note_title if edit_notes else '' }}"
-                            required
-                        />
-                        <textarea
-                            name="note_content"
-                            placeholder="Start writing..."
-                            class="note-content-input"
-                            id="note-content"
-                            required
-                        >
-{{ edit_notes.note_content if edit_notes else '' }}</textarea
-                        >
-                    
-                        
-                        
-                        <div class="del-new-note-btns">
-                            <button id="save-notes-btn" type="submit">Save</button>
-                            <button>delete</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- * down side - Quotes that updates daily  ---------------------------------------- -->
-            <div id="quotes-collection">
-                lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Quisquam, quod.
-            </div>
-            <!-- * Search btn with multiple opetions -->
-            <form class="formsearch">
-                <button type="button" class="search-btn">
-                    <svg
-                        width="17"
-                        height="16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        role="img"
-                        aria-labelledby="search"
-                    >
-                        <path
-                            d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
-                            stroke="currentColor"
-                            stroke-width="1.333"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        ></path>
-                    </svg>
-                </button>
-                <input class="browser_search" placeholder="Search the Internet..." required type="text" />
-                <div class="select-box" id="selectBox">
-                    <div class="selected" id="selected">
-                        <img
-                            id="selectedImg"
-                            src="{{ url_for('static',filename='image/google.png' ) }}"
-                            alt="Selected Engine"
-                        />
-                        <span class="arrow">&#9660;</span>
-                    </div>
-                    <div class="options" id="options">
-                        <div class="option" data-name="Google" data-img="google.png">
-                            <img src="{{ url_for('static', filename='image/google.png')}}" alt="Google" />
-                        </div>
-                        <div
-                            class="option"
-                            data-name="DuckDuckGo"
-                            data-img="{{ url_for('static', filename='image/duck.png') }}"
-                        >
-                            <img src="{{ url_for('static', filename='image/duck.png') }}" alt="DuckDuckGo" />
-                        </div>
-                        <div
-                            class="option"
-                            data-name="chatgpt"
-                            data-img="{{ url_for('static', filename='image/chatgpt.png') }}"
-                        >
-                            <img src="{{ url_for('static', filename='image/chatgpt.png') }}" alt="chatgpt" />
-                        </div>
-                        <div
-                            class="option"
-                            data-name="Perplexity"
-                            data-img="{{ url_for('static', filename='image/perplexity.png') }}"
-                        >
-                            <img src="{{ url_for('static', filename='image/perplexity.png') }}" alt="Perplexity" />
-                        </div>
-                    </div>
-                </div>
-            </form>
+<body class="bg-cover bg-no-repeat bg-fixed min-h-screen"
+      style="background-image:url('https://4kwallpapers.com/images/walls/thumbs_3t/5893.jpg')">
+
+  <div class="page-wrap">
+
+    <!-- Top bar -->
+    <header class="pfd-wrap" id="pfdWrap">
+      <span id="currentTime">--:--:--</span>
+      <button type="button" class="pfd-trigger">
+        <img class="pfd-avatar" src="https://via.placeholder.com/32" alt="Avatar">
+        <span class="pfd-name">Ved Patel</span>
+      </button>
+    </header>
+
+    <div class="main_content_sidebar" id="sidebar">
+
+      <!-- Sidebar rail -->
+      <aside class="sidebar-rail">
+        <button type="button" id="open-modal-qr-btn" title="Open QR code"
+                class="sidebar-item" aria-label="Open QR code"
+                aria-controls="qr-modal-container" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z"/>
+            <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z"/>
+            <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z"/>
+            <path d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z"/>
+            <path d="M12 9h2V8h-2z"/>
+          </svg>
+        </button>
+
+        <button type="button" id="open-modal-time-btn" title="Open timer"
+                class="sidebar-item" aria-label="Open timer"
+                aria-controls="main-time-container" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+          </svg>
+        </button>
+
+        <button type="button" id="open-modal-notes-btn" title="Open notes"
+                class="sidebar-item" aria-label="Open notes"
+                aria-controls="modal-container--notes" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path fill-rule="evenodd" d="M6 8V1h1v6.117L8.743 6.07a.5.5 0 0 1 .514 0L11 7.117V1h1v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8"/>
+            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+          </svg>
+        </button>
+
+        <button type="button" id="open-maintoolbar-btn" title="Open bookmarks"
+                class="sidebar-item" aria-label="Open bookmarks"
+                aria-controls="modal-container" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
+          </svg>
+        </button>
+
+        <button type="button" id="open-settings-btn" title="Settings"
+                class="sidebar-item" aria-label="Settings">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
+            <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52z"/>
+          </svg>
+        </button>
+      </aside>
+
+      <!-- QR modal -->
+      <div id="qr-modal-container" class="floating-panel">
+        <form action="/" method="POST" class="qr-form">
+          <input type="hidden" name="form_type" value="generate_qr">
+          <input type="text" name="data" placeholder="Enter URL" required>
+          <button type="submit">Generate QR Code</button>
+        </form>
+        {% if qr_code %}
+        <div class="qr-result">
+          <h3>Generated QR Code</h3>
+          <img src="{{ qr_code }}" alt="Generated QR Code" width="200" height="200">
         </div>
-    </body>
-    <script src="{{ url_for('static', filename='script/drag.js') }}"></script>
-    <script src="{{ url_for('static', filename='script/drag.js') }} "></script>
-    <script src="{{ url_for('static', filename='script/popups.js') }} "></script>
-    <script src="{{ url_for('static', filename='script/script.js') }} "></script>
-    <script src="{{ url_for('static', filename='script/camera.js') }} "></script>
-    <script>
-    </script>
+        {% endif %}
+        <button id="close-qr" type="button">Exit</button>
+      </div>
+
+      <!-- Timer / stopwatch modal -->
+      <div id="main-time-container" class="floating-panel">
+        <nav class="nav">
+          <div class="container">
+            <a class="btn" href="#timer">Timer</a>
+            <a class="btn" href="#Stopwatch">Stopwatch</a>
+          </div>
+        </nav>
+
+        <button type="button" id="close-timer-btn" class="close-btn" aria-label="Close">&times;</button>
+
+        <div class="time-container">
+          <section id="timer" class="page">
+            <div class="timer-container">
+              <div class="time-display" id="display">00:00</div>
+              <div class="controls">
+                <button class="start-btn" id="startBtn">Start</button>
+                <button class="pause-btn" id="pauseBtn">Pause</button>
+                <button class="reset-btn" id="resetBtn">Reset</button>
+              </div>
+            </div>
+          </section>
+
+          <section id="Stopwatch" class="page">
+            <div class="countdown-card">
+              <div class="countdown-display-box">
+                <div id="timer-display" class="countdown-display">05:00</div>
+                <p id="timer-status" class="countdown-status"></p>
+              </div>
+              <div class="preset-grid">
+                <button onclick="setPreset(5)"  class="preset-btn">5m</button>
+                <button onclick="setPreset(15)" class="preset-btn">15m</button>
+                <button onclick="setPreset(30)" class="preset-btn">30m</button>
+                <button onclick="setPreset(60)" class="preset-btn">60m</button>
+              </div>
+              <div class="countdown-actions">
+                <button id="start-btn" onclick="startTimer()" class="action-btn action-start">Start</button>
+                <button id="pause-btn" onclick="pauseTimer()" class="action-btn action-pause">Pause</button>
+                <button id="reset-btn" onclick="resetTimer()" class="action-btn action-reset">Reset</button>
+              </div>
+              <div id="notification" class="notification hidden">🎉 Time's up! Great job!</div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Bookmarks grid -->
+      <main id="rightside">
+        {% for Url_read in url_reads %}
+        <div class="app-item">
+          <div class="icon-glass-box">
+            <a href="{{ url_for('delete', id=Url_read.id) }}" class="delete-link">
+              <form action="{{ url_for('delete', id=Url_read.id) }}" method="POST" class="delete-form">
+  <button type="submit" class="deleteButton" title="Delete">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 50 59" class="bin" aria-hidden="true">
+                  <path fill="#B5BAC1" d="M0 7.5C0 5.01472 2.01472 3 4.5 3H45.5C47.9853 3 50 5.01472 50 7.5V7.5C50 8.32843 49.3284 9 48.5 9H1.5C0.671571 9 0 8.32843 0 7.5V7.5Z"/>
+                  <path fill="#B5BAC1" d="M17 3C17 1.34315 18.3431 0 20 0H29.3125C30.9694 0 32.3125 1.34315 32.3125 3V3H17V3Z"/>
+                  <path fill="#B5BAC1" fill-rule="evenodd" clip-rule="evenodd" d="M2.18565 18.0974C2.08466 15.821 3.903 13.9202 6.18172 13.9202H43.8189C46.0976 13.9202 47.916 15.821 47.815 18.0975L46.1699 55.1775C46.0751 57.3155 44.314 59.0002 42.1739 59.0002H7.8268C5.68661 59.0002 3.92559 57.3155 3.83073 55.1775L2.18565 18.0974ZM18.0003 49.5402C16.6196 49.5402 15.5003 48.4209 15.5003 47.0402V24.9602C15.5003 23.5795 16.6196 22.4602 18.0003 22.4602C19.381 22.4602 20.5003 23.5795 20.5003 24.9602V47.0402C20.5003 48.4209 19.381 49.5402 18.0003 49.5402ZM29.5003 47.0402C29.5003 48.4209 30.6196 49.5402 32.0003 49.5402C33.381 49.5402 34.5003 48.4209 34.5003 47.0402V24.9602C34.5003 23.5795 33.381 22.4602 32.0003 22.4602C30.6196 22.4602 29.5003 23.5795 29.5003 24.9602V47.0402Z"/>
+                  <path fill="#B5BAC1" d="M2 13H48L47.6742 21.28H2.32031L2 13Z"/>
+                </svg>
+              </button>
+              </form>
+            </a>
+            {% if Url_read.logo_url %}
+              <img class="logo-box" src="{{ Url_read.logo_url }}" alt="{{ Url_read.site_name }} logo" onerror="this.onerror=null; this.src='{{ url_for('static', filename='image/NoImage.png') }}';">
+            {% else %}
+              <img class="logo-box" src="{{ url_for('static', filename='image/NoImage.png') }}" alt="Fallback logo">
+            {% endif %}
+          </div>
+          <a href="{{ Url_read.site_url }}" target="_blank" rel="noopener noreferrer" class="app-label">
+            {{ Url_read.site_name }}
+          </a>
+        </div>
+        {% endfor %}
+
+        <div class="app-item">
+          <button type="button" id="open-modal-additem-btn" class="icon-glass-box add-item-btn" title="Add item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+          </button>
+          <span class="app-label">Add Item</span>
+        </div>
+      </main>
+    </div>
+
+    <!-- Bookmarks (service cards) modal -->
+    <div class="modal-container" id="modal-container" role="dialog" aria-modal="true">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="mdc-search-group">
+            <svg class="mdc-search-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"/>
+            </svg>
+            <input placeholder="Search" type="search" class="mdc-search-input">
+          </div>
+          <button id="close-maintoolbar-btn" class="modal-close-btn" type="button" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+            </svg>
+          </button>
+        </div>
+
+        <nav class="mdc-nav-bar">
+          <div class="mdc-nav-container">
+            <a class="mdc-nav-btn" href="#">Home</a>
+            <a class="mdc-nav-btn" href="#">Contact</a>
+            <a class="mdc-nav-btn" href="#">About</a>
+            <a class="mdc-nav-btn" href="#">FAQ</a>
+          </div>
+        </nav>
+
+        <div class="main-sites-card">
+          {% for site in services %}
+          <article class="mdc-service-card">
+            <div class="mdc-card-icon" aria-hidden="true"></div>
+            <div class="mdc-card-content">
+              <div class="mdc-card-top">
+                <h2 class="mdc-card-title">{{ site.name }}</h2>
+                <button class="mdc-card-delete-btn" aria-label="Delete {{ site.name }}" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6"/>
+                  </svg>
+                </button>
+              </div>
+              <a class="mdc-card-url" href="{{ site.url }}" target="_blank" rel="noopener noreferrer">{{ site.url }}</a>
+              <div class="mdc-card-menu">
+                <button type="button" class="mdc-card-menu-trigger">
+                  Our Services
+                  <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+                </button>
+                <div class="mdc-card-submenu">
+                  <a href="#">Development</a>
+                  <a href="#">Design</a>
+                  <a href="#">Marketing</a>
+                  <a href="#">SEO</a>
+                </div>
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Add item modal -->
+    <form action="/" method="POST" class="modal-additem-container" id="modal-additem-container">
+      <div class="modal-additem">
+        <input type="hidden" name="form_type" value="add_site">
+        <input class="bookmar-input" placeholder="Add URL" type="url" name="site_url" required>
+        <button type="submit" id="Additem-id-btn">Enter</button>
+      </div>
+    </form>
+
+    <!-- Notes modal -->
+    <div class="modal-container--notes" id="modal-container--notes" role="dialog" aria-modal="true">
+      <div class="modal-notes">
+        <div class="modal-header">
+          <div class="notes-search-group">
+            <svg class="notes-search-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"/>
+            </svg>
+            <input placeholder="Search notes" type="search" class="notes-search-input">
+          </div>
+          <button id="new-notes-btn" type="button">
+            <svg aria-hidden="true" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none">
+              <path d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke-linejoin="round" stroke-linecap="round"/>
+              <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+            New Note
+          </button>
+          <button id="notes-modal-close-btn" type="button" class="modal-close-btn" aria-label="Close notes">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="main-notes-card">
+          {% for notes_modal in notes_modals %}
+          <article class="notes-service-card">
+            <div class="notes-card-icon" aria-hidden="true">{{ loop.index }}.</div>
+            <div class="notes-card-content">
+              <div class="notes-card-top">
+                <h2 class="notes-card-title">{{ notes_modal.note_title }}</h2>
+                <button class="notes-card-edit-btn" aria-label="Edit note" type="button"
+                        hx-get="/notes/{{ notes_modal.id }}/edit"
+                        hx-target="#notes-editor-container"
+                        hx-on::after-request="document.getElementById('modal-container--notes').classList.add('show'); document.getElementById('notes-editor-container').classList.add('show');">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                  </svg>
+                </button>
+              </div>
+              <p class="notes-card-preview">{{ notes_modal.note_content }}</p>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="notes-editor-container" id="notes-editor-container">
+        <form action="{{ url_for('update_notes', id=edit_notes.id) if edit_notes else url_for('index') }}" method="POST" class="note-form">
+          <input type="hidden" name="form_type" value="take_notes">
+          <input id="note-title" class="note-title-input" name="note_title" placeholder="Untitled Note"
+                value="{{ edit_notes.note_title if edit_notes else '' }}" required>
+          <textarea name="note_content" placeholder="Start writing..." class="note-content-input"
+                    id="note-content" required>{{ edit_notes.note_content if edit_notes else '' }}</textarea>
+          <div class="del-new-note-btns">
+            <button id="save-notes-btn" type="submit">Save</button>
+            <button type="button" class="ui-note-delete-btn">Delete</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="quotes-collection">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </div>
+
+    <!-- Search bar -->
+    <form class="formsearch" role="search" onsubmit="return false;">
+      <button type="button" class="search-btn" aria-label="Search">
+        <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <input class="browser_search" placeholder="Search the Internet..." required type="text">
+
+      <div class="select-box" id="selectBox">
+        <button type="button" class="selected" id="selected" aria-haspopup="listbox">
+          <img id="selectedImg" src="{{ url_for('static', filename='image/google.png') }}" alt="Selected engine">
+          <span class="arrow">&#9660;</span>
+        </button>
+        <div class="options" id="options" role="listbox">
+          <div class="option" data-name="Google" data-img="{{ url_for('static', filename='image/google.png') }}">
+            <img src="{{ url_for('static', filename='image/google.png') }}" alt="Google">
+          </div>
+          <div class="option" data-name="DuckDuckGo" data-img="{{ url_for('static', filename='image/duck.png') }}">
+            <img src="{{ url_for('static', filename='image/duck.png') }}" alt="DuckDuckGo">
+          </div>
+          <div class="option" data-name="ChatGPT" data-img="{{ url_for('static', filename='image/chatgpt.png') }}">
+            <img src="{{ url_for('static', filename='image/chatgpt.png') }}" alt="ChatGPT">
+          </div>
+          <div class="option" data-name="Perplexity" data-img="{{ url_for('static', filename='image/perplexity.png') }}">
+            <img src="{{ url_for('static', filename='image/perplexity.png') }}" alt="Perplexity">
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+  <script src="{{ url_for('static', filename='script/drag.js') }}"></script>
+  <script src="{{ url_for('static', filename='script/popups.js') }}"></script>
+  <script src="{{ url_for('static', filename='script/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='script/camera.js') }}"></script>
+</body>
 </html>

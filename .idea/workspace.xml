@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="100ed561-e39c-4179-8e45-1abed6132559" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Browser-Extentation.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CODE/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CODE/instance/data.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CODE/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CODE/static/script/popups.js" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/static/script/popups.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CODE/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CODE/templates/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CODE/templates/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Timer - Stop watch" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3MBLRKaP6giqLVV8GPPPi9kgaI5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/tux/Documents/Browser-Extentation",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
+    "settings.editor.selected.configurable": "editor.preferences.gutterIcons",
+    "settings.editor.splitter.proportion": "0.20667285"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="100ed561-e39c-4179-8e45-1abed6132559" name="Changes" comment="" />
+      <created>1794819008418</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1794819008418</updated>
+    </task>
+    <servers />
+  </component>
+</project>

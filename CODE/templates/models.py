@@ -14,7 +14,7 @@ class URLmodal(db.Model):
 
 class NOTEmodal(db.Model):
     __tablename__ = "note_modal"
+
     id = db.Column(db.Integer, primary_key=True)
-    note_title = db.Column(db.String(90),nullable=False)
-    note_content = db.Column(db.String(),nullable=False)
-    
+    note_title = db.Column(db.String(90), nullable=False)
+    note_content = db.Column(db.Text, nullable=False)

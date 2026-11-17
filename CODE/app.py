@@ -1,122 +1,150 @@
-import urllib.parse
-import requests
-from bs4 import BeautifulSoup
-from flask import redirect, render_template, request, url_for, Flask
-from templates.models import URLmodal, db, NOTEmodal
-import qrcode
 import os
-from urllib.parse import urlparse
+import re
+import time
+from urllib.parse import urljoin, urlparse
+
+import qrcode
+import requests
+import tldextract
+from bs4 import BeautifulSoup
+from flask import Flask, redirect, render_template, request, url_for
+
+from templates.models import db, URLmodal, NOTEmodal
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(BASE_DIR, "data.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
+
 with app.app_context():
     db.create_all()
+
+
+def normalize_url(raw):
+    raw = raw.strip()
+    if not raw.startswith(("http://", "https://")):
+        raw = "https://" + raw
+    return raw
+
+
+def site_label(url):
+    name = tldextract.extract(url).domain
+    return (name or urlparse(url).netloc)[:200]
+
+
 def extract_logo(url):
+    parsed = urlparse(url)
+    if not parsed.netloc:
+        return None
+
+    fallback = f"https://www.google.com/s2/favicons?domain={parsed.netloc}&sz=128"
     try:
-        parsed_url = urllib.parse.urlparse(url)
-        domain = parsed_url.netloc
-        if domain:
-            return f"https://www.google.com/s2/favicons?domain={domain}&sz=128"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
-        response = requests.get(url, headers=headers, timeout=5)
-        soup = BeautifulSoup(response.text, "html.parser")
-        icon_tag = (
-            soup.find("link", rel=lambda x: x and "icon" in x.lower())
-            or soup.find("link", rel="apple-touch-icon")
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+        resp = requests.get(url, headers=headers, timeout=5)
+        resp.raise_for_status()
+        soup = BeautifulSoup(resp.text, "html.parser")
+        tag = (
+            soup.find("link", rel=re.compile(r"icon", re.I))
             or soup.find("meta", property="og:image")
         )
-        if icon_tag:
-            href = icon_tag.get("href") or icon_tag.get("content")
-            return urllib.parse.urljoin(url, href)
-        return f"{parsed_url.scheme}://{parsed_url.netloc}/favicon.ico"
+        if tag:
+            href = tag.get("href") or tag.get("content")
+            if href:
+                return urljoin(resp.url, href)
     except Exception:
-        return None
+        # Network or parsing failure: fall back to the Google favicon service.
+        pass
+    return fallback
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     qr_code_url = None
-    target_url = ""
+
     if request.method == "POST":
         form_type = request.form.get("form_type")
+
         if form_type == "add_site":
-            site_url = request.form.get("site_url")
-            if site_url:
-                domain = urlparse(site_url).netloc.replace("www.", "")
-                website_name = domain.split(".")[0]
-                target_url = site_url
-                if not target_url.startswith(("http://", "https://")):
-                    target_url = "https://" + target_url
-                logo_url = extract_logo(target_url)
-                new_url = URLmodal(
-                    site_url=target_url,
-                    site_name=website_name,
-                    logo_url=logo_url,
-                )
-                db.session.add(new_url)
+            raw = request.form.get("site_url", "").strip()
+            if raw:
+                url = normalize_url(raw)
+                db.session.add(URLmodal(
+                    site_url=url,
+                    site_name=site_label(url),
+                    logo_url=extract_logo(url),
+                ))
                 db.session.commit()
             return redirect(url_for("index"))
-        elif form_type == "generate_qr":
-            data = request.form.get("data")
+
+        if form_type == "generate_qr":
+            data = request.form.get("data", "").strip()
             if data:
-                qr_img = qrcode.make(data)
-                os.makedirs("static/image", exist_ok=True)
-                qr_path = os.path.join("static", "image", "qr_code.png")
-                qr_img.save(qr_path)
-                qr_code_url = url_for("static", filename="image/qr_code.png")
+                qr_dir = os.path.join(app.static_folder, "image")
+                os.makedirs(qr_dir, exist_ok=True)
+                qrcode.make(data).save(os.path.join(qr_dir, "qr_code.png"))
+                # Timestamp busts the browser cache so a new QR shows immediately.
+                qr_code_url = url_for("static", filename="image/qr_code.png", v=int(time.time()))
+
         elif form_type == "take_notes":
-            note_title = request.form.get("note_title")
-            note_content = request.form.get("note_content")
-            if note_title and note_content:
-                new_note = NOTEmodal(
-                    note_title=note_title,
-                    note_content=note_content
-                )
-                db.session.add(new_note)
+            title = request.form.get("note_title", "").strip()
+            content = request.form.get("note_content", "").strip()
+            if title and content:
+                db.session.add(NOTEmodal(note_title=title[:90], note_content=content))
                 db.session.commit()
                 return redirect(url_for("index"))
-                
-    notes_modals = NOTEmodal.query.all()           
-    url_reads = URLmodal.query.all()
-    return render_template("index.html", url_reads=url_reads, qr_code=qr_code_url, notes_modals=notes_modals)
 
-@app.route("/delete/<int:id>")
+    return render_template(
+        "index.html",
+        url_reads=URLmodal.query.all(),
+        notes_modals=NOTEmodal.query.all(),
+        qr_code=qr_code_url,
+    )
+
+
+@app.route("/delete/<int:id>", methods=["POST"])
 def delete(id):
-    post = URLmodal.query.get_or_404(id)
-    db.session.delete(post)
+    bookmark = db.get_or_404(URLmodal, id)
+    db.session.delete(bookmark)
     db.session.commit()
     return redirect(url_for("index"))
 
+
 @app.route("/notes/<int:id>/edit", methods=["GET"])
 def edit_notes(id):
-    note_to_edit = NOTEmodal.query.get_or_404(id)          
-    # If requested via HTMX, return ONLY the partial form template
+    note = db.get_or_404(NOTEmodal, id)
     if request.headers.get("HX-Request"):
-        return render_template("_note_form.html", edit_notes=note_to_edit)
-        
-    # Fallback for standard full-page GET requests
-    notes_modals = NOTEmodal.query.all()
-    url_reads = URLmodal.query.all()
+        return render_template("_note_form.html", edit_notes=note)
     return render_template(
-        "index.html", 
-        url_reads=url_reads, 
-        notes_modals=notes_modals, 
-        edit_notes=note_to_edit
+        "index.html",
+        url_reads=URLmodal.query.all(),
+        notes_modals=NOTEmodal.query.all(),
+        edit_notes=note,
+        qr_code=None,
     )
+
 
 @app.route("/notes/<int:id>/update", methods=["POST"])
 def update_notes(id):
-    note = NOTEmodal.query.get_or_404(id)
-    note_title = request.form.get("note_title")
-    note_content = request.form.get("note_content")
-    
-    if note_title and note_content:
-        note.note_title = note_title
-        note.note_content = note_content
+    note = db.get_or_404(NOTEmodal, id)
+    title = request.form.get("note_title", "").strip()
+    content = request.form.get("note_content", "").strip()
+    if title and content:
+        note.note_title = title[:90]
+        note.note_content = content
         db.session.commit()
-        
     return redirect(url_for("index"))
+
+
+@app.route("/notes/<int:id>/delete", methods=["POST"])
+def delete_note(id):
+    note = db.get_or_404(NOTEmodal, id)
+    db.session.delete(note)
+    db.session.commit()
+    return redirect(url_for("index"))
+
+
 if __name__ == "__main__":
-    app.run(debug=True, port = 9000)
+    # Set debug=False when deploying.
+    app.run(debug=True, port=9000)
