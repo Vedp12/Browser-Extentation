@@ -1,8 +1,8 @@
-
 from flask import Blueprint, request, jsonify
 from app import db, URLmodal, NOTEmodal
 from datetime import datetime
 from app import normalize_url, site_label, extract_logo
+
 api = Blueprint("api", __name__, url_prefix="/api")
 
 
@@ -10,25 +10,33 @@ api = Blueprint("api", __name__, url_prefix="/api")
 # WEBSITE API
 # =====================================
 
+
+
+
 # GET ALL WEBSITES
 @api.route("/sites", methods=["GET"])
 def get_sites():
 
     sites = URLmodal.query.all()
 
-    return jsonify({
-        "success": True,
-        "total": len(sites),
-        "data": [
+    return (
+        jsonify(
             {
-                "id": site.id,
-                "site_url": site.site_url,
-                "site_name": site.site_name,
-                "logo_url": site.logo_url
+                "success": True,
+                "total": len(sites),
+                "data": [
+                    {
+                        "id": site.id,
+                        "site_url": site.site_url,
+                        "site_name": site.site_name,
+                        "logo_url": site.logo_url,
+                    }
+                    for site in sites
+                ],
             }
-            for site in sites
-        ]
-    }), 200
+        ),
+        200,
+    )
 
 
 # ADD WEBSITE
@@ -40,34 +48,30 @@ def add_site():
     raw_url = data.get("site_url", "").strip()
 
     if not raw_url:
-        return jsonify({
-            "success": False,
-            "message": "site_url is required"
-        }), 400
-
-    
+        return jsonify({"success": False, "message": "site_url is required"}), 400
 
     url = normalize_url(raw_url)
 
-    site = URLmodal(
-        site_url=url,
-        site_name=site_label(url),
-        logo_url=extract_logo(url)
-    )
+    site = URLmodal(site_url=url, site_name=site_label(url), logo_url=extract_logo(url))
 
     db.session.add(site)
     db.session.commit()
 
-    return jsonify({
-        "success": True,
-        "message": "Website added successfully",
-        "data": {
-            "id": site.id,
-            "site_url": site.site_url,
-            "site_name": site.site_name,
-            "logo_url": site.logo_url
-        }
-    }), 201
+    return (
+        jsonify(
+            {
+                "success": True,
+                "message": "Website added successfully",
+                "data": {
+                    "id": site.id,
+                    "site_url": site.site_url,
+                    "site_name": site.site_name,
+                    "logo_url": site.logo_url,
+                },
+            }
+        ),
+        201,
+    )
 
 
 # GET WEBSITE BY ID
@@ -77,20 +81,22 @@ def get_site(site_id):
     site = db.session.get(URLmodal, site_id)
 
     if not site:
-        return jsonify({
-            "success": False,
-            "message": "Website not found"
-        }), 404
+        return jsonify({"success": False, "message": "Website not found"}), 404
 
-    return jsonify({
-        "success": True,
-        "data": {
-            "id": site.id,
-            "site_url": site.site_url,
-            "site_name": site.site_name,
-            "logo_url": site.logo_url
-        }
-    }), 200
+    return (
+        jsonify(
+            {
+                "success": True,
+                "data": {
+                    "id": site.id,
+                    "site_url": site.site_url,
+                    "site_name": site.site_name,
+                    "logo_url": site.logo_url,
+                },
+            }
+        ),
+        200,
+    )
 
 
 # UPDATE WEBSITE
@@ -100,15 +106,11 @@ def update_site(site_id):
     site = db.session.get(URLmodal, site_id)
 
     if not site:
-        return jsonify({
-            "success": False,
-            "message": "Website not found"
-        }), 404
+        return jsonify({"success": False, "message": "Website not found"}), 404
 
     data = request.get_json(silent=True) or {}
 
     if "site_url" in data:
-        
 
         url = normalize_url(data["site_url"].strip())
 
@@ -118,10 +120,7 @@ def update_site(site_id):
 
     db.session.commit()
 
-    return jsonify({
-        "success": True,
-        "message": "Website updated successfully"
-    }), 200
+    return jsonify({"success": True, "message": "Website updated successfully"}), 200
 
 
 # DELETE WEBSITE
@@ -131,23 +130,18 @@ def delete_site(site_id):
     site = db.session.get(URLmodal, site_id)
 
     if not site:
-        return jsonify({
-            "success": False,
-            "message": "Website not found"
-        }), 404
+        return jsonify({"success": False, "message": "Website not found"}), 404
 
     db.session.delete(site)
     db.session.commit()
 
-    return jsonify({
-        "success": True,
-        "message": "Website deleted successfully"
-    }), 200
+    return jsonify({"success": True, "message": "Website deleted successfully"}), 200
 
 
 # =====================================
 # NOTES API
 # =====================================
+
 
 # GET ALL NOTES
 @api.route("/notes", methods=["GET"])
@@ -155,22 +149,26 @@ def get_notes():
 
     notes = NOTEmodal.query.all()
 
-    return jsonify({
-        "success": True,
-        "total": len(notes),
-        "data": [
+    return (
+        jsonify(
             {
-                "id": note.id,
-                "note_title": note.note_title,
-                "note_content": note.note_content,
-                "created_at": (
-                    note.created_at.isoformat()
-                    if note.created_at else None
-                )
+                "success": True,
+                "total": len(notes),
+                "data": [
+                    {
+                        "id": note.id,
+                        "note_title": note.note_title,
+                        "note_content": note.note_content,
+                        "created_at": (
+                            note.created_at.isoformat() if note.created_at else None
+                        ),
+                    }
+                    for note in notes
+                ],
             }
-            for note in notes
-        ]
-    }), 200
+        ),
+        200,
+    )
 
 
 # CREATE NOTE
@@ -183,30 +181,38 @@ def create_note():
     content = data.get("note_content", "").strip()
 
     if not title or not content:
-        return jsonify({
-            "success": False,
-            "message": "note_title and note_content are required"
-        }), 400
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "message": "note_title and note_content are required",
+                }
+            ),
+            400,
+        )
 
     note = NOTEmodal(
-        note_title=title[:90],
-        note_content=content,
-        created_at=datetime.now()
+        note_title=title[:90], note_content=content, created_at=datetime.now()
     )
 
     db.session.add(note)
     db.session.commit()
 
-    return jsonify({
-        "success": True,
-        "message": "Note created successfully",
-        "data": {
-            "id": note.id,
-            "note_title": note.note_title,
-            "note_content": note.note_content,
-            "created_at": note.created_at.isoformat()
-        }
-    }), 201
+    return (
+        jsonify(
+            {
+                "success": True,
+                "message": "Note created successfully",
+                "data": {
+                    "id": note.id,
+                    "note_title": note.note_title,
+                    "note_content": note.note_content,
+                    "created_at": note.created_at.isoformat(),
+                },
+            }
+        ),
+        201,
+    )
 
 
 # GET NOTE BY ID
@@ -216,23 +222,24 @@ def get_note(note_id):
     note = db.session.get(NOTEmodal, note_id)
 
     if not note:
-        return jsonify({
-            "success": False,
-            "message": "Note not found"
-        }), 404
+        return jsonify({"success": False, "message": "Note not found"}), 404
 
-    return jsonify({
-        "success": True,
-        "data": {
-            "id": note.id,
-            "note_title": note.note_title,
-            "note_content": note.note_content,
-            "created_at": (
-                note.created_at.isoformat()
-                if note.created_at else None
-            )
-        }
-    }), 200
+    return (
+        jsonify(
+            {
+                "success": True,
+                "data": {
+                    "id": note.id,
+                    "note_title": note.note_title,
+                    "note_content": note.note_content,
+                    "created_at": (
+                        note.created_at.isoformat() if note.created_at else None
+                    ),
+                },
+            }
+        ),
+        200,
+    )
 
 
 # UPDATE NOTE
@@ -242,10 +249,7 @@ def update_note(note_id):
     note = db.session.get(NOTEmodal, note_id)
 
     if not note:
-        return jsonify({
-            "success": False,
-            "message": "Note not found"
-        }), 404
+        return jsonify({"success": False, "message": "Note not found"}), 404
 
     data = request.get_json(silent=True) or {}
 
@@ -257,10 +261,7 @@ def update_note(note_id):
 
     db.session.commit()
 
-    return jsonify({
-        "success": True,
-        "message": "Note updated successfully"
-    }), 200
+    return jsonify({"success": True, "message": "Note updated successfully"}), 200
 
 
 # DELETE NOTE
@@ -270,15 +271,11 @@ def delete_note(note_id):
     note = db.session.get(NOTEmodal, note_id)
 
     if not note:
-        return jsonify({
-            "success": False,
-            "message": "Note not found"
-        }), 404
+        return jsonify({"success": False, "message": "Note not found"}), 404
 
     db.session.delete(note)
     db.session.commit()
 
-    return jsonify({
-        "success": True,
-        "message": "Note deleted successfully"
-    }), 200
+    return jsonify({"success": True, "message": "Note deleted successfully"}), 200
+
+

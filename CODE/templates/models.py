@@ -1,8 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 import datetime
-from flask_moment import Moment 
+from flask_moment import Moment
 from flask_migrate import Migrate
-
 
 db = SQLAlchemy()
 
@@ -15,10 +14,11 @@ class URLmodal(db.Model):
     site_name = db.Column(db.String(200), nullable=False)
     logo_url = db.Column(db.String(500), nullable=True)
 
+
 class NOTEmodal(db.Model):
     __tablename__ = "note_modal"
 
     id = db.Column(db.Integer, primary_key=True)
     note_title = db.Column(db.String(90), nullable=False)
     note_content = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime,nullable = False)
+    created_at = db.Column(db.DateTime, nullable=False)

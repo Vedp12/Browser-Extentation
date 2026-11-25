@@ -30,7 +30,4 @@ def extract_logo(url):
 
     hostname = urlparse(url).hostname
 
-    return (
-        f"https://www.google.com/s2/favicons"
-        f"?domain={hostname}&sz=128"
-    )
+    return f"https://www.google.com/s2/favicons" f"?domain={hostname}&sz=128"

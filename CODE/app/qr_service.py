@@ -7,10 +7,7 @@ from flask import current_app
 
 def generate_qr_image(data):
 
-    qr_dir = os.path.join(
-        current_app.static_folder,
-        "image"
-    )
+    qr_dir = os.path.join(current_app.static_folder, "image")
 
     os.makedirs(qr_dir, exist_ok=True)
 

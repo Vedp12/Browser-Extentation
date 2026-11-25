@@ -1,23 +1,11 @@
-from flask import (
-    Blueprint,
-    render_template,
-    request,
-    redirect,
-    url_for,
-    current_app
-)
+from flask import Blueprint, render_template, request, redirect, url_for, current_app
 
 from app.extensions import db
 from app.models import URLmodal, NOTEmodal, QRmodal
 
-from app.services.website_service import (
-    normalize_url,
-    site_label,
-    extract_logo
-)
+from app.services.website_service import normalize_url, site_label, extract_logo
 
 from app.services.qr_service import generate_qr_image
-
 
 web = Blueprint("web", __name__)
 
@@ -44,7 +32,7 @@ def index():
                     site = URLmodal(
                         site_url=url,
                         site_name=site_label(url),
-                        logo_url=extract_logo(url)
+                        logo_url=extract_logo(url),
                     )
 
                     db.session.add(site)
@@ -68,20 +56,13 @@ def index():
 
                 image_path = generate_qr_image(data)
 
-                qr = QRmodal(
-                    qr_data=data,
-                    image_path=image_path
-                )
+                qr = QRmodal(qr_data=data, image_path=image_path)
 
                 try:
                     db.session.add(qr)
                     db.session.commit()
 
-                    qr_code_url = url_for(
-                        "static",
-                        filename=image_path,
-                        v=qr.id
-                    )
+                    qr_code_url = url_for("static", filename=image_path, v=qr.id)
 
                 except Exception:
                     db.session.rollback()
@@ -95,10 +76,7 @@ def index():
 
             if title and content:
 
-                note = NOTEmodal(
-                    note_title=title[:90],
-                    note_content=content
-                )
+                note = NOTEmodal(note_title=title[:90], note_content=content)
 
                 try:
                     db.session.add(note)
@@ -114,5 +92,5 @@ def index():
         "index.html",
         url_reads=URLmodal.query.all(),
         notes_modals=NOTEmodal.query.all(),
-        qr_code=qr_code_url
+        qr_code=qr_code_url,
     )

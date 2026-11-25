@@ -349,35 +349,29 @@
     </div>
 
     <!-- Search bar -->
-    <form class="formsearch" role="search" onsubmit="return false;">
-      <button type="button" class="search-btn" aria-label="Search">
-        <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <input class="browser_search" placeholder="Search the Internet..." required type="text">
-
+    <form class="formsearch" role="search" method="POST">
+      <input type="hidden" name="form_type" value="browser_search_result">
+      <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <input class="browser_search" placeholder="Search the Internet..." name="browser_search" value="browser_search" type="text">
+      
       <div class="select-box" id="selectBox">
-        <button type="button" class="selected" id="selected" aria-haspopup="listbox">
-          <img id="selectedImg" src="{{ url_for('static', filename='image/google.png') }}" alt="Selected engine">
-          <span class="arrow">&#9660;</span>
-        </button>
-        <div class="options" id="options" role="listbox">
-          <div class="option" data-name="Google" data-img="{{ url_for('static', filename='image/google.png') }}">
-            <img src="{{ url_for('static', filename='image/google.png') }}" alt="Google">
+        <select name="provider">
+          <option value="DuckDuckGo">DuckDuckGo</option>
+          <option value="Google">Google</option>
+          <option value="Perplexity">Perplexity</option>
+          <div class="dropdown-footer">
+            <button type="reset" class="btn-secondary">Reset</button>
+            <button type="submit" class="btn-primary">Confirm</button>
           </div>
-          <div class="option" data-name="DuckDuckGo" data-img="{{ url_for('static', filename='image/duck.png') }}">
-            <img src="{{ url_for('static', filename='image/duck.png') }}" alt="DuckDuckGo">
-          </div>
-          <div class="option" data-name="ChatGPT" data-img="{{ url_for('static', filename='image/chatgpt.png') }}">
-            <img src="{{ url_for('static', filename='image/chatgpt.png') }}" alt="ChatGPT">
-          </div>
-          <div class="option" data-name="Perplexity" data-img="{{ url_for('static', filename='image/perplexity.png') }}">
-            <img src="{{ url_for('static', filename='image/perplexity.png') }}" alt="Perplexity">
-          </div>
-        </div>
-      </div>
+
+          
+        </select>
+      </div> 
+      <button type="submit"></button>
     </form>
+      
 
   </div>
 
@@ -385,5 +379,26 @@
   <script src="{{ url_for('static', filename='script/popups.js') }}"></script>
   <script src="{{ url_for('static', filename='script/script.js') }}"></script>
   <script src="{{ url_for('static', filename='script/camera.js') }}"></script>
+
+<script>
+  // Search bar Ajax
+document.getElementById("provider").addEventListener("change", function() {
+
+    fetch("/get_output", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            provider: this.value
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("output").innerHTML = data.message;
+    });
+
+});
+</script>
 </body>
 </html>
