@@ -1,0 +1,294 @@
+
+<!-- Notification -->
+{% if message %}
+<div class="message">
+    {{ message }}
+</div>
+{% endif %}
+
+
+<!-- Student Form -->
+<div class="card">
+
+    <h2>
+        {% if edit_student %}
+            Update Student
+        {% else %}
+            Create Student
+        {% endif %}
+    </h2>
+
+    <br>
+
+    <form
+        {% if edit_student %}
+            hx-put="/students/{{ edit_student.id }}"
+        {% else %}
+            hx-post="/students"
+        {% endif %}
+
+        hx-target="#app"
+        hx-swap="innerHTML"
+    >
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>First Name</label>
+
+                <input
+                    type="text"
+                    name="first_name"
+                    value="{{ edit_student.first_name if edit_student else '' }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Last Name</label>
+
+                <input
+                    type="text"
+                    name="last_name"
+                    value="{{ edit_student.last_name if edit_student else '' }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    value="{{ edit_student.email if edit_student else '' }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="{% if edit_student %}Leave blank to keep existing password{% else %}Enter password{% endif %}"
+                    {% if not edit_student %}required{% endif %}
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- Gender -->
+
+        <div class="form-group">
+
+            <label>Gender</label>
+
+            <div class="options">
+
+                <label>
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Male"
+                        {% if edit_student and edit_student.gender == "Male" %}checked{% endif %}
+                    >
+                    Male
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Female"
+                        {% if edit_student and edit_student.gender == "Female" %}checked{% endif %}
+                    >
+                    Female
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- Hobbies -->
+
+        <div class="form-group">
+
+            <label>Hobbies</label>
+
+            <div class="options">
+
+                {% set selected_hobbies = edit_student.hobbies.split(",") if edit_student and edit_student.hobbies else [] %}
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="hobbies"
+                        value="Cricket"
+                        {% if "Cricket" in selected_hobbies %}checked{% endif %}
+                    >
+                    Cricket
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="hobbies"
+                        value="Movie"
+                        {% if "Movie" in selected_hobbies %}checked{% endif %}
+                    >
+                    Movie
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        name="hobbies"
+                        value="TV"
+                        {% if "TV" in selected_hobbies %}checked{% endif %}
+                    >
+                    TV
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <button type="submit" class="save">
+            {% if edit_student %}
+                Update Student
+            {% else %}
+                Save Student
+            {% endif %}
+        </button>
+
+
+        {% if edit_student %}
+
+            <button
+                type="button"
+                class="cancel"
+                hx-get="/"
+                hx-target="#app"
+                hx-select="#app"
+                hx-swap="innerHTML"
+            >
+                Cancel
+            </button>
+
+        {% endif %}
+
+    </form>
+
+</div>
+
+
+<!-- Student Table -->
+
+<div class="card">
+
+    <h2>Student Records</h2>
+
+    <br>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Hobbies</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for student in students %}
+
+                <tr>
+
+                    <td>{{ student.id }}</td>
+
+                    <td>{{ student.first_name }}</td>
+
+                    <td>{{ student.last_name }}</td>
+
+                    <td>{{ student.email }}</td>
+
+                    <td>{{ student.gender or '' }}</td>
+
+                    <td>{{ student.hobbies or '' }}</td>
+
+                    <td>
+
+                        <!-- Edit -->
+
+                        <button
+                            class="edit"
+                            hx-get="/students/{{ student.id }}/edit"
+                            hx-target="#app"
+                            hx-swap="innerHTML"
+                        >
+                            Edit
+                        </button>
+
+
+                        <!-- Delete -->
+
+                        <button
+                            class="delete"
+                            hx-delete="/students/{{ student.id }}"
+                            hx-target="#app"
+                            hx-swap="innerHTML"
+                            hx-confirm="Are you sure you want to delete this student?"
+                        >
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+
+                    <td colspan="7" class="empty">
+                        No students found.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

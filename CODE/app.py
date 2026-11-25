@@ -1,3 +1,4 @@
+from flask import Flask, redirect, render_template, request, url_for
 import os
 import re
 import time
@@ -7,8 +8,8 @@ import qrcode
 import requests
 import tldextract
 from bs4 import BeautifulSoup
-from flask import Flask, redirect, render_template, request, url_for
-import tldextract
+
+import flask_sqlalchemy
 from templates.models import db, URLmodal, NOTEmodal
 from datetime import datetime
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
