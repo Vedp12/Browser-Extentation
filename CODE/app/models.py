@@ -1,32 +1,19 @@
 from datetime import datetime, timezone
 from app.extensions import db
-
-
 def current_time():
     return datetime.now(timezone.utc)
 
 
-# ==================================
-# WEBSITE MODEL
-# ==================================
-
 
 class URLmodal(db.Model):
-
     __tablename__ = "websites"
-
     id = db.Column(db.Integer, primary_key=True)
-
     site_url = db.Column(db.String(500), unique=True, nullable=False)
-
     site_name = db.Column(db.String(150), nullable=False)
-
     logo_url = db.Column(db.String(1000), nullable=True)
-
     created_at = db.Column(
         db.DateTime(timezone=True), default=current_time, nullable=False
     )
-
     def to_dict(self):
         return {
             "id": self.id,
@@ -37,32 +24,21 @@ class URLmodal(db.Model):
         }
 
 
-# ==================================
-# NOTES MODEL
-# ==================================
-
 
 class NOTEmodal(db.Model):
-
     __tablename__ = "notes"
-
     id = db.Column(db.Integer, primary_key=True)
-
     note_title = db.Column(db.String(90), nullable=False)
-
     note_content = db.Column(db.Text, nullable=False)
-
     created_at = db.Column(
         db.DateTime(timezone=True), default=current_time, nullable=False
     )
-
     updated_at = db.Column(
         db.DateTime(timezone=True),
         default=current_time,
         onupdate=current_time,
         nullable=False,
     )
-
     def to_dict(self):
         return {
             "id": self.id,
@@ -73,25 +49,15 @@ class NOTEmodal(db.Model):
         }
 
 
-# ==================================
-# QR CODE MODEL
-# ==================================
-
 
 class QRmodal(db.Model):
-
     __tablename__ = "qr_codes"
-
     id = db.Column(db.Integer, primary_key=True)
-
     qr_data = db.Column(db.Text, nullable=False)
-
     image_path = db.Column(db.String(500), nullable=False)
-
     created_at = db.Column(
         db.DateTime(timezone=True), default=current_time, nullable=False
     )
-
     def to_dict(self):
         return {
             "id": self.id,

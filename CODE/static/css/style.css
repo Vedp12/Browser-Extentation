@@ -569,7 +569,7 @@ a {
 }
 
 .deleteButton {
-    background: #ff4d4d;
+    background: #f69546;
     border: none;
     border-radius: 50%;
     width: 24px;
@@ -580,6 +580,7 @@ a {
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
+
 
 .bin {
     width: 12px;
@@ -604,7 +605,7 @@ a {
   justify-content: center;
   border: none;
   border-radius: 50%;
-  background-color: #ed3838;
+  background-color: #f69546;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   opacity: 0;
